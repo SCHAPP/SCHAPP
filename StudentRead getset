@@ -1,0 +1,56 @@
+package layout;
+
+public class StudentRead {
+	
+	
+	
+	private String spnr; 
+	private String ccode;
+	private String grade;
+	
+	
+	public StudentRead (Stundent spnr, Course ccode, String grade) {
+		
+		this.spnr= spnr;
+		this.ccode= ccode ;
+		this.grade =grade; 
+		
+		
+		}
+
+
+	public String getSpnr() {
+		return spnr;
+	}
+
+
+	public void setSpnr(String spnr) {
+		this.spnr = spnr;
+	}
+
+
+	public String getCcode() {
+		return ccode;
+	}
+
+
+	public void setCcode(String ccode) {
+		this.ccode = ccode;
+	}
+
+
+	public String getGrade() {
+		return grade;
+	}
+
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+	
+	
+	
+	
+
+
+}
