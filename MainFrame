@@ -1,8 +1,5 @@
 package layout;
 
-
-
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -17,9 +14,8 @@ public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
+	/*------------------------ Launch the application ----------------------------------*/
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -33,9 +29,8 @@ public class MainFrame extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	/*----------------------------- Creates the frame ---------------------------------*/
+	
 	public MainFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 377, 240);
@@ -44,21 +39,23 @@ public class MainFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton registerButton = new JButton("Register");
-		registerButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		registerButton.setBounds(82, 53, 174, 42);
-		contentPane.add(registerButton);
+	/*--------------------------- Creates the JButtons ---------------------------------*/
 		
-		JButton addButton_1 = new JButton("Search/Add/Remove/");
-		addButton_1.addActionListener(new ActionListener() {
+		JButton btnRegister = new JButton("Register");
+		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		addButton_1.setBounds(82, 106, 174, 42);
-		contentPane.add(addButton_1);
+		btnRegister.setBounds(82, 53, 174, 42);
+		contentPane.add(btnRegister);
+		
+		JButton btnSearchAddRemove = new JButton("Search/Add/Remove/");
+		btnSearchAddRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnSearchAddRemove.setBounds(82, 106, 174, 42);
+		contentPane.add(btnSearchAddRemove);
 	}
 
 }
