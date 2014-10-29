@@ -1,0 +1,98 @@
+package layout;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.GridLayout;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JMenu;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JRadioButton;
+import javax.swing.JList;
+import javax.swing.JTextPane;
+import javax.swing.JTabbedPane;
+
+public class SearchFrame extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JButton btnNewButton_1;
+	private JTable table;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					SearchFrame frame = new SearchFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/* Creates the frame.*/
+	
+	public SearchFrame() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 499, 403);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		/* Creates the buttons for the search frame */
+		
+		JButton btnDelete = new JButton("Ta bort");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnDelete.setBounds(355, 331, 89, 23);
+		contentPane.add(btnDelete);
+		
+		textField = new JTextField();
+		textField.setBounds(174, 40, 270, 23);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		btnNewButton_1 = new JButton("Sök");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_1.setBounds(355, 74, 89, 23);
+		contentPane.add(btnNewButton_1);
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("Studentpnr");
+		rdbtnNewRadioButton.setBounds(27, 29, 109, 23);
+		contentPane.add(rdbtnNewRadioButton);
+		
+		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Kurskod");
+		rdbtnNewRadioButton_1.setBounds(27, 55, 109, 23);
+		contentPane.add(rdbtnNewRadioButton_1);
+		
+		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Resultat");
+		rdbtnNewRadioButton_2.setBounds(27, 81, 109, 23);
+		contentPane.add(rdbtnNewRadioButton_2);
+		
+		JButton btnndra = new JButton("\u00C4ndra");
+		btnndra.setBounds(36, 331, 89, 23);
+		contentPane.add(btnndra);
+		
+		table = new JTable();
+		table.setBounds(414, 293, -344, -123);
+		contentPane.add(table);
+	}
+}
