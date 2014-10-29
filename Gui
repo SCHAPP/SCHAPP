@@ -1,0 +1,195 @@
+package layout;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import java.awt.Button;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Gui extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtStudentSearchByPnr;
+	private JTextField txtAddStudentPnr;
+	private JTextField txtAddStudentName;
+	private JTextField txtAddStudentPhoneNr;
+	private JTextField txtAddStudentAddress;
+	private JTextField txtAddCourseCodeStudent;
+	private JTextField txtSearchCourseCode;
+	private JTextField txtAddCourseCode;
+	private JTextField txtAddCourseName;
+	private JTextField txtAddCourseInfo;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Gui frame = new Gui();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Gui() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 800, 500);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		contentPane.add(tabbedPane, BorderLayout.CENTER);
+		
+		JPanel Student = new JPanel();
+		tabbedPane.addTab("Student", null, Student, null);
+		Student.setLayout(null);
+		
+		JLabel lblStudentSearchPnr = new JLabel("Student pnr:");
+		lblStudentSearchPnr.setBounds(67, 74, 61, 14);
+		Student.add(lblStudentSearchPnr);
+		
+		txtStudentSearchByPnr = new JTextField();
+		txtStudentSearchByPnr.setBounds(141, 71, 133, 20);
+		Student.add(txtStudentSearchByPnr);
+		txtStudentSearchByPnr.setColumns(10);
+		
+		JLabel lblStudentPnr = new JLabel("Student pnr:");
+		lblStudentPnr.setBounds(437, 74, 69, 14);
+		Student.add(lblStudentPnr);
+		
+		txtAddStudentPnr = new JTextField();
+		txtAddStudentPnr.setBounds(515, 71, 131, 20);
+		Student.add(txtAddStudentPnr);
+		txtAddStudentPnr.setColumns(10);
+		
+		JLabel lblStudentName = new JLabel("Name:");
+		lblStudentName.setBounds(437, 105, 46, 14);
+		Student.add(lblStudentName);
+		
+		txtAddStudentName = new JTextField();
+		txtAddStudentName.setBounds(515, 102, 131, 20);
+		Student.add(txtAddStudentName);
+		txtAddStudentName.setColumns(10);
+		
+		Button btnSearchStudent = new Button("Search");
+		btnSearchStudent.setBounds(141, 100, 133, 22);
+		Student.add(btnSearchStudent);
+		
+		JLabel lblPhoneNr = new JLabel("Phone nr:");
+		lblPhoneNr.setBounds(437, 167, 54, 14);
+		Student.add(lblPhoneNr);
+		
+		txtAddStudentPhoneNr = new JTextField();
+		txtAddStudentPhoneNr.setBounds(515, 164, 131, 20);
+		Student.add(txtAddStudentPhoneNr);
+		txtAddStudentPhoneNr.setColumns(10);
+		
+		JLabel lblAddress = new JLabel("Address:");
+		lblAddress.setBounds(437, 136, 46, 14);
+		Student.add(lblAddress);
+		
+		txtAddStudentAddress = new JTextField();
+		txtAddStudentAddress.setText("");
+		txtAddStudentAddress.setBounds(515, 133, 131, 20);
+		Student.add(txtAddStudentAddress);
+		txtAddStudentAddress.setColumns(10);
+		
+		JLabel lblStudentCourseCode = new JLabel("Course code:");
+		lblStudentCourseCode.setBounds(437, 198, 69, 14);
+		Student.add(lblStudentCourseCode);
+		
+		txtAddCourseCodeStudent = new JTextField();
+		txtAddCourseCodeStudent.setBounds(515, 195, 131, 20);
+		Student.add(txtAddCourseCodeStudent);
+		txtAddCourseCodeStudent.setColumns(10);
+		
+		JButton btnAddStudent = new JButton("Add new student");
+		btnAddStudent.setBounds(515, 226, 131, 23);
+		Student.add(btnAddStudent);
+		
+		JButton btnDeleteStudent = new JButton("Delete Student");
+		btnDeleteStudent.setBounds(141, 376, 133, 23);
+		Student.add(btnDeleteStudent);
+		
+		JPanel Course = new JPanel();
+		tabbedPane.addTab("Course", null, Course, null);
+		Course.setLayout(null);
+		
+		JLabel lblSearchByCourseCode = new JLabel("Course Code:");
+		lblSearchByCourseCode.setBounds(24, 43, 71, 14);
+		Course.add(lblSearchByCourseCode);
+		
+		txtSearchCourseCode = new JTextField();
+		txtSearchCourseCode.setBounds(105, 40, 112, 20);
+		Course.add(txtSearchCourseCode);
+		txtSearchCourseCode.setColumns(10);
+		
+		JLabel lblCourseCode = new JLabel("Couse code:");
+		lblCourseCode.setBounds(494, 43, 60, 14);
+		Course.add(lblCourseCode);
+		
+		txtAddCourseCode = new JTextField();
+		txtAddCourseCode.setBounds(564, 40, 123, 20);
+		Course.add(txtAddCourseCode);
+		txtAddCourseCode.setColumns(10);
+		
+		JLabel lblCourseName = new JLabel("Name:");
+		lblCourseName.setBounds(494, 74, 46, 14);
+		Course.add(lblCourseName);
+		
+		txtAddCourseName = new JTextField();
+		txtAddCourseName.setBounds(564, 71, 123, 20);
+		Course.add(txtAddCourseName);
+		txtAddCourseName.setColumns(10);
+		
+		JLabel lblCourseInfo = new JLabel("Course info:");
+		lblCourseInfo.setBounds(494, 105, 60, 14);
+		Course.add(lblCourseInfo);
+		
+		txtAddCourseInfo = new JTextField();
+		txtAddCourseInfo.setBounds(564, 102, 123, 20);
+		Course.add(txtAddCourseInfo);
+		txtAddCourseInfo.setColumns(10);
+		
+		JButton btbSearchByCourseCode = new JButton("Search");
+		btbSearchByCourseCode.setBounds(105, 71, 112, 23);
+		Course.add(btbSearchByCourseCode);
+		
+		JButton btnAddNewCourse = new JButton("Add new Course");
+		btnAddNewCourse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnAddNewCourse.setBounds(564, 133, 123, 23);
+		Course.add(btnAddNewCourse);
+		
+		JButton btnDeleteCourse = new JButton("Delete Course");
+		btnDeleteCourse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnDeleteCourse.setBounds(105, 374, 112, 23);
+		Course.add(btnDeleteCourse);
+		
+		JPanel Results = new JPanel();
+		tabbedPane.addTab("Results", null, Results, null);
+	}
+}
