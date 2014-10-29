@@ -58,10 +58,10 @@ public class SearchFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnBackSearchFrame.setBounds(10, 10, 89, 23);
+		btnBackSearchFrame.setBounds(10, 0, 89, 23);
 		contentPane.add(btnBackSearchFrame);
 		
-		JButton btnDelete = new JButton("Ta bort");
+		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -69,7 +69,7 @@ public class SearchFrame extends JFrame {
 		btnDelete.setBounds(355, 331, 89, 23);
 		contentPane.add(btnDelete);
 		
-		btnSearch = new JButton("Sök");
+		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -77,7 +77,7 @@ public class SearchFrame extends JFrame {
 		btnSearch.setBounds(355, 74, 89, 23);
 		contentPane.add(btnSearch);
 		
-		JButton btnEdit = new JButton("Ändra");
+		JButton btnEdit = new JButton("Change");
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -87,15 +87,15 @@ public class SearchFrame extends JFrame {
 		
 	/*-----------------------------Creates the JRadioButton------------------------------*/
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Studentpnr");
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("Student pnr");
 		rdbtnNewRadioButton.setBounds(27, 29, 109, 23);
 		contentPane.add(rdbtnNewRadioButton);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Kurskod");
+		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Course id");
 		rdbtnNewRadioButton_1.setBounds(27, 55, 109, 23);
 		contentPane.add(rdbtnNewRadioButton_1);
 		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Resultat");
+		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Result");
 		rdbtnNewRadioButton_2.setBounds(27, 81, 109, 23);
 		contentPane.add(rdbtnNewRadioButton_2);
 		
