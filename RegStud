@@ -1,4 +1,4 @@
-package layout;
+package skola;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -14,6 +14,10 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+
+
+
 
 public class RegStud extends JFrame {
 
@@ -55,7 +59,7 @@ public class RegStud extends JFrame {
 		
 		
 		
-		/*----------------------------------------------------------Create the TextField--------------------------------------------------------------------*/
+		/*----------------------------------------------------------Create Textfield--------------------------------------------------------------------*/
 		
 		txtStudentPnr = new JTextField();
 		txtStudentPnr.setBounds(125, 78, 365, 22);
@@ -76,7 +80,6 @@ public class RegStud extends JFrame {
 		txtSphnr.setColumns(10);
 		txtSphnr.setBounds(125, 261, 365, 22);
 		contentPane.add(txtSphnr);
-		
 		
 		/*----------------------------------------------------------Create the JButton--------------------------------------------------------------------*/
 		
@@ -125,3 +128,5 @@ public class RegStud extends JFrame {
 		
 		
 	}
+}
+
