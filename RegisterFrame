@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 
-public class Register extends JFrame {
+public class RegisterFrame extends JFrame {
 
 	private JPanel contentPane;
 
@@ -20,7 +20,7 @@ public class Register extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Register frame = new Register();
+					RegisterFrame frame = new RegisterFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,7 +30,7 @@ public class Register extends JFrame {
 	}
 
 	/* ------------------------------------------------Create the frame------------------------------------------------*/
-	public Register() {
+	public RegisterFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 465, 410);
 		contentPane = new JPanel();
