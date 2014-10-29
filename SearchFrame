@@ -53,6 +53,14 @@ public class SearchFrame extends JFrame {
 		
 	/*---------------------- Creates the buttons for the search frame -------------------*/
 		
+		JButton btnBackSearchFrame = new JButton("Back");
+		btnBackSearchFrame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnBackSearchFrame.setBounds(10, 10, 89, 23);
+		contentPane.add(btnBackSearchFrame);
+		
 		JButton btnDelete = new JButton("Ta bort");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
