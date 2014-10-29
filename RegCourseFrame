@@ -1,0 +1,133 @@
+package layout;
+
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+
+public class RegCourseFrame extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField btnBackCourseReg;
+	private JTextField tbnSaveCourseReg;
+	private JLabel lblTitelRegisterCode;
+	private JLabel lblCourseCode;
+	private JLabel lblCname;
+	private JLabel lblinfoLabel;
+	private JTextField txtCourseCode;
+	private JTextField txtCourseRegName;
+	private JTextField txtCourseRegInfo;
+	
+	
+	
+	
+	
+	
+	
+	
+
+	/*------------------------------------------------------------ Launch the application-------------------------------------------------------------*/
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					RegCourseFrame frame = new RegCourseFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/*------------------------------------------------------------- Create the frame------------------------------------------------------------------*/
+	
+		
+		public RegCourseFrame() {
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			setBounds(100, 100, 564, 408);
+			contentPane = new JPanel();
+			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+			setContentPane(contentPane);
+			contentPane.setLayout(null);
+	
+		
+			/*----------------------------------------------------------Create the JButton--------------------------------------------------------------------*/
+			
+		
+			
+			Button btnBackCourseReg = new Button("Back");
+			btnBackCourseReg.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			btnBackCourseReg.setBounds(10, 10, 70, 22);
+			contentPane.add(btnBackCourseReg);
+			
+			Button btnSaveCourseReg = new Button("Save");
+			btnSaveCourseReg.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			
+			btnSaveCourseReg.setBounds(468, 338, 70, 22);
+			contentPane.add(btnSaveCourseReg);
+			
+			
+			
+			/*----------------------------------------------------------Create the Label--------------------------------------------------------------------*/
+			
+			
+			lblTitelRegisterCode = new JLabel("Register Course");
+			lblTitelRegisterCode.setBounds(125, 10, 137, 26);
+			contentPane.add(lblTitelRegisterCode);
+			
+			lblCourseCode = new JLabel("Course Code:");
+			lblCourseCode.setBounds(25, 78, 100, 22);
+			contentPane.add(lblCourseCode);
+			
+			lblCname = new JLabel("Name:");
+			lblCname.setBounds(25, 133, 100, 22);
+			contentPane.add(lblCname);
+			
+			lblinfoLabel = new JLabel("Course Information:");
+			lblinfoLabel.setBounds(25, 196, 100, 22);
+			contentPane.add(lblinfoLabel);
+			
+			
+			
+			/*----------------------------------------------------------Create the Textfields--------------------------------------------------------------------*/
+			
+			
+			
+			txtCourseCode = new JTextField();
+			txtCourseCode.setBounds(125, 78, 365, 22);
+			contentPane.add(txtCourseCode);
+			txtCourseCode.setColumns(10);
+			
+			txtCourseRegName = new JTextField();
+			txtCourseRegName.setBounds(125, 133, 365, 22);
+			contentPane.add(txtCourseRegName);
+			txtCourseRegName.setColumns(10);
+			
+			txtCourseRegInfo = new JTextField();
+			txtCourseRegInfo.setBounds(125, 196, 365, 22);
+			contentPane.add(txtCourseRegInfo);
+			txtCourseRegInfo.setColumns(10);
+			
+			
+			
+		
+			
+			
+		}
+		
+
+}
