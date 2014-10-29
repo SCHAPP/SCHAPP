@@ -23,12 +23,11 @@ public class SearchFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JButton btnNewButton_1;
+	private JButton btnSearch;
 	private JTable table;
 
-	/**
-	 * Launch the application.
-	 */
+	/*----------------------------- Launch the application.-------------------------------*/
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -42,17 +41,17 @@ public class SearchFrame extends JFrame {
 		});
 	}
 
-	/* Creates the frame.*/
+	/*------------------------------- Creates the frame.---------------------------------*/
 	
 	public SearchFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 499, 403);
+		setBounds(100, 100, 500, 420);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		/* Creates the buttons for the search frame */
+	/*---------------------- Creates the buttons for the search frame -------------------*/
 		
 		JButton btnDelete = new JButton("Ta bort");
 		btnDelete.addActionListener(new ActionListener() {
@@ -62,18 +61,23 @@ public class SearchFrame extends JFrame {
 		btnDelete.setBounds(355, 331, 89, 23);
 		contentPane.add(btnDelete);
 		
-		textField = new JTextField();
-		textField.setBounds(174, 40, 270, 23);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		btnNewButton_1 = new JButton("Sök");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btnSearch = new JButton("Sök");
+		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_1.setBounds(355, 74, 89, 23);
-		contentPane.add(btnNewButton_1);
+		btnSearch.setBounds(355, 74, 89, 23);
+		contentPane.add(btnSearch);
+		
+		JButton btnEdit = new JButton("Ändra");
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnEdit.setBounds(36, 331, 89, 23);
+		contentPane.add(btnEdit);
+		
+	/*-----------------------------Creates the JRadioButton------------------------------*/
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Studentpnr");
 		rdbtnNewRadioButton.setBounds(27, 29, 109, 23);
@@ -87,12 +91,18 @@ public class SearchFrame extends JFrame {
 		rdbtnNewRadioButton_2.setBounds(27, 81, 109, 23);
 		contentPane.add(rdbtnNewRadioButton_2);
 		
-		JButton btnndra = new JButton("\u00C4ndra");
-		btnndra.setBounds(36, 331, 89, 23);
-		contentPane.add(btnndra);
+		
+	/*--------------------------------Creates the JTable---------------------------------*/
 		
 		table = new JTable();
 		table.setBounds(414, 293, -344, -123);
 		contentPane.add(table);
+		
+	/*---------------------------------Creates the JTextField---------------------------*/	
+		
+		textField = new JTextField();
+		textField.setBounds(174, 40, 270, 23);
+		contentPane.add(textField);
+		textField.setColumns(10);
 	}
 }
