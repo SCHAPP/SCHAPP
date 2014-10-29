@@ -46,7 +46,7 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnRegister.setBounds(82, 53, 174, 42);
+		btnRegister.setBounds(100, 53, 174, 42);
 		contentPane.add(btnRegister);
 		
 		JButton btnSearchAddRemove = new JButton("Search/Add/Remove/");
@@ -54,7 +54,7 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnSearchAddRemove.setBounds(82, 106, 174, 42);
+		btnSearchAddRemove.setBounds(100, 106, 174, 42);
 		contentPane.add(btnSearchAddRemove);
 	}
 
