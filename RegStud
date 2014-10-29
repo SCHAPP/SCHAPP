@@ -55,7 +55,7 @@ public class RegStud extends JFrame {
 		
 		
 		
-		/*----------------------------------------------------------Create the JButton--------------------------------------------------------------------*/
+		/*----------------------------------------------------------Create the TextField--------------------------------------------------------------------*/
 		
 		txtStudentPnr = new JTextField();
 		txtStudentPnr.setBounds(125, 78, 365, 22);
@@ -76,6 +76,9 @@ public class RegStud extends JFrame {
 		txtSphnr.setColumns(10);
 		txtSphnr.setBounds(125, 261, 365, 22);
 		contentPane.add(txtSphnr);
+		
+		
+		/*----------------------------------------------------------Create the JButton--------------------------------------------------------------------*/
 		
 		Button btnBackStudentReg = new Button("Back");
 		btnBackStudentReg.addActionListener(new ActionListener() {
