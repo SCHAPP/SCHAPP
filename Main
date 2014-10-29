@@ -1,0 +1,37 @@
+package hej;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class Main {
+	 
+
+	 public static void main(String args[]) 
+    {  
+    try  
+    { 
+
+         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
+         String connectionUrl = "jdbc:sqlserver://DANIELSVANH4CA8\\MSSQLSERVER;" + 
+                                 "database=Schoolsystems;" + 
+                                 "user=user1;" + 
+                                 "password=SYSB13OLLE_"; 
+         
+         Connection con = DriverManager.getConnection(connectionUrl); 
+         System.out.println("Connected."); 
+
+    }  
+    catch(Exception e)  
+    { 
+   	 e.printStackTrace();
+         System.out.println(e.getMessage()); 
+         System.exit(0);  
+    } 
+ } 
+
+}
+
+
+
