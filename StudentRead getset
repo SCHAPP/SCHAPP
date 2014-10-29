@@ -4,37 +4,37 @@ public class StudentRead {
 	
 	
 	
-	private String spnr; 
-	private String ccode;
+	private Student spnr; 
+	private Course ccode;
 	private String grade;
 	
 	
-	public StudentRead (Stundent spnr, Course ccode, String grade) {
+	public StudentRead (Student spnr, Course ccode, String grade) {
 		
 		this.spnr= spnr;
-		this.ccode= ccode ;
+		this.ccode= ccode;
 		this.grade =grade; 
 		
 		
 		}
 
 
-	public String getSpnr() {
+	public Student getSpnr() {
 		return spnr;
 	}
 
 
-	public void setSpnr(String spnr) {
+	public void setSpnr(Student spnr) {
 		this.spnr = spnr;
 	}
 
 
-	public String getCcode() {
+	public Course getCcode() {
 		return ccode;
 	}
 
 
-	public void setCcode(String ccode) {
+	public void setCcode(Course ccode) {
 		this.ccode = ccode;
 	}
 
