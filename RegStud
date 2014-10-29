@@ -1,0 +1,124 @@
+package layout;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import java.awt.Label;
+import javax.swing.JLabel;
+import com.jgoodies.forms.factories.DefaultComponentFactory;
+import java.awt.Button;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class RegStud extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private Label lblStudpnr;
+	private Label  lblSName;
+	private Label lblAddr;
+	private Label lblSPhnr ;
+	private JTextField txtStudentPnr;
+	private JTextField txtStudentName;
+	private JTextField txtAddress;
+	private JTextField txtSphnr;
+
+	/*--------------------------------------------------------Launch the application---------------------------------------------------------------*/
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					RegStud frame = new RegStud();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/*----------------------------------------------------------Create the frame--------------------------------------------------------------------*/
+	public RegStud() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 564, 408);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+
+		
+		
+		
+		/*----------------------------------------------------------Create the JButton--------------------------------------------------------------------*/
+		
+		txtStudentPnr = new JTextField();
+		txtStudentPnr.setBounds(125, 78, 365, 22);
+		contentPane.add(txtStudentPnr);
+		txtStudentPnr.setColumns(10);
+		
+		txtStudentName = new JTextField();
+		txtStudentName.setColumns(10);
+		txtStudentName.setBounds(125, 133, 365, 22);
+		contentPane.add(txtStudentName);
+		
+		txtAddress = new JTextField();
+		txtAddress.setColumns(10);
+		txtAddress.setBounds(125, 196, 365, 22);
+		contentPane.add(txtAddress);
+		
+		txtSphnr = new JTextField();
+		txtSphnr.setColumns(10);
+		txtSphnr.setBounds(125, 261, 365, 22);
+		contentPane.add(txtSphnr);
+		
+		Button btnBackStudentReg = new Button("Back");
+		btnBackStudentReg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnBackStudentReg.setBounds(10, 10, 70, 22);
+		contentPane.add(btnBackStudentReg);
+		
+		Button btnSaveStudentReg = new Button("Save");
+		btnSaveStudentReg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnSaveStudentReg.setBounds(468, 338, 70, 22);
+		contentPane.add(btnSaveStudentReg);
+		
+		
+		/*----------------------------------------------------------Create the Label--------------------------------------------------------------------*/
+		
+		Label lbltitelStudentReg = new Label("Register Student");
+		lbltitelStudentReg.setBounds(125, 10, 137, 26);
+		contentPane.add(lbltitelStudentReg);
+		
+		
+		Label lblStudpnr = new Label("Studentpnr:");
+		lblStudpnr.setBounds(25, 78, 62, 22);
+		contentPane.add(lblStudpnr);
+		
+		Label lblSName = new Label("Name:");
+		lblSName.setBounds(25, 133, 37, 22);
+		contentPane.add(lblSName);
+		
+		Label lblAddr = new Label("Addres:");
+		lblAddr.setBounds(25, 196, 45, 22);
+		contentPane.add(lblAddr);
+		
+		Label lblSPhnr = new Label("Phonenr: ");
+		lblSPhnr.setBounds(25, 261, 45, 22);
+		contentPane.add(lblSPhnr);
+		
+		
+		
+		
+		
+	}
