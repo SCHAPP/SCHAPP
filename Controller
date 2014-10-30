@@ -1,20 +1,20 @@
-package layout;
+package controller;
+
+import java.sql.*;
+
+import java.util.ArrayList;
+import data_access_layer.DAL;
 
 public class Controller {
-	
-	Course c;
-	Student s;
-	Reading rea;
-	StudentRead sr;
-	
-	
-	
-	public Controller
-	
-  
-	
-	
-	
-	
-
+    
+    
+    DAL dal;
+    
+    
+    public Controller() throws SQLException{
+        dal = new DAL();
+    }
+    
+    
+    /* Insert different methods and to get info from GUI to SQL and deverse */
 }
