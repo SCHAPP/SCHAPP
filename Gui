@@ -67,7 +67,7 @@ public class Gui extends JFrame {
 		Student.add(lblStudentSearchPnr);
 		
 		txtStudentSearchByPnr = new JTextField();
-		txtStudentSearchByPnr.setBounds(141, 71, 133, 20);
+		txtStudentSearchByPnr.setBounds(141, 71, 141, 20);
 		Student.add(txtStudentSearchByPnr);
 		txtStudentSearchByPnr.setColumns(10);
 		
@@ -76,7 +76,7 @@ public class Gui extends JFrame {
 		Student.add(lblStudentPnr);
 		
 		txtAddStudentPnr = new JTextField();
-		txtAddStudentPnr.setBounds(515, 71, 131, 20);
+		txtAddStudentPnr.setBounds(515, 71, 141, 20);
 		Student.add(txtAddStudentPnr);
 		txtAddStudentPnr.setColumns(10);
 		
@@ -85,12 +85,12 @@ public class Gui extends JFrame {
 		Student.add(lblStudentName);
 		
 		txtAddStudentName = new JTextField();
-		txtAddStudentName.setBounds(515, 102, 131, 20);
+		txtAddStudentName.setBounds(515, 102, 141, 20);
 		Student.add(txtAddStudentName);
 		txtAddStudentName.setColumns(10);
 		
 		Button btnSearchStudent = new Button("Search");
-		btnSearchStudent.setBounds(141, 100, 133, 22);
+		btnSearchStudent.setBounds(141, 100, 141, 20);
 		Student.add(btnSearchStudent);
 		
 		JLabel lblPhoneNr = new JLabel("Phone nr:");
@@ -98,7 +98,7 @@ public class Gui extends JFrame {
 		Student.add(lblPhoneNr);
 		
 		txtAddStudentPhoneNr = new JTextField();
-		txtAddStudentPhoneNr.setBounds(515, 164, 131, 20);
+		txtAddStudentPhoneNr.setBounds(515, 164, 141, 20);
 		Student.add(txtAddStudentPhoneNr);
 		txtAddStudentPhoneNr.setColumns(10);
 		
@@ -108,25 +108,29 @@ public class Gui extends JFrame {
 		
 		txtAddStudentAddress = new JTextField();
 		txtAddStudentAddress.setText("");
-		txtAddStudentAddress.setBounds(515, 133, 131, 20);
+		txtAddStudentAddress.setBounds(515, 133, 141, 20);
 		Student.add(txtAddStudentAddress);
 		txtAddStudentAddress.setColumns(10);
 		
 		JLabel lblStudentCourseCode = new JLabel("Course code:");
-		lblStudentCourseCode.setBounds(437, 198, 69, 14);
+		lblStudentCourseCode.setBounds(426, 198, 80, 14);
 		Student.add(lblStudentCourseCode);
 		
 		txtAddCourseCodeStudent = new JTextField();
-		txtAddCourseCodeStudent.setBounds(515, 195, 131, 20);
+		txtAddCourseCodeStudent.setBounds(515, 195, 141, 20);
 		Student.add(txtAddCourseCodeStudent);
 		txtAddCourseCodeStudent.setColumns(10);
 		
 		JButton btnAddStudent = new JButton("Add new student");
-		btnAddStudent.setBounds(515, 226, 131, 23);
+		btnAddStudent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnAddStudent.setBounds(515, 226, 141, 20);
 		Student.add(btnAddStudent);
 		
 		JButton btnDeleteStudent = new JButton("Delete Student");
-		btnDeleteStudent.setBounds(141, 376, 133, 23);
+		btnDeleteStudent.setBounds(141, 376, 141, 20);
 		Student.add(btnDeleteStudent);
 		
 		JPanel Course = new JPanel();
@@ -134,43 +138,43 @@ public class Gui extends JFrame {
 		Course.setLayout(null);
 		
 		JLabel lblSearchByCourseCode = new JLabel("Course Code:");
-		lblSearchByCourseCode.setBounds(24, 43, 71, 14);
+		lblSearchByCourseCode.setBounds(58, 74, 85, 14);
 		Course.add(lblSearchByCourseCode);
 		
 		txtSearchCourseCode = new JTextField();
-		txtSearchCourseCode.setBounds(105, 40, 141, 20);
+		txtSearchCourseCode.setBounds(141, 71, 141, 20);
 		Course.add(txtSearchCourseCode);
 		txtSearchCourseCode.setColumns(10);
 		
 		JLabel lblCourseCode = new JLabel("Couse code:");
-		lblCourseCode.setBounds(477, 43, 77, 14);
+		lblCourseCode.setBounds(437, 74, 77, 14);
 		Course.add(lblCourseCode);
 		
 		txtAddCourseCode = new JTextField();
-		txtAddCourseCode.setBounds(564, 40, 141, 20);
+		txtAddCourseCode.setBounds(515, 71, 141, 20);
 		Course.add(txtAddCourseCode);
 		txtAddCourseCode.setColumns(10);
 		
 		JLabel lblCourseName = new JLabel("Name:");
-		lblCourseName.setBounds(477, 74, 63, 14);
+		lblCourseName.setBounds(437, 105, 63, 14);
 		Course.add(lblCourseName);
 		
 		txtAddCourseName = new JTextField();
-		txtAddCourseName.setBounds(564, 71, 141, 20);
+		txtAddCourseName.setBounds(515, 102, 141, 20);
 		Course.add(txtAddCourseName);
 		txtAddCourseName.setColumns(10);
 		
 		JLabel lblCourseInfo = new JLabel("Course info:");
-		lblCourseInfo.setBounds(477, 105, 77, 14);
+		lblCourseInfo.setBounds(437, 136, 77, 14);
 		Course.add(lblCourseInfo);
 		
 		txtAddCourseInfo = new JTextField();
-		txtAddCourseInfo.setBounds(564, 102, 141, 20);
+		txtAddCourseInfo.setBounds(515, 133, 141, 20);
 		Course.add(txtAddCourseInfo);
 		txtAddCourseInfo.setColumns(10);
 		
 		JButton btbSearchByCourseCode = new JButton("Search");
-		btbSearchByCourseCode.setBounds(105, 71, 141, 23);
+		btbSearchByCourseCode.setBounds(141, 100, 141, 20);
 		Course.add(btbSearchByCourseCode);
 		
 		JButton btnAddNewCourse = new JButton("Add new Course");
@@ -178,7 +182,7 @@ public class Gui extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnAddNewCourse.setBounds(564, 133, 141, 23);
+		btnAddNewCourse.setBounds(515, 226, 141, 20);
 		Course.add(btnAddNewCourse);
 		
 		JButton btnDeleteCourse = new JButton("Delete Course");
@@ -186,7 +190,7 @@ public class Gui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnDeleteCourse.setBounds(105, 374, 141, 23);
+		btnDeleteCourse.setBounds(141, 376, 141, 20);
 		Course.add(btnDeleteCourse);
 		
 		JPanel Results = new JPanel();
