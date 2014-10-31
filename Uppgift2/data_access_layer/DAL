@@ -1,0 +1,42 @@
+package data_access_layer;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DAL {
+
+	Statement stmt;
+	private static Connection con;
+
+	public DAL() {
+		try {
+
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			String connectionUrl = "jdbc:sqlserver://JONAS\\MSSQLSERVER;"
+					+ "database=Demo Database NAV (5-0);" + "user=User2;"
+					+ "password=SYSB13OLLE_";
+
+			con = DriverManager.getConnection(connectionUrl);
+			System.out.println("Connected.");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			System.exit(0);
+		}
+	}
+
+	/*--------------------------------Course functions-------------------------------------*/
+
+	// Find employees first name
+	public ResultSet findFirstNameAnst(String firstName) throws SQLException {
+		stmt = con.createStatement();
+		String sqlStr = "select [First Name], [Last Name], [Address], [Post Code], [Phone No_] from [CRONUS Sverige AB$Employee];";
+		ResultSet rset = stmt.executeQuery(sqlStr);
+		return rset;
+
+	}
+}
