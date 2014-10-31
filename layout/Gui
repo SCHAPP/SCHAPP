@@ -269,10 +269,6 @@ public class Gui extends JFrame {
 		tblShowStudent.setBounds(31, 167, 371, 218);
 		Student.add(tblShowStudent);
 		
-	
-		
-		
-		
 		JButton btbSearchByCourseCode = new JButton("Search");
 		btbSearchByCourseCode.setBounds(141, 100, 141, 20);
 		Course.add(btbSearchByCourseCode);
@@ -360,18 +356,27 @@ public class Gui extends JFrame {
 	    return new DefaultTableModel(data, columnNames);
 
 	} void addStudent() {
-		String spnr = txtAddStudentPnr.getText();
-		String sname = txtAddStudentName.getText();
-		String saddress = txtAddStudentAddress.getText();
-		String sphnr = txtAddStudentPnr.getText();
-		
-		try {
-			con.insertOneStudent(spnr, sname, saddress, sphnr);
-			JOptionPane.showMessageDialog(null, "Student added");
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "student finns redan!");
-		//	e.printStackTrace();
+		if(!txtAddStudentPnr.getText().equals(""))
+		{
+			String spnr = txtAddStudentPnr.getText();
+
+			String sname = txtAddStudentName.getText();
+			String saddress = txtAddStudentAddress.getText();
+			String sphnr = txtAddStudentPnr.getText();
+			
+			try {
+				con.insertOneStudent(spnr, sname, saddress, sphnr);
+				JOptionPane.showMessageDialog(null, "Student added");
+			} catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, "Student already exists!");
+			//	e.printStackTrace();
+			}
 		}
+		else{
+			JOptionPane.showMessageDialog(null,"Insert pnr");
+		}
+			
+		
 		
 	}
 }
