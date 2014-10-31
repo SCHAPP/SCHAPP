@@ -36,3 +36,15 @@
         return rset;
         
 	}
+	
+	//Register Student
+
+		
+		public void insertOneCourse(String spnr, String sname, String saddress, String sphnr) throws SQLException{
+			 //connecton
+				
+			stmt = con.createStatement(); 
+
+				String sqlStr = "insert into  values ( "+spnr+ "and sname="+ sname+ "and address="+saddress+  "and sphnr=" +sphnr+  ");";       
+
+			}
