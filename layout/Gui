@@ -2,18 +2,25 @@ package layout;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Button;
-
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Vector;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import controller.Controller;
 
 
 public class Gui extends JFrame {
@@ -35,6 +42,10 @@ public class Gui extends JFrame {
 	private JTextField txtAddCourseOnStudent;
 	private JTextField txtResultStudentSearch;
 	private JTextField txtResultCourseCodeSearch;
+	
+	private Controller con = new Controller();
+	private JTable tblStudentTabel;
+	private JTable tblShowStudent;
 
 	/*-------------------------------Launch the application.-----------------------------*/
 	
@@ -208,20 +219,59 @@ public class Gui extends JFrame {
 	/*--------------------------------Creates the JBUttons-----------------------------*/	
 		
 		JButton btnSearchStudent = new JButton("Search");
+		btnSearchStudent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			try {
+				ResultSet rs =con.findOneStudent(txtStudentSearchByPnr.getText());
+				rs.next();
+				txtAddStudentName.setText(rs.getString("sname"));
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			}
+			}
+		});
 		btnSearchStudent.setBounds(141, 100, 141, 20);
 		Student.add(btnSearchStudent);
 		
 		JButton btnAddStudent = new JButton("Add new student");
 		btnAddStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				addStudent();
 			}
+
+			
 		});
 		btnAddStudent.setBounds(515, 226, 141, 20);
 		Student.add(btnAddStudent);
 		
 		JButton btnDeleteStudent = new JButton("Delete Student");
-		btnDeleteStudent.setBounds(141, 376, 141, 20);
+		btnDeleteStudent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnDeleteStudent.setBounds(31, 396, 141, 20);
 		Student.add(btnDeleteStudent);
+		
+		
+		JButton btnSearchAll = new JButton("Search All");
+		btnSearchAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showAll();
+			}
+		});
+		btnSearchAll.setBounds(141, 133, 141, 20);
+		Student.add(btnSearchAll);
+		
+		tblShowStudent = new JTable();
+		tblShowStudent.setBounds(31, 167, 371, 218);
+		Student.add(tblShowStudent);
+		
+	
+		
+		
 		
 		JButton btbSearchByCourseCode = new JButton("Search");
 		btbSearchByCourseCode.setBounds(141, 100, 141, 20);
@@ -250,5 +300,78 @@ public class Gui extends JFrame {
 		JButton btnResultSearch = new JButton("Search result");
 		btnResultSearch.setBounds(141, 129, 141, 23);
 		Results.add(btnResultSearch);
+	}
+
+	private void showAll(){
+		ResultSet rs = null;
+		try {
+			rs = con.findAllStudent();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, tblShowStudent);
+	}
+	
+			
+	
+	
+	private void buildTable(ResultSet rs, JTable table) {
+	
+		try {
+			
+			DefaultTableModel dt = buildTableModel(rs);
+			table.setModel(dt);;
+			
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		 //model
+
+		
+	}
+
+	public static DefaultTableModel buildTableModel(ResultSet rs)
+	        throws SQLException {
+
+	    ResultSetMetaData metaData = rs.getMetaData();
+
+	    // names of columns
+	    Vector<String> columnNames = new Vector<String>();
+	    int columnCount = metaData.getColumnCount();
+	    
+	    for (int column = 1; column <= columnCount; column++) {
+	        columnNames.add(metaData.getColumnName(column));
+	    }
+
+	    // data of the table
+	    Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+	    while (rs.next()) {
+	        Vector<Object> vector = new Vector<Object>();
+	        for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+	            vector.add(rs.getObject(columnIndex));
+	        }
+	        data.add(vector);
+	    }
+
+	    return new DefaultTableModel(data, columnNames);
+
+	} void addStudent() {
+		String spnr = txtAddStudentPnr.getText();
+		String sname = txtAddStudentName.getText();
+		String saddress = txtAddStudentAddress.getText();
+		String sphnr = txtAddStudentPnr.getText();
+		
+		try {
+			con.insertOneStudent(spnr, sname, saddress, sphnr);
+			JOptionPane.showMessageDialog(null, "Student added");
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "student finns redan!");
+		//	e.printStackTrace();
+		}
+		
 	}
 }
