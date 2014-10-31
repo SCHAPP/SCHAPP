@@ -71,3 +71,15 @@
         
         
     }
+    
+    
+    
+    // Get all courses 
+	public ResultSet findAllCourse(String ccode, String cname, String cinfo) throws SQLException {
+		stmt = con.createStatement();
+        String sqlStr = "select ccode, cname, cinfo from Course"; 
+        ResultSet rset = stmt.executeQuery(sqlStr);
+       
+        return rset;
+        
+	}
