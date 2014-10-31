@@ -1,20 +1,33 @@
 package controller;
 
 import java.sql.*;
-
 import java.util.ArrayList;
+
 import data_access_layer.DAL;
 
 public class Controller {
     
+	
+	
     
     DAL dal;
     
     
-    public Controller() throws SQLException{
+    public ResultSet findAllStudent() throws SQLException {
+    	return dal.findAllStudent();
+    }
+    public void insertOneStudent(String spnr, String sname, String saddress, String sphnr) throws SQLException{
+    	dal.insertOneStudent(spnr,sname,saddress,sphnr);
+    }
+    public Controller() {
         dal = new DAL();
     }
     
     
     /* Insert different methods and to get info from GUI to SQL and deverse */
+    public ResultSet findOneStudent(String spnr) throws SQLException {
+    	return dal.findOneStudent(spnr); 
+    }
 }
+
+
