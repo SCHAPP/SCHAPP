@@ -37,6 +37,9 @@
         
 	}
 	
+	
+	/*-----------------------------------------Student function---------------------------------------------------*/
+	
 	//Register Student
 
 		
@@ -48,3 +51,23 @@
 				String sqlStr = "insert into  values ( "+spnr+ "and sname="+ sname+ "and address="+saddress+  "and sphnr=" +sphnr+  ");";       
 
 			}
+			
+			
+			//Get one student
+	
+	
+    public ResultSet findOneStudent(String spnr, String sname, String saddress) throws SQLException {
+        
+        stmt = con.createStatement(); 
+    	String sqlStr = "select * from Student where spnr=  "+spnr+ "and sname="+  sname+ "and saddress=" + saddress+ ";"; 
+       
+        ResultSet rset = stmt.executeQuery(sqlStr);
+        
+        
+     
+        
+        
+        return rset;
+        
+        
+    }
