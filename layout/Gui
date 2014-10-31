@@ -224,7 +224,10 @@ public class Gui extends JFrame {
 			try {
 				ResultSet rs =con.findOneStudent(txtStudentSearchByPnr.getText());
 				rs.next();
+				txtAddStudentPnr.setText(rs.getString("spnr"));
 				txtAddStudentName.setText(rs.getString("sname"));
+				txtAddStudentAddress.setText(rs.getString("sadress"));	
+				txtAddStudentPhoneNr.setText(rs.getString("sphnr"));
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
