@@ -1,0 +1,142 @@
+package layout;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Vector;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JComboBox;
+import javax.swing.JTextPane;
+import javax.swing.JTable;
+import javax.swing.JSpinner;
+import javax.swing.JList;
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+
+import data_access_layer.DAL;
+
+public class Gui extends JFrame {
+
+	private JPanel contentPane;
+	private JTable table;
+
+	/*----------------------------------------------------- Launchs the application ---------------------------------------------------------*/
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DAL dal = new DAL();
+					dal.findFirstNameAnst("");
+					Gui frame = new Gui();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/*------------------------------------------------------ Create the frame --------------------------------------------------------------*/
+
+	public Gui() {
+
+		DAL dal = new DAL();
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 850, 760);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		try {
+			table = new JTable(buildTableModel(dal.findFirstNameAnst("")));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		table.setBounds(64, 173, 698, 500);
+		contentPane.add(table);
+
+		/*
+		 * -----------------------------------------------------Creates the
+		 * JComboBox -----------------------------------------------------------
+		 */
+
+		JComboBox comboBoxUppgift2 = new JComboBox();
+		comboBoxUppgift2.setBounds(304, 74, 229, 43);
+		contentPane.add(comboBoxUppgift2);
+
+		/*
+		 * ---------------------------------------------------Creates the
+		 * JRadioButton
+		 * -----------------------------------------------------------
+		 */
+
+		JRadioButton rdbtnData = new JRadioButton("Data");
+		rdbtnData.setBounds(64, 55, 155, 29);
+		contentPane.add(rdbtnData);
+
+		JRadioButton rdbtnMetaData = new JRadioButton("Metadata");
+		rdbtnMetaData.setBounds(64, 111, 155, 29);
+		contentPane.add(rdbtnMetaData);
+
+		/*
+		 * ---------------------------------------------------Creates the
+		 * JRadioButton
+		 * -----------------------------------------------------------
+		 */
+
+		JButton btnSearch = new JButton("Search");
+		btnSearch.setBounds(640, 81, 115, 29);
+		contentPane.add(btnSearch);
+
+		/*
+		 * ---------------------------------------------------Creates the JLabel
+		 * -----------------------------------------------------------------
+		 */
+
+		JLabel lblChooseDataType = new JLabel("Choose Data Type");
+		lblChooseDataType.setBounds(64, 23, 155, 20);
+		contentPane.add(lblChooseDataType);
+
+		JLabel lblChooseTabel = new JLabel("Choose Tabel");
+		lblChooseTabel.setBounds(304, 23, 205, 20);
+		contentPane.add(lblChooseTabel);
+
+	}
+
+	public static DefaultTableModel buildTableModel(ResultSet rs)
+			throws SQLException {
+
+		ResultSetMetaData metaData = rs.getMetaData();
+
+		// names of columns
+		Vector<String> columnNames = new Vector<String>();
+		int columnCount = metaData.getColumnCount();
+		for (int column = 1; column <= columnCount; column++) {
+			columnNames.add(metaData.getColumnName(column));
+		}
+
+		// data of the table
+		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+		while (rs.next()) {
+			Vector<Object> vector = new Vector<Object>();
+			for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+				vector.add(rs.getObject(columnIndex));
+			}
+			data.add(vector);
+		}
+
+		return new DefaultTableModel(data, columnNames);
+
+	}
+}
