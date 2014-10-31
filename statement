@@ -1,0 +1,38 @@
+
+	 Statement stmt;
+	 Connecetion con;
+	
+/*----------------------------------------------------Course function-------------------------------------------------------------- */	
+	//Register course
+	
+	public ResultSet insertOneCourse(String ccode, String cname, String cinfo) throws SQLException{
+		 //connecton
+			
+		stmt = con.createStatement(); 
+
+			String sqlStr = "insert into  values ( "+ccode+ "and cname="+ cname+ "and cinfo="+cinfo+");";       
+
+		}
+	
+	
+	//Get one course
+	public ResultSet findOneCourse(String ccode, String cname, String cinfo) throws SQLException {
+		
+		stmt = con.createStatement(); 
+        String sqlStr = "select * from Course where ccode= " +ccode+ "and cname="+  cname+ "and cinfo=" +cinfo+ ";";
+        ResultSet rset = stmt.executeQuery(sqlStr);
+       
+        return rset;
+	
+	
+	}
+	
+	// Get all courses 
+	public ResultSet findCourse(String ccode, String cname, String cinfo) throws SQLException {
+		stmt = con.createStatement();
+        String sqlStr = "select ccode, cname, cinfo from Course"; 
+        ResultSet rset = stmt.executeQuery(sqlStr);
+       
+        return rset;
+        
+	}
