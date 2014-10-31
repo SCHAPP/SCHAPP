@@ -15,7 +15,7 @@
 		}
 	
 	
-	//Get one course
+	//Find one course
 	public ResultSet findOneCourse(String ccode, String cname, String cinfo) throws SQLException {
 		
 		stmt = con.createStatement(); 
@@ -28,7 +28,7 @@
 	}
 	
 	// Get all courses 
-	public ResultSet findCourse(String ccode, String cname, String cinfo) throws SQLException {
+	public ResultSet findAllCourse(String ccode, String cname, String cinfo) throws SQLException {
 		stmt = con.createStatement();
         String sqlStr = "select ccode, cname, cinfo from Course"; 
         ResultSet rset = stmt.executeQuery(sqlStr);
@@ -53,7 +53,7 @@
 			}
 			
 			
-			//Get one student
+			//Find one student
 	
 	
     public ResultSet findOneStudent(String spnr, String sname, String saddress) throws SQLException {
