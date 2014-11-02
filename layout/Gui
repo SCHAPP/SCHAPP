@@ -46,6 +46,7 @@ public class Gui extends JFrame {
 	private Controller con = new Controller();
 	private JTable tblStudentTabel;
 	private JTable tblShowStudent;
+	private JTextField txtCourseCredit;
 
 	/*-------------------------------Launch the application.-----------------------------*/
 	
@@ -132,7 +133,7 @@ public class Gui extends JFrame {
 		Course.add(lblCourseInfo);
 		
 		JLabel lblCorseStudent = new JLabel("Course code:");
-		lblCorseStudent.setBounds(426, 246, 80, 14);
+		lblCorseStudent.setBounds(426, 272, 80, 14);
 		Course.add(lblCorseStudent);
 		
 		JLabel lblResultStudentPnr = new JLabel("Student pnr:");
@@ -197,12 +198,12 @@ public class Gui extends JFrame {
 		txtAddCourseInfo.setColumns(10);
 		
 		txtAddStudentOnCourse = new JTextField();
-		txtAddStudentOnCourse.setBounds(515, 209, 141, 20);
+		txtAddStudentOnCourse.setBounds(515, 238, 141, 20);
 		Course.add(txtAddStudentOnCourse);
 		txtAddStudentOnCourse.setColumns(10);
 		
 		txtAddCourseOnStudent = new JTextField();
-		txtAddCourseOnStudent.setBounds(515, 240, 141, 20);
+		txtAddCourseOnStudent.setBounds(516, 269, 141, 20);
 		Course.add(txtAddCourseOnStudent);
 		txtAddCourseOnStudent.setColumns(10);
 		
@@ -253,6 +254,7 @@ public class Gui extends JFrame {
 		JButton btnDeleteStudent = new JButton("Delete Student");
 		btnDeleteStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnDeleteStudent.setBounds(31, 396, 141, 20);
@@ -273,6 +275,26 @@ public class Gui extends JFrame {
 		Student.add(tblShowStudent);
 		
 		JButton btbSearchByCourseCode = new JButton("Search");
+		btbSearchByCourseCode.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					ResultSet rs = con.findOneCourse(txtSearchCourseCode.getText());
+					rs.next();
+					txtAddCourseCode.setText(rs.getString("ccode"));
+					txtAddCourseName.setText(rs.getString("cname"));
+					txtAddCourseInfo.setText(rs.getString("cinfo"));
+					txtCourseCredit.setText(rs.getString("credit"));
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+ 
+				
+			}
+		});
 		btbSearchByCourseCode.setBounds(141, 100, 141, 20);
 		Course.add(btbSearchByCourseCode);
 		
@@ -281,7 +303,7 @@ public class Gui extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnAddNewCourse.setBounds(515, 164, 141, 20);
+		btnAddNewCourse.setBounds(515, 195, 141, 20);
 		Course.add(btnAddNewCourse);
 		
 		JButton btnDeleteCourse = new JButton("Delete Course");
@@ -293,8 +315,21 @@ public class Gui extends JFrame {
 		Course.add(btnDeleteCourse);
 		
 		JButton btnAddStudentToCourse = new JButton("Add student to course");
-		btnAddStudentToCourse.setBounds(515, 271, 141, 23);
+		btnAddStudentToCourse.setBounds(515, 297, 141, 23);
 		Course.add(btnAddStudentToCourse);
+		
+		JLabel lblCourseCredit = new JLabel("Credit:");
+		lblCourseCredit.setBounds(426, 161, 46, 14);
+		Course.add(lblCourseCredit);
+		
+		txtCourseCredit = new JTextField();
+		txtCourseCredit.setBounds(515, 164, 141, 20);
+		Course.add(txtCourseCredit);
+		txtCourseCredit.setColumns(10);
+		
+		JLabel lblStudentOnCourse = new JLabel("Student pnr:");
+		lblStudentOnCourse.setBounds(414, 241, 73, 14);
+		Course.add(lblStudentOnCourse);
 		
 		JButton btnResultSearch = new JButton("Search result");
 		btnResultSearch.setBounds(141, 129, 141, 23);
@@ -362,7 +397,6 @@ public class Gui extends JFrame {
 		if(!txtAddStudentPnr.getText().equals(""))
 		{
 			String spnr = txtAddStudentPnr.getText();
-
 			String sname = txtAddStudentName.getText();
 			String saddress = txtAddStudentAddress.getText();
 			String sphnr = txtAddStudentPnr.getText();
