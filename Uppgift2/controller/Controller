@@ -3,14 +3,20 @@ package controller;
 import java.sql.*;
 import java.util.ArrayList;
 import data_access_layer.DAL;
+import java.sql.SQLException;
 
 public class Controller {
 
 	DAL dal;
 
-	public Controller() throws SQLException {
+	public Controller() {
 		dal = new DAL();
 	}
 
 	/* Insert different methods and to get info from GUI to SQL and deverse */
+	
+	public ResultSet findEmployeeData() throws SQLException {
+		return dal.findEmployeeData(null);
+	}
+
 }
