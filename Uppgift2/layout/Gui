@@ -22,19 +22,24 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 import data_access_layer.DAL;
+import controller.Controller;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Gui extends JFrame {
 
+	private Controller con = new Controller(); // imports necessary methods from different classes
 	private JPanel contentPane;
 	private JTable table;
+	private JTable showEmployeeData;
 
-	/*----------------------------------------------------- Launchs the application ---------------------------------------------------------*/
+	/*----------------------------------------------------- Launches the application ---------------------------------------------------------*/
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					DAL dal = new DAL();
-					dal.findFirstNameAnst("");
+					dal.findEmployeeData("");
 					Gui frame = new Gui();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -44,11 +49,11 @@ public class Gui extends JFrame {
 		});
 	}
 
-	/*------------------------------------------------------ Create the frame --------------------------------------------------------------*/
+		/*------------------------------------------------------ Creates the frame --------------------------------------------------------------*/
 
 	public Gui() {
 
-		DAL dal = new DAL();
+		final DAL dal = new DAL();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 850, 760);
@@ -56,77 +61,72 @@ public class Gui extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		try {
-			table = new JTable(buildTableModel(dal.findFirstNameAnst("")));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		/*-----------------------------------------------------Creates the JTable -----------------------------------------------------------*/
+		
+		table = new JTable();
 		table.setBounds(64, 173, 698, 500);
 		contentPane.add(table);
-
-		/*
-		 * -----------------------------------------------------Creates the
-		 * JComboBox -----------------------------------------------------------
-		 */
-
-		JComboBox comboBoxUppgift2 = new JComboBox();
-		comboBoxUppgift2.setBounds(304, 74, 229, 43);
+	
+		table.setBounds(64, 173, 698, 500);
+		contentPane.add(table);
+	
+		/*-----------------------------------------------------Creates the JComboBox -----------------------------------------------------------*/
+		
+		String[] comboBoxSelection = new String[] {
+			"Choose table",
+			"Employee - Data",
+			"Employee - Metadata",
+		};
+		JComboBox comboBoxUppgift2 = new JComboBox(comboBoxSelection);
+		comboBoxUppgift2.setBounds(304, 85, 229, 30);
 		contentPane.add(comboBoxUppgift2);
 
-		/*
-		 * ---------------------------------------------------Creates the
-		 * JRadioButton
-		 * -----------------------------------------------------------
-		 */
+		/* ---------------------------------------------------Creates the JLabel -----------------------------------------------------------------*/
 
-		JRadioButton rdbtnData = new JRadioButton("Data");
-		rdbtnData.setBounds(64, 55, 155, 29);
-		contentPane.add(rdbtnData);
-
-		JRadioButton rdbtnMetaData = new JRadioButton("Metadata");
-		rdbtnMetaData.setBounds(64, 111, 155, 29);
-		contentPane.add(rdbtnMetaData);
-
-		/*
-		 * ---------------------------------------------------Creates the
-		 * JRadioButton
-		 * -----------------------------------------------------------
-		 */
-
-		JButton btnSearch = new JButton("Search");
-		btnSearch.setBounds(640, 81, 115, 29);
-		contentPane.add(btnSearch);
-
-		/*
-		 * ---------------------------------------------------Creates the JLabel
-		 * -----------------------------------------------------------------
-		 */
-
-		JLabel lblChooseDataType = new JLabel("Choose Data Type");
-		lblChooseDataType.setBounds(64, 23, 155, 20);
-		contentPane.add(lblChooseDataType);
-
-		JLabel lblChooseTabel = new JLabel("Choose Tabel");
-		lblChooseTabel.setBounds(304, 23, 205, 20);
-		contentPane.add(lblChooseTabel);
-
+		JLabel lblChooseTabel = new JLabel("List of tables");
+		lblChooseTabel.setBounds(380, 23, 260, 60);
+		contentPane.add(lblChooseTabel);	
+		
+		/* ---------------------------------------------------Creates the JButtons -----------------------------------------------------------------*/
+		
+		JButton btnshowAllEmpoyeeData = new JButton("Show all employee data");
+		btnshowAllEmpoyeeData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showEmployeeData();
+			}
+		});
+		btnshowAllEmpoyeeData.setBounds(64, 86, 115, 29);
+		contentPane.add(btnshowAllEmpoyeeData);
+	}
+	
+	/*------------------------------------------------------ Creates the methods----------------------------------------------------------------*/
+	
+	/*--- Creates the table ---*/
+	private void buildTable(ResultSet rs, JTable table) {
+		try {
+			DefaultTableModel dt = buildTableModel(rs);
+			table.setModel(dt);;
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
+	/*--- Gets the data into the table correct ---*/
 	public static DefaultTableModel buildTableModel(ResultSet rs)
 			throws SQLException {
 
 		ResultSetMetaData metaData = rs.getMetaData();
 
-		// names of columns
+		// Names of columns
 		Vector<String> columnNames = new Vector<String>();
 		int columnCount = metaData.getColumnCount();
 		for (int column = 1; column <= columnCount; column++) {
 			columnNames.add(metaData.getColumnName(column));
 		}
 
-		// data of the table
+		// Data of the table
 		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 		while (rs.next()) {
 			Vector<Object> vector = new Vector<Object>();
@@ -138,5 +138,16 @@ public class Gui extends JFrame {
 
 		return new DefaultTableModel(data, columnNames);
 
+	}
+	/*--- Creates the method for the show all employee data button ---*/
+	private void showEmployeeData(){
+		ResultSet rs = null;
+		try {
+			rs = con.findEmployeeData();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, table);
 	}
 }
