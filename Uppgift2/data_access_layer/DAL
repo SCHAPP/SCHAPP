@@ -31,12 +31,13 @@ public class DAL {
 
 	/*--------------------------------Course functions-------------------------------------*/
 
-	// Find employees first name
-	public ResultSet findFirstNameAnst(String firstName) throws SQLException {
+	// Find employees i data form
+	public ResultSet findEmployeeData(String firstName) throws SQLException {
 		stmt = con.createStatement();
 		String sqlStr = "select [First Name], [Last Name], [Address], [Post Code], [Phone No_] from [CRONUS Sverige AB$Employee];";
 		ResultSet rset = stmt.executeQuery(sqlStr);
 		return rset;
+		
 
 	}
 }
