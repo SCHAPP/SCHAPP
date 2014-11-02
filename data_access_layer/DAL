@@ -87,6 +87,7 @@ public class DAL {
 	        
 	    	}
 	    
+	    
 	     //Find all students
 		
 	    public ResultSet findAllStudent() throws SQLException {
@@ -95,10 +96,19 @@ public class DAL {
 	        ResultSet rset = stmt.executeQuery(sqlStr);
 	       
 	        return rset;
+	        
+	        }
 	         
+	     // Delete on student
+	    	public void deleteStudent (String spnr) throws SQLException {
+	    		stmt = con.createStatement();
+	    		String sqlStr = "delete from student where spnr = '" +spnr+ "';";
+	    		stmt.executeQuery(sqlStr);
+	    		
+	    	}
 		
 /*------------------------------------------------StudentRead--------------------------------------- */
-	    }
+	    
 	    // Registera student som har läst kurs
 	    
 	    public void insertStudentRead(String spnr, String ccode, String grade) throws SQLException{
