@@ -3,16 +3,18 @@ package controller;
 import java.sql.*;
 import java.util.ArrayList;
 
+import javax.swing.JTextField;
+
 import data_access_layer.DAL;
 
 public class Controller {
     
+	DAL dal;
+    
+	public void deleteStudent (String spnr) throws SQLException {
+		dal.deleteStudent(spnr);
+	}
 	
-	
-    
-    DAL dal;
-    
-    
     public ResultSet findAllStudent() throws SQLException {
     	return dal.findAllStudent();
     }
@@ -22,11 +24,18 @@ public class Controller {
     public Controller() {
         dal = new DAL();
     }
-    
+    public void insertOneCourse(String ccode, String cname, String cinfo, int credit) throws SQLException{
+		dal.insertOneCourse(ccode,cname,cinfo,credit);
+	
+		}
     
     /* Insert different methods and to get info from GUI to SQL and deverse */
     public ResultSet findOneStudent(String spnr) throws SQLException {
     	return dal.findOneStudent(spnr); 
+    }
+    
+    public ResultSet findOneCourse(String ccode) throws SQLException {
+		return dal.findOneCourse(ccode);
     }
 }
 
