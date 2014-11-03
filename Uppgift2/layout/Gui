@@ -20,11 +20,13 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 
 import data_access_layer.DAL;
 import controller.Controller;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollBar;
 
 public class Gui extends JFrame {
 
@@ -39,7 +41,7 @@ public class Gui extends JFrame {
 			public void run() {
 				try {
 					DAL dal = new DAL();
-					dal.findEmployeeData("");
+					dal.findEmployeeData();
 					Gui frame = new Gui();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -70,39 +72,76 @@ public class Gui extends JFrame {
 	
 		table.setBounds(64, 173, 698, 500);
 		contentPane.add(table);
-	
+
 		/*-----------------------------------------------------Creates the JComboBox -----------------------------------------------------------*/
 		
-		String[] comboBoxSelection = new String[] {
+		/*String[] comboBoxSelection = new String[] {
 			"Choose table",
 			"Employee - Data",
 			"Employee - Metadata",
 		};
 		JComboBox comboBoxUppgift2 = new JComboBox(comboBoxSelection);
 		comboBoxUppgift2.setBounds(304, 85, 229, 30);
-		contentPane.add(comboBoxUppgift2);
+		contentPane.add(comboBoxUppgift2); */
 
 		/* ---------------------------------------------------Creates the JLabel -----------------------------------------------------------------*/
 
 		JLabel lblChooseTabel = new JLabel("List of tables");
-		lblChooseTabel.setBounds(380, 23, 260, 60);
+		lblChooseTabel.setBounds(380, 0, 260, 60);
 		contentPane.add(lblChooseTabel);	
 		
 		/* ---------------------------------------------------Creates the JButtons -----------------------------------------------------------------*/
 		
-		JButton btnshowAllEmpoyeeData = new JButton("Show all employee data");
-		btnshowAllEmpoyeeData.addActionListener(new ActionListener() {
+		JButton btnShowAllEmployeeData = new JButton("Show all employee data");
+		btnShowAllEmployeeData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				showEmployeeData();
 			}
 		});
-		btnshowAllEmpoyeeData.setBounds(64, 86, 115, 29);
-		contentPane.add(btnshowAllEmpoyeeData);
-	}
+		btnShowAllEmployeeData.setBounds(64, 16, 241, 29);
+		contentPane.add(btnShowAllEmployeeData);
 	
+	JButton btnShowEmployeeAbsenceData = new JButton("Show employee absence data ");
+	btnShowEmployeeAbsenceData.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			showEmployeeAbsenceData();
+		}
+	});
+	btnShowEmployeeAbsenceData.setBounds(64, 61, 241, 29);
+	contentPane.add(btnShowEmployeeAbsenceData);
+	
+	JButton btnShowEmployeePortalSetup = new JButton("Show portal setup");
+	btnShowEmployeePortalSetup.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			showEmployeePortalSetup();
+		}
+	});
+	btnShowEmployeePortalSetup.setBounds(64, 106, 241, 29);
+	contentPane.add(btnShowEmployeePortalSetup);
+	
+	JButton btnShowEmployeeQualification = new JButton("Show employee qualification");
+	btnShowEmployeeQualification.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			showEmployeeQualification();
+		}
+	});
+	btnShowEmployeeQualification.setBounds(320, 61, 241, 29);
+	contentPane.add(btnShowEmployeeQualification);
+	
+	JButton btnShowEmployeeRelative = new JButton("Show employee relative");
+	btnShowEmployeeRelative.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent arg0){
+			showEmployeeRelative();
+		}
+		
+	});
+	btnShowEmployeeRelative.setBounds(320, 106, 241, 29);
+	contentPane.add(btnShowEmployeeRelative);
+	
+}
 	/*------------------------------------------------------ Creates the methods----------------------------------------------------------------*/
 	
-	/*--- Creates the table ---*/
+	/*--- Creates the default table ---*/
 	private void buildTable(ResultSet rs, JTable table) {
 		try {
 			DefaultTableModel dt = buildTableModel(rs);
@@ -113,7 +152,7 @@ public class Gui extends JFrame {
 		}
 	}
 
-	/*--- Gets the data into the table correct ---*/
+	/*--- Gets the data into the table correctly ---*/
 	public static DefaultTableModel buildTableModel(ResultSet rs)
 			throws SQLException {
 
@@ -150,4 +189,46 @@ public class Gui extends JFrame {
 		}
 		buildTable(rs, table);
 	}
+	
+	private void showEmployeeAbsenceData(){
+		ResultSet rs = null;
+		try {
+			rs = con.findEmployeeAbsenceData();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, table);
+	}
+
+private void showEmployeePortalSetup(){
+	ResultSet rs = null;
+	try {
+		rs = con.findEmployeePortalSetup();
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	buildTable(rs, table);
+}
+private void showEmployeeQualification(){
+	ResultSet rs = null;
+	try {
+		rs = con.findEmployeeQualification();
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	buildTable(rs, table);
+}
+private void showEmployeeRelative(){
+	ResultSet rs = null;
+	try {
+		rs = con.findEmployeeRelative();
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	buildTable(rs, table);
+}
 }
