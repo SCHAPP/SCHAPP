@@ -37,10 +37,10 @@ public class DAL {
  } 
 /*--------------------------------Course functions---------------------------------------------*/	 
 	//Register course
-		public void insertOneCourse(String ccode, String cname, String cinfo, int credit) throws SQLException{
+		public void insertOneCourse(String ccode, String cname, String cinfo, String credit) throws SQLException{
 			stmt = con.createStatement(); 
 			String sqlStr = "insert into Course (ccode,cname,cinfo,credit) values ( '"+ccode+ "','"+ cname+ "','"+cinfo+ "','"+credit+ "');";       
-			stmt.executeQuery(sqlStr);
+			stmt.executeUpdate(sqlStr);
 			
 		
 			}
@@ -66,6 +66,12 @@ public class DAL {
 	        return rset;
 	        
 			} 
+		public void deleteCourse (String ccode) throws SQLException {
+    		stmt = con.createStatement();
+    		String sqlStr = "delete from course where ccode = '" +ccode+ "';";
+    		stmt.executeUpdate(sqlStr);
+    		
+    	}
 		
 		
 /*------------------------------------------ Student functions -----------------------------------------*/		
@@ -99,11 +105,11 @@ public class DAL {
 	        
 	        }
 	         
-	     // Delete on student
+	     // Delete one student
 	    	public void deleteStudent (String spnr) throws SQLException {
 	    		stmt = con.createStatement();
 	    		String sqlStr = "delete from student where spnr = '" +spnr+ "';";
-	    		stmt.executeQuery(sqlStr);
+	    		stmt.executeUpdate(sqlStr);
 	    		
 	    	}
 		
@@ -119,10 +125,10 @@ public class DAL {
 
 	    	}
 	    
-	    // resultat på en kurs
-	    public ResultSet resultOneStudentOnCourse (String spnr) throws SQLException {
+	    // resultat för alla studenter på en specifik kurs
+	    public ResultSet resultAllStudentOnOneCourse (String ccode) throws SQLException {
 	        stmt = con.createStatement(); 
-	    	String sqlStr = "select * from StudentRead where spnr=  '"+spnr+"';"; 
+	    	String sqlStr = "select * from StudentRead where ccode= '"+ccode+"';"; 
 	        ResultSet rset = stmt.executeQuery(sqlStr);
 	        	       
 	        return rset;	        
@@ -146,11 +152,19 @@ public class DAL {
 	    
 	    public void insertStudentReading (String spnr, String ccode) throws SQLException {
 	    	stmt = con.createStatement();
-	    	String sqlStr = "insert into Reading (spnr, ccode) values ("+spnr+"','"+ccode+"');";
+	    	String sqlStr = "insert into Reading (spnr, ccode) values ("+spnr+","+ccode+");";
 	    	stmt.executeUpdate(sqlStr);
 	    	}
 	 
+	 // One specified Student on a specified course
 
+	    public ResultSet FindOneStudentOnCourse (String spnr, String ccode) throws SQLException{
+	    		stmt = con.createStatement (); 
+	    		String sqlStr = "select * from Reading where spnr = '"+spnr+"' and ccode = '"+ccode+"';";       
+	    		ResultSet rset = stmt.executeQuery(sqlStr);
+
+	    		return rset;
+	    	}
 	  
 	    
 	    
