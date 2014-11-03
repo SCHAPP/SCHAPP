@@ -18,13 +18,15 @@ from [CRONUS Sverige AB$Employee Relative]
 select [timestamp], [Code], [Description]
 from [CRONUS Sverige AB$Employee Statistics Group]
 
+
+
 Uppgift 2 - METADATA i java application
 
 
 
 
 
-
+Uppgift B) - Metadata
 
 /* Samtliga Nycklar */
 select name, type 
@@ -34,6 +36,7 @@ where type = 'PK' or type = 'FK'
 /* Samtliga indexes */
 select *
 from sys.indexes
+where name like 'CRONUS%'
 
 /* Samtliga Constraints */
 select * 
