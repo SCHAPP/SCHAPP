@@ -146,8 +146,8 @@ public class DAL {
 	    
 	    public void insertStudentReading (String spnr, String ccode) throws SQLException {
 	    	stmt = con.createStatement();
-	    	String sqlStr = "insert into Reading (spnr, ccode) values ("+spnr+","+ccode+");";
-	    	stmt.executeQuery(sqlStr);
+	    	String sqlStr = "insert into Reading (spnr, ccode) values ("+spnr+"','"+ccode+"');";
+	    	stmt.executeUpdate(sqlStr);
 	    	}
 	 
 
