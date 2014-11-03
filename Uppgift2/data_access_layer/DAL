@@ -20,7 +20,6 @@ public class DAL {
 					+ "password=SYSB13OLLE_";
 
 			con = DriverManager.getConnection(connectionUrl);
-			System.out.println("Connected.");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -29,15 +28,43 @@ public class DAL {
 		}
 	}
 
-	/*--------------------------------Course functions-------------------------------------*/
+	/*--------------------------------Course functions for data-------------------------------------*/
 
 	// Find employees i data form
-	public ResultSet findEmployeeData(String firstName) throws SQLException {
+	public ResultSet findEmployeeData() throws SQLException {
 		stmt = con.createStatement();
-		String sqlStr = "select [First Name], [Last Name], [Address], [Post Code], [Phone No_] from [CRONUS Sverige AB$Employee];";
+		String sqlStr = "select [No_], [First Name], [Last Name], [Initials], [Job Title] from [CRONUS Sverige AB$Employee];";
 		ResultSet rset = stmt.executeQuery(sqlStr);
 		return rset;
-		
-
 	}
+
+	public ResultSet findEmployeeAbsenceData() throws SQLException {
+		stmt = con.createStatement();
+		String sqlStr = "select [Employee No_], [From Date], [To Date],[Cause of Absence Code], [Description] from [CRONUS Sverige AB$Employee Absence];";
+		ResultSet rset = stmt.executeQuery(sqlStr);
+		return rset;
+	}
+
+	public ResultSet findEmployeePortalSetup() throws SQLException {
+		stmt = con.createStatement();
+		String sqlStr = "select [Config TP Initial Req_ Caption], [Config TP WP Request Caption] ,[Search Tool Pane Caption], [Search Config Table Caption], [Search TP All Tables Caption] from [CRONUS Sverige AB$Employee Portal Setup];";
+		ResultSet rset = stmt.executeQuery(sqlStr);
+		return rset;
+	}
+
+	public ResultSet findEmployeeQualification() throws SQLException {
+		stmt = con.createStatement();
+		String sqlStr = "select [Employee No_], [Line No_], [Qualification Code], [Description], [Institution_Company] from [CRONUS Sverige AB$Employee Qualification];";
+		ResultSet rset = stmt.executeQuery(sqlStr);
+		return rset;
+	}
+
+	public ResultSet findEmployeeRelative() throws SQLException {
+		stmt = con.createStatement();
+		String sqlStr = "select [Employee No_], [Relative Code], [First Name], [Last Name], [Birth Date] from [CRONUS Sverige AB$Employee Relative];";
+		ResultSet rset = stmt.executeQuery(sqlStr);
+		return rset;
+	}
+	/*--------------------------------Course functions for Metadata-------------------------------------*/
+
 }
