@@ -16,7 +16,18 @@ public class Controller {
 	/* Insert different methods and to get info from GUI to SQL and deverse */
 	
 	public ResultSet findEmployeeData() throws SQLException {
-		return dal.findEmployeeData(null);
+		return dal.findEmployeeData();
 	}
-
+	public ResultSet findEmployeeAbsenceData() throws SQLException {
+		return dal.findEmployeeAbsenceData();
+	}
+	public ResultSet findEmployeePortalSetup() throws SQLException{
+		return dal.findEmployeePortalSetup();
+	}
+	public ResultSet findEmployeeQualification() throws SQLException{
+		return dal.findEmployeeQualification();
+	}
+	public ResultSet findEmployeeRelative() throws SQLException{
+		return dal.findEmployeeRelative();
+	}
 }
