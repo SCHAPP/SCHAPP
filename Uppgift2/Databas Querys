@@ -1,0 +1,62 @@
+Uppgift 2 - DATA i java application
+
+select [No_], [First Name], [Last Name], [Initials], [Job Title]
+from [CRONUS Sverige AB$Employee]
+
+select [Employee No_], [From Date], [To Date],[Cause of Absence Code], [Description]
+from [CRONUS Sverige AB$Employee Absence]
+
+select [Config TP Initial Req_ Caption], [Config TP WP Request Caption] ,[Search Tool Pane Caption], [Search Config Table Caption], [Search TP All Tables Caption]
+from [CRONUS Sverige AB$Employee Portal Setup]
+
+select [Employee No_], [Line No_], [Qualification Code], [Description], [Institution_Company]
+from [CRONUS Sverige AB$Employee Qualification]
+
+select [Employee No_], [Relative Code], [First Name], [Last Name], [Birth Date]
+from [CRONUS Sverige AB$Employee Relative]
+
+select [timestamp], [Code], [Description]
+from [CRONUS Sverige AB$Employee Statistics Group]
+
+Uppgift 2 - METADATA i java application
+
+
+
+
+
+
+
+/* Samtliga Nycklar */
+select name, type 
+from sys.objects 
+where type = 'PK' or type = 'FK'
+
+/* Samtliga indexes */
+select *
+from sys.indexes
+
+/* Samtliga Constraints */
+select * 
+from INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+
+/* Samtliga tabeller */
+select TABLE_NAME
+from INFORMATION_SCHEMA.TABLES
+
+select name
+from sys.tables
+
+/* Samtliga kolumner i Employee */
+select COLUMN_NAME
+from INFORMATION_SCHEMA.COLUMNS
+where TABLE_NAME = 'CRONUS Sverige AB$Employee'
+
+select name
+from sys.columns
+where object_id = object_id('dbo.CRONUS Sverige AB$Employee')
+
+/* Tabell med flest rader */
+SELECT TOP 1 OBJECT_NAME(OBJECT_ID) TableName, row_count
+FROM sys.dm_db_partition_stats 
+ORDER BY row_count 
+DESC
