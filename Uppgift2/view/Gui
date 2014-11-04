@@ -1,4 +1,4 @@
-package layout;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -30,10 +30,10 @@ import javax.swing.JScrollBar;
 
 public class Gui extends JFrame {
 
-	private Controller con = new Controller(); // imports necessary methods from different classes
+	private Controller con = new Controller(); // imports necessary methods from
+												// different classes
 	private JPanel contentPane;
 	private JTable table;
-	private JTable showEmployeeData;
 
 	/*----------------------------------------------------- Launches the application ---------------------------------------------------------*/
 	public static void main(String[] args) {
@@ -51,48 +51,48 @@ public class Gui extends JFrame {
 		});
 	}
 
-		/*------------------------------------------------------ Creates the frame --------------------------------------------------------------*/
+	/*------------------------------------------------------ Creates the frame --------------------------------------------------------------*/
 
 	public Gui() {
 
 		final DAL dal = new DAL();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 850, 760);
+		setBounds(100, 100, 1000, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		/*-----------------------------------------------------Creates the JTable -----------------------------------------------------------*/
-		
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(64, 242, 852, 486);
+		contentPane.add(scrollPane);
 		table = new JTable();
-		table.setBounds(64, 173, 698, 500);
-		contentPane.add(table);
-	
-		table.setBounds(64, 173, 698, 500);
-		contentPane.add(table);
+		scrollPane.setViewportView(table);
 
 		/*-----------------------------------------------------Creates the JComboBox -----------------------------------------------------------*/
-		
-		/*String[] comboBoxSelection = new String[] {
-			"Choose table",
-			"Employee - Data",
-			"Employee - Metadata",
-		};
-		JComboBox comboBoxUppgift2 = new JComboBox(comboBoxSelection);
-		comboBoxUppgift2.setBounds(304, 85, 229, 30);
-		contentPane.add(comboBoxUppgift2); */
+
+		/*
+		 * String[] comboBoxSelection = new String[] { "Choose table",
+		 * "Employee - Data", "Employee - Metadata", }; JComboBox
+		 * comboBoxUppgift2 = new JComboBox(comboBoxSelection);
+		 * comboBoxUppgift2.setBounds(304, 85, 229, 30);
+		 * contentPane.add(comboBoxUppgift2);
+		 */
 
 		/* ---------------------------------------------------Creates the JLabel -----------------------------------------------------------------*/
 
-		JLabel lblChooseTabel = new JLabel("List of tables");
-		lblChooseTabel.setBounds(380, 0, 260, 60);
-		contentPane.add(lblChooseTabel);	
-		
+		JLabel lblChooseTabel = new JLabel("Choose which data to show below");
+		lblChooseTabel.setBounds(363, 90, 212, 60);
+		contentPane.add(lblChooseTabel);
+
 		/* ---------------------------------------------------Creates the JButtons -----------------------------------------------------------------*/
-		
-		JButton btnShowAllEmployeeData = new JButton("Show all employee data");
+
+		/*--- Creates the buttons for data ---*/
+
+		JButton btnShowAllEmployeeData = new JButton("Show employee data");
 		btnShowAllEmployeeData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				showEmployeeData();
@@ -100,52 +100,110 @@ public class Gui extends JFrame {
 		});
 		btnShowAllEmployeeData.setBounds(64, 16, 241, 29);
 		contentPane.add(btnShowAllEmployeeData);
-	
-	JButton btnShowEmployeeAbsenceData = new JButton("Show employee absence data ");
-	btnShowEmployeeAbsenceData.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			showEmployeeAbsenceData();
-		}
-	});
-	btnShowEmployeeAbsenceData.setBounds(64, 61, 241, 29);
-	contentPane.add(btnShowEmployeeAbsenceData);
-	
-	JButton btnShowEmployeePortalSetup = new JButton("Show portal setup");
-	btnShowEmployeePortalSetup.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			showEmployeePortalSetup();
-		}
-	});
-	btnShowEmployeePortalSetup.setBounds(64, 106, 241, 29);
-	contentPane.add(btnShowEmployeePortalSetup);
-	
-	JButton btnShowEmployeeQualification = new JButton("Show employee qualification");
-	btnShowEmployeeQualification.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			showEmployeeQualification();
-		}
-	});
-	btnShowEmployeeQualification.setBounds(320, 61, 241, 29);
-	contentPane.add(btnShowEmployeeQualification);
-	
-	JButton btnShowEmployeeRelative = new JButton("Show employee relative");
-	btnShowEmployeeRelative.addActionListener(new ActionListener(){
-		public void actionPerformed(ActionEvent arg0){
-			showEmployeeRelative();
-		}
-		
-	});
-	btnShowEmployeeRelative.setBounds(320, 106, 241, 29);
-	contentPane.add(btnShowEmployeeRelative);
-	
-}
+
+		JButton btnShowEmployeeAbsenceMetadataData = new JButton(
+				"Show employee absence data ");
+		btnShowEmployeeAbsenceMetadataData
+				.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						showEmployeeAbsenceData();
+					}
+				});
+		btnShowEmployeeAbsenceMetadataData.setBounds(64, 61, 241, 29);
+		contentPane.add(btnShowEmployeeAbsenceMetadataData);
+
+		JButton btnShowEmployeePortalSetup = new JButton("Show portal setup");
+		btnShowEmployeePortalSetup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showEmployeePortalSetup();
+			}
+		});
+		btnShowEmployeePortalSetup.setBounds(64, 106, 241, 29);
+		contentPane.add(btnShowEmployeePortalSetup);
+
+		JButton btnShowEmployeeQualification = new JButton(
+				"Show employee qualification");
+		btnShowEmployeeQualification.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showEmployeeQualification();
+			}
+		});
+		btnShowEmployeeQualification.setBounds(64, 154, 241, 29);
+		contentPane.add(btnShowEmployeeQualification);
+
+		JButton btnShowEmployeeRelative = new JButton("Show employee relative");
+		btnShowEmployeeRelative.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showEmployeeRelative();
+			}
+
+		});
+		btnShowEmployeeRelative.setBounds(64, 199, 241, 29);
+		contentPane.add(btnShowEmployeeRelative);
+
+		/*--- Creates the buttons for the metadata ---*/
+
+		JButton btnShowEmployeeMetadata = new JButton("Show employee metadata");
+		btnShowEmployeeMetadata.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				showEmployeeMetadata();
+			}
+		});
+		btnShowEmployeeMetadata.setBounds(625, 16, 241, 29);
+		contentPane.add(btnShowEmployeeMetadata);
+
+		JButton btnShowEmployeeAbsenceMetadata = new JButton(
+				"Show employee absence metadata");
+		btnShowEmployeeAbsenceMetadata.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showEmployeeAbsenceMetadata();
+			}
+		});
+		btnShowEmployeeAbsenceMetadata.setBounds(625, 61, 241, 29);
+		contentPane.add(btnShowEmployeeAbsenceMetadata);
+
+		JButton btnShowEmployeePortalSetupMetadata = new JButton(
+				"Show portal setup metadata");
+		btnShowEmployeePortalSetupMetadata
+				.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						showEmployeePortalSetupMetadata();
+					}
+				});
+		btnShowEmployeePortalSetupMetadata.setBounds(625, 106, 241, 29);
+		contentPane.add(btnShowEmployeePortalSetupMetadata);
+
+		JButton btnShowEmployeeQualificationMetadata = new JButton(
+				"Show employee qualification metadata");
+		btnShowEmployeeQualificationMetadata
+				.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						showEmployeeQualificationMetadata();
+					}
+				});
+		btnShowEmployeeQualificationMetadata.setBounds(625, 154, 241, 29);
+		contentPane.add(btnShowEmployeeQualificationMetadata);
+
+		JButton btnShowEmployeeRelativeMetadata = new JButton(
+				"Show employee relative metadata");
+		btnShowEmployeeRelativeMetadata.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				showEmployeeRelativeMetadata();
+			}
+		});
+		btnShowEmployeeRelativeMetadata.setBounds(625, 199, 241, 29);
+		contentPane.add(btnShowEmployeeRelativeMetadata);
+
+	}
+
 	/*------------------------------------------------------ Creates the methods----------------------------------------------------------------*/
-	
+
 	/*--- Creates the default table ---*/
 	private void buildTable(ResultSet rs, JTable table) {
 		try {
 			DefaultTableModel dt = buildTableModel(rs);
-			table.setModel(dt);;
+			table.setModel(dt);
+			;
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -178,8 +236,10 @@ public class Gui extends JFrame {
 		return new DefaultTableModel(data, columnNames);
 
 	}
+
 	/*--- Creates the method for the show all employee data button ---*/
-	private void showEmployeeData(){
+
+	private void showEmployeeData() {
 		ResultSet rs = null;
 		try {
 			rs = con.findEmployeeData();
@@ -189,8 +249,8 @@ public class Gui extends JFrame {
 		}
 		buildTable(rs, table);
 	}
-	
-	private void showEmployeeAbsenceData(){
+
+	private void showEmployeeAbsenceData() {
 		ResultSet rs = null;
 		try {
 			rs = con.findEmployeeAbsenceData();
@@ -201,34 +261,93 @@ public class Gui extends JFrame {
 		buildTable(rs, table);
 	}
 
-private void showEmployeePortalSetup(){
-	ResultSet rs = null;
-	try {
-		rs = con.findEmployeePortalSetup();
-	} catch (SQLException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
+	private void showEmployeePortalSetup() {
+		ResultSet rs = null;
+		try {
+			rs = con.findEmployeePortalSetup();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, table);
 	}
-	buildTable(rs, table);
-}
-private void showEmployeeQualification(){
-	ResultSet rs = null;
-	try {
-		rs = con.findEmployeeQualification();
-	} catch (SQLException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
+
+	private void showEmployeeQualification() {
+		ResultSet rs = null;
+		try {
+			rs = con.findEmployeeQualification();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, table);
 	}
-	buildTable(rs, table);
-}
-private void showEmployeeRelative(){
-	ResultSet rs = null;
-	try {
-		rs = con.findEmployeeRelative();
-	} catch (SQLException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
+
+	private void showEmployeeRelative() {
+		ResultSet rs = null;
+		try {
+			rs = con.findEmployeeRelative();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, table);
 	}
-	buildTable(rs, table);
-}
+
+	/*--- Creates the method for the show all employee data button ---*/
+
+	private void showEmployeeMetadata() {
+		ResultSet rs = null;
+		try {
+			rs = con.findEmployeeMetadata();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, table);
+	}
+
+	private void showEmployeeAbsenceMetadata() {
+		ResultSet rs = null;
+		try {
+			rs = con.findEmployeeAbsenceMetadata();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, table);
+	}
+
+	private void showEmployeePortalSetupMetadata() {
+		ResultSet rs = null;
+		try {
+			rs = con.findEmployeePortalSetupMetadata();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, table);
+	}
+
+	private void showEmployeeQualificationMetadata() {
+		ResultSet rs = null;
+		try {
+			rs = con.findEmployeeQualificationMetadata();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, table);
+	}
+
+	private void showEmployeeRelativeMetadata() {
+		ResultSet rs = null;
+		try {
+			rs = con.findEmployeeRelativeMetadata();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, table);
+	}
 }
