@@ -65,6 +65,41 @@ public class DAL {
 		ResultSet rset = stmt.executeQuery(sqlStr);
 		return rset;
 	}
+
 	/*--------------------------------Course functions for Metadata-------------------------------------*/
 
+	public ResultSet findEmployeeMetadata() throws SQLException {
+		stmt = con.createStatement();
+		String sqlStr = "select TABLE_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, NUMERIC_PRECISION, COLLATION_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME ='CRONUS Sverige AB$Employee';";
+		ResultSet rset = stmt.executeQuery(sqlStr);
+		return rset;
+	}
+
+	public ResultSet findEmployeeAbsenceMetadata() throws SQLException {
+		stmt = con.createStatement();
+		String sqlStr = "select TABLE_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, NUMERIC_PRECISION, COLLATION_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME ='CRONUS Sverige AB$Employee Absence';";
+		ResultSet rset = stmt.executeQuery(sqlStr);
+		return rset;
+	}
+
+	public ResultSet findEmployeePortalSetupMetadata() throws SQLException {
+		stmt = con.createStatement();
+		String sqlStr = "select TABLE_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, NUMERIC_PRECISION, COLLATION_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME ='CRONUS Sverige AB$Employee Portal Setup';";
+		ResultSet rset = stmt.executeQuery(sqlStr);
+		return rset;
+	}
+
+	public ResultSet findEmployeeQualificationMetadata() throws SQLException {
+		stmt = con.createStatement();
+		String sqlStr = "select TABLE_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, NUMERIC_PRECISION, COLLATION_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME ='CRONUS Sverige AB$Employee Qualification';";
+		ResultSet rset = stmt.executeQuery(sqlStr);
+		return rset;
+	}
+
+	public ResultSet findEmployeeRelativeMetadata() throws SQLException {
+		stmt = con.createStatement();
+		String sqlStr = "select TABLE_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, NUMERIC_PRECISION, COLLATION_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME ='CRONUS Sverige AB$Employee Relative';";
+		ResultSet rset = stmt.executeQuery(sqlStr);
+		return rset;
+	}
 }
