@@ -1,9 +1,13 @@
--- Upgift 1
+/* Uppgift 1)	Hur mycket är 100 NOK? */
+
 select [Currency Code], [Relational Exch_ Rate Amount]
 from [CRONUS Sverige AB$Currency Exchange Rate]
 where [Currency Code] = 'NOK'
 
--- Uppgift 2
+
+
+/* Uppgift 2)	Vilken valuta handlas för mest SEK? */
+
 select top 1 [Currency Code], [Relational Exch_ Rate Amount]
 from [CRONUS Sverige AB$Currency Exchange Rate] CER
 group by CER.[Currency Code], CER.[Relational Exch_ Rate Amount]
@@ -11,7 +15,8 @@ order by CER.[Relational Exch_ Rate Amount]
 desc
 
 
-/* 3)	På vilken adress och i vilken stad befinner sig Fotograferna AB? */
+
+/* Uppgift 3)	På vilken adress och i vilken stad befinner sig Fotograferna AB? */
 
 SELECT Name, Address,[Adress 2], City 
 FROM  [CRONUS Sverige AB$Customer] 
@@ -19,7 +24,8 @@ WHERE Name='Fotograferna AB'
 
 
 
-/* 4)	Namn på anställda som varit sjuka */
+/* Uppgift 4)	Namn på anställda som varit sjuka */
+
 SELECT DISTINCT a.[First Name], a.[Last Name], ea.[Cause of Absence Code], ea.[Employee No_]
 from [CRONUS Sverige AB$Employee Absence] ea
 join [CRONUS Sverige AB$Employee] a
@@ -28,7 +34,7 @@ where [Cause of Absence Code] = 'SJUK';
 
 
 
-/* 5)	Namn och släktskap för alla anställdas släktingar.*/
+/* Uppgift 5)	Namn och släktskap för alla anställdas släktingar. */
 
 select er.[Employee No_] , er.[Relative Code], e.[First Name], e.[Last Name], er.[First Name], er.[Last Name]
 from [CRONUS Sverige AB$Employee] e
@@ -37,10 +43,7 @@ on e.No_ = er.[Employee No_]
 
 
 
- Fråga 6
-select *
-from [CRONUS Sverige AB$Customer]
-where [Name] = 'Fotograferna AB';  
+ /* Uppgift 6)	Vilka kunder hanteras av (anställd) Andreas Berglund? */
 
 select c.[Name], e.[First Name], e.[Last Name], e.No_
 from [CRONUS Sverige AB$Employee] e
@@ -50,7 +53,8 @@ where e.[No_] = 'AB';
 
 
 
--- Uppgift 7
+/* Uppgift 7)	Vilka bankkonton tillhör kunden med kundnummer 10 000? */
+
 select [Customer No_], Name, [Bank Account No_]
 from [CRONUS Sverige AB$Customer Bank Account]
 where [Customer No_] = '10000'
