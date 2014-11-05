@@ -2,3 +2,11 @@
 select [Relational Exch_ Rate Amount] * 100 AS '100 NOK'
 from [CRONUS Sverige AB$Currency Exchange Rate]
 where [Currency Code] = 'NOK'
+
+
+
+/* 3)	På vilken adress och i vilken stad befinner sig Fotograferna AB? */
+
+select *
+from [CRONUS Sverige AB$Customer]
+where [Name] = 'Fotograferna AB';  
