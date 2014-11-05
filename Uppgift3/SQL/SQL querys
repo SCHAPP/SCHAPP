@@ -13,6 +13,9 @@ desc
 
 /* 3)	På vilken adress och i vilken stad befinner sig Fotograferna AB? */
 
+SELECT Name, Address,[Adress 2], City 
+FROM  [CRONUS Sverige AB$Customer] 
+WHERE Name='Fotograferna AB'
 
 
 
