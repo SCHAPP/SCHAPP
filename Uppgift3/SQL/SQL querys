@@ -16,6 +16,14 @@ desc
 
 
 
+/* 4)	Namn på anställda som varit sjuka */
+SELECT DISTINCT a.[First Name], a.[Last Name], ea.[Cause of Absence Code], ea.[Employee No_]
+from [CRONUS Sverige AB$Employee Absence] ea
+join [CRONUS Sverige AB$Employee] a
+on  ea.[Employee No_] = a.No_
+where [Cause of Absence Code] = 'SJUK'; 
+
+
 
 /* 5)	Namn och släktskap för alla anställdas släktingar.*/
 
