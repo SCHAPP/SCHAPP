@@ -1,5 +1,5 @@
--- Uppgift 1
-select [Relational Exch_ Rate Amount] * 100 AS '100 NOK'
+-- Upgift 1
+select [Currency Code], [Relational Exch_ Rate Amount]
 from [CRONUS Sverige AB$Currency Exchange Rate]
 where [Currency Code] = 'NOK'
 
