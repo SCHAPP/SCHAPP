@@ -1,3 +1,4 @@
+-- Uppgift 1
 select [Relational Exch_ Rate Amount] * 100 AS '100 NOK'
 from [CRONUS Sverige AB$Currency Exchange Rate]
 where [Currency Code] = 'NOK'
