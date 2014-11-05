@@ -179,6 +179,14 @@ public class DAL {
 
 	    		return rset;
 	    	}
+	    //Find all Students connected to courses//
+	    public ResultSet FindAllStudentsConnectedToCourses() throws SQLException{
+	    stmt = con.createStatement();
+	    String sqlStr = "select * from Reading";
+	    ResultSet rset = stmt.executeQuery(sqlStr);
+	    
+	    return rset;
+	    }
 	  
 	    
 	    
