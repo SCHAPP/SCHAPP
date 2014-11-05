@@ -54,6 +54,7 @@ public class Gui extends JFrame {
 	private JTextField txtFinishedCourseGrade;
 	private JTable tblShowGrades;
 	private JTextField txtSearchGradeByCourseCode;
+	private JTable tblShowStudentCourse;
 
 	/*-------------------------------Launch the application.-----------------------------*/
 	
@@ -100,25 +101,25 @@ public class Gui extends JFrame {
 		Registrate.setLayout(null);
 		
 		JLabel lblStudentPnr_1 = new JLabel("Student pnr:");
-		lblStudentPnr_1.setBounds(426, 74, 69, 14);
+		lblStudentPnr_1.setBounds(46, 74, 69, 14);
 		Registrate.add(lblStudentPnr_1);
 		
 		txtAddStudentToCoursePnr = new JTextField();
-		txtAddStudentToCoursePnr.setBounds(515, 71, 141, 20);
+		txtAddStudentToCoursePnr.setBounds(141, 71, 141, 20);
 		Registrate.add(txtAddStudentToCoursePnr);
 		txtAddStudentToCoursePnr.setColumns(10);
 		
 		JLabel lblCourseCode_1 = new JLabel("Course code:");
-		lblCourseCode_1.setBounds(426, 105, 79, 14);
+		lblCourseCode_1.setBounds(46, 105, 79, 14);
 		Registrate.add(lblCourseCode_1);
 		
 		txtAddstudentToCourseCcode = new JTextField();
-		txtAddstudentToCourseCcode.setBounds(515, 102, 141, 20);
+		txtAddstudentToCourseCcode.setBounds(141, 102, 141, 20);
 		Registrate.add(txtAddstudentToCourseCcode);
 		txtAddstudentToCourseCcode.setColumns(10);
 		
 		JButton btnAddStudentToCourse = new JButton("Add to course");
-		btnAddStudentToCourse.setBounds(515, 133, 141, 20);
+		btnAddStudentToCourse.setBounds(141, 129, 141, 20);
 		btnAddStudentToCourse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				addStudentToCourse();
@@ -129,45 +130,65 @@ public class Gui extends JFrame {
 		Registrate.add(btnAddStudentToCourse);
 		
 		JLabel lblAddStudentTo = new JLabel("Add student to course");
-		lblAddStudentTo.setBounds(515, 46, 141, 14);
+		lblAddStudentTo.setBounds(141, 46, 141, 14);
 		Registrate.add(lblAddStudentTo);
 		
 		JButton btnAddFinishedCourse = new JButton("Add finished Course");
+		btnAddFinishedCourse.setBounds(504, 164, 163, 23);
 		btnAddFinishedCourse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AddStudentRead();
 				ClearTxtFieldStudentRead();
 			}
 		});
-		btnAddFinishedCourse.setBounds(503, 281, 164, 23);
 		Registrate.add(btnAddFinishedCourse);
 		
 		JLabel lblFinishedCourseStudentPnr = new JLabel("Student pnr:");
-		lblFinishedCourseStudentPnr.setBounds(426, 194, 79, 14);
+		lblFinishedCourseStudentPnr.setBounds(426, 74, 79, 14);
 		Registrate.add(lblFinishedCourseStudentPnr);
 		
 		txtFinishedStudentPnr = new JTextField();
-		txtFinishedStudentPnr.setBounds(515, 188, 141, 20);
+		txtFinishedStudentPnr.setBounds(515, 71, 141, 20);
 		Registrate.add(txtFinishedStudentPnr);
 		txtFinishedStudentPnr.setColumns(10);
 		
 		JLabel lblFinishedCourseCode = new JLabel("Course code:");
-		lblFinishedCourseCode.setBounds(426, 224, 79, 14);
+		lblFinishedCourseCode.setBounds(426, 105, 79, 14);
 		Registrate.add(lblFinishedCourseCode);
 		
 		txtFinishedCourseCode = new JTextField();
-		txtFinishedCourseCode.setBounds(515, 218, 141, 20);
+		txtFinishedCourseCode.setBounds(515, 102, 141, 20);
 		Registrate.add(txtFinishedCourseCode);
 		txtFinishedCourseCode.setColumns(10);
 		
 		JLabel lblFinishedCourseGrade = new JLabel("Grade:");
-		lblFinishedCourseGrade.setBounds(426, 253, 46, 14);
+		lblFinishedCourseGrade.setBounds(426, 136, 46, 14);
 		Registrate.add(lblFinishedCourseGrade);
 		
 		txtFinishedCourseGrade = new JTextField();
-		txtFinishedCourseGrade.setBounds(515, 250, 141, 20);
+		txtFinishedCourseGrade.setBounds(515, 133, 141, 20);
 		Registrate.add(txtFinishedCourseGrade);
 		txtFinishedCourseGrade.setColumns(10);
+		
+		JButton btnShowStudentsConnectedToCourses = new JButton("Show all students connected to courses");
+		btnShowStudentsConnectedToCourses.setBounds(31, 389, 371, 23);
+		btnShowStudentsConnectedToCourses.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showAllstudentsConnectToCourses();
+			}
+		});
+		Registrate.add(btnShowStudentsConnectedToCourses);
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBounds(31, 167, 371, 218);
+		Registrate.add(scrollPane_3);
+		
+		tblShowStudentCourse = new JTable();
+		scrollPane_3.setViewportView(tblShowStudentCourse);
+		
+		JLabel lblTitleAddStudentToFinishedCourse = new JLabel("Add student to finished course");
+		lblTitleAddStudentToFinishedCourse.setBounds(515, 46, 177, 14);
+		Registrate.add(lblTitleAddStudentToFinishedCourse);
 		
 		JPanel Results = new JPanel();
 		tabbedPane.addTab("Results", null, Results, null);
@@ -304,6 +325,7 @@ public class Gui extends JFrame {
 		btnAddStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				addStudent();
+				showAll();
 			}
 
 			
@@ -327,7 +349,7 @@ public class Gui extends JFrame {
 				
 			}
 		});
-		btnDeleteStudent.setBounds(515, 227, 141, 20);
+		btnDeleteStudent.setBounds(141, 133, 141, 20);
 		Student.add(btnDeleteStudent);
 		
 		
@@ -337,16 +359,16 @@ public class Gui extends JFrame {
 				showAll();
 			}
 		});
-		btnSearchAll.setBounds(141, 133, 141, 20);
+		btnSearchAll.setBounds(31, 389, 371, 20);
 		Student.add(btnSearchAll);
 		
-		JLabel lblTitleSearch = new JLabel("Search Student");
-		lblTitleSearch.setBounds(141, 46, 127, 14);
-		Student.add(lblTitleSearch);
+		JLabel lblTitleSearchDelete = new JLabel("Search /delete student");
+		lblTitleSearchDelete.setBounds(141, 46, 167, 14);
+		Student.add(lblTitleSearchDelete);
 		
-		JLabel lblAddRemoveTitle = new JLabel("Add/delete Student");
-		lblAddRemoveTitle.setBounds(515, 46, 126, 14);
-		Student.add(lblAddRemoveTitle);
+		JLabel lblAddTitle = new JLabel("Add student");
+		lblAddTitle.setBounds(515, 46, 126, 14);
+		Student.add(lblAddTitle);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(31, 167, 371, 218);
@@ -383,6 +405,7 @@ public class Gui extends JFrame {
 		btnAddNewCourse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				addCourse();
+				showAllCourses();
 			
 			}
 		});
@@ -403,7 +426,7 @@ public class Gui extends JFrame {
 				}
 			}
 		});
-		btnDeleteCourse.setBounds(515, 224, 141, 20);
+		btnDeleteCourse.setBounds(141, 133, 141, 20);
 		Course.add(btnDeleteCourse);
 		
 		JLabel lblCourseCredit = new JLabel("Credit:");
@@ -421,16 +444,16 @@ public class Gui extends JFrame {
 				showAllCourses();
 			}
 		});
-		btnSearchAllCourses.setBounds(141, 132, 141, 23);
+		btnSearchAllCourses.setBounds(31, 389, 371, 23);
 		Course.add(btnSearchAllCourses);
 		
-		JLabel lblSearchCourseTitle = new JLabel("Search Course");
-		lblSearchCourseTitle.setBounds(144, 46, 112, 14);
-		Course.add(lblSearchCourseTitle);
+		JLabel lblSearchDeleteCourseTitle = new JLabel("Search/delete Course");
+		lblSearchDeleteCourseTitle.setBounds(144, 46, 156, 14);
+		Course.add(lblSearchDeleteCourseTitle);
 		
-		JLabel lblAddremoveCourse = new JLabel("Add/delete course");
-		lblAddremoveCourse.setBounds(515, 46, 117, 14);
-		Course.add(lblAddremoveCourse);
+		JLabel lblAddCourse = new JLabel("Add course");
+		lblAddCourse.setBounds(515, 46, 117, 14);
+		Course.add(lblAddCourse);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(31, 167, 371, 218);
@@ -480,10 +503,26 @@ public class Gui extends JFrame {
 		scrollPane_2.setViewportView(tblShowGrades);
 		
 		JLabel lblSearchResultsByCcode = new JLabel("Search results from specific course");
-		lblSearchResultsByCcode.setBounds(483, 46, 216, 14);
+		lblSearchResultsByCcode.setBounds(515, 46, 216, 14);
 		Results.add(lblSearchResultsByCcode);
 		
+		JLabel lblSearchSpecificGrade = new JLabel("Search grade from specific student");
+		lblSearchSpecificGrade.setBounds(141, 46, 216, 14);
+		Results.add(lblSearchSpecificGrade);
+		
 	
+		
+	}
+	
+	private void showAllstudentsConnectToCourses(){
+		ResultSet rs = null;
+		try {
+			rs = con.FindAllStudentsConnectedToCourses();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		buildTable (rs, tblShowStudentCourse);
 		
 	}
 	private void specificGradeResult(){
