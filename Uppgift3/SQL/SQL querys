@@ -15,6 +15,17 @@ desc
 
 
 
+
+
+/* 5)	Namn och släktskap för alla anställdas släktingar.*/
+
+select er.[Employee No_] , er.[Relative Code], e.[First Name], e.[Last Name], er.[First Name], er.[Last Name]
+from [CRONUS Sverige AB$Employee] e
+join [CRONUS Sverige AB$Employee Relative] er
+on e.No_ = er.[Employee No_]
+
+
+
  Fråga 6
 select *
 from [CRONUS Sverige AB$Customer]
