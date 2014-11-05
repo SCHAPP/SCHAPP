@@ -10,3 +10,18 @@ where [Currency Code] = 'NOK'
 select *
 from [CRONUS Sverige AB$Customer]
 where [Name] = 'Fotograferna AB';  
+
+
+/* 4)	Namn på anställda som varit sjuka */
+SELECT DISTINCT a.[First Name], a.[Last Name], ea.[Cause of Absence Code], ea.[Employee No_]
+from [CRONUS Sverige AB$Employee Absence] ea
+join [CRONUS Sverige AB$Employee] a
+on  ea.[Employee No_] = a.No_
+where [Cause of Absence Code] = 'SJUK'; 
+
+/* 5)	Namn och släktskap för alla anställdas släktingar.*/
+
+select er.[Employee No_] , er.[Relative Code], e.[First Name], e.[Last Name], er.[First Name], er.[Last Name]
+from [CRONUS Sverige AB$Employee] e
+join [CRONUS Sverige AB$Employee Relative] er
+on e.No_ = er.[Employee No_]
