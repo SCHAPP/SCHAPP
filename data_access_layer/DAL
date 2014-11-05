@@ -23,7 +23,7 @@ public class DAL {
                                  "password=SYSB13OLLE_"; 
          
          con = DriverManager.getConnection(connectionUrl); 
-         System.out.println("Connected."); 
+         
          
          
     }    
@@ -118,12 +118,19 @@ public class DAL {
 	    // Registera student som har läst kurs
 	    
 	    public void insertStudentRead(String spnr, String ccode, String grade) throws SQLException{
+	    	deleteStudentReading(spnr,ccode);
 			stmt = con.createStatement(); 
 			String sqlStr = "insert into StudentRead (spnr, ccode, grade) values ( '"+spnr+ "','"+ ccode+ "','"+grade+ "');";       
-			stmt.executeQuery(sqlStr);
+			stmt.executeUpdate(sqlStr);
 		
 
 	    	}
+	    //Delete Student who is reading a course//
+	    public void deleteStudentReading(String spnr, String ccode) throws SQLException{
+	    	stmt = con.createStatement();
+	    	String sqlStr = "delete from Reading where spnr = '"+spnr+"' and ccode = '"+ccode+"';";
+	    	stmt.executeUpdate(sqlStr);
+	    }
 	    
 	    // resultat för alla studenter på en specifik kurs
 	    public ResultSet resultAllStudentOnOneCourse (String ccode) throws SQLException {
@@ -151,11 +158,12 @@ public class DAL {
 	   /* ------------------------ Student reading------------------------------------------*/
 	    
 	    public void insertStudentReading (String spnr, String ccode) throws SQLException {
+	    	
 	    	stmt = con.createStatement();
-	    	String sqlStr = "insert into Reading (spnr, ccode) values ("+spnr+","+ccode+");";
+	    	String sqlStr = "insert into Reading (spnr, ccode) values ('"+spnr+"','"+ccode+"');";
 	    	stmt.executeUpdate(sqlStr);
 	    	}
-	 
+	   
 	 // One specified Student on a specified course
 
 	    public ResultSet FindOneStudentOnCourse (String spnr, String ccode) throws SQLException{
