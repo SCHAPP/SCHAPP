@@ -51,14 +51,25 @@ public class Controller {
     public void insertStudentReading (String spnr, String ccode) throws SQLException {
     	dal.insertStudentReading(spnr, ccode);
     }
+   
     public void insertStudentRead(String spnr, String ccode, String grade) throws SQLException{
     	dal.insertStudentRead(spnr, ccode, grade);
     }
+    
     public void deleteStudentReading(String spnr, String ccode) throws SQLException{
     	dal.deleteStudentReading(spnr, ccode);
     }
+    
     public ResultSet resultAllStudentOnOneCourse (String ccode) throws SQLException{
     	return dal.resultAllStudentOnOneCourse(ccode);
+    }
+    //Result reading//
+    public ResultSet FindOneStudentOnCourse (String spnr, String ccode) throws SQLException{
+    	return dal.FindOneStudentOnCourse(spnr, ccode);
+    }
+    //Result StudentRead//
+    public ResultSet FindResultOfOneStudentOnSpecifiedCourse(String spnr, String ccode) throws SQLException{
+    	return dal.FindResultOfOneStudentOnSpecifiedCourse(spnr, ccode);
     }
 }
 
