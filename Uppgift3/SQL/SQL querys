@@ -16,3 +16,10 @@ desc
 select *
 from [CRONUS Sverige AB$Customer]
 where [Name] = 'Fotograferna AB';  
+
+
+
+-- Uppgift 7
+select [Customer No_], Name, [Bank Account No_]
+from [CRONUS Sverige AB$Customer Bank Account]
+where [Customer No_] = '10000'
