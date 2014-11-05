@@ -71,6 +71,10 @@ public class Controller {
     public ResultSet FindResultOfOneStudentOnSpecifiedCourse(String spnr, String ccode) throws SQLException{
     	return dal.FindResultOfOneStudentOnSpecifiedCourse(spnr, ccode);
     }
+    //All from Reading//
+    public ResultSet FindAllStudentsConnectedToCourses() throws SQLException{
+    	return dal.FindAllStudentsConnectedToCourses();
+    }
 }
 
 
