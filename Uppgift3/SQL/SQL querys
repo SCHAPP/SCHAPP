@@ -13,9 +13,18 @@ desc
 
 /* 3)	På vilken adress och i vilken stad befinner sig Fotograferna AB? */
 
+
+
+ Fråga 6
 select *
 from [CRONUS Sverige AB$Customer]
 where [Name] = 'Fotograferna AB';  
+
+select c.[Name], e.[First Name], e.[Last Name], e.No_
+from [CRONUS Sverige AB$Employee] e
+join [CRONUS Sverige AB$Customer] c
+on e.[Salespers__Purch_ Code] = c.[Salesperson Code]
+where e.[No_] = 'AB';
 
 
 
