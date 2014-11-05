@@ -48,6 +48,18 @@ public class Controller {
     public ResultSet findOneCourse(String ccode) throws SQLException {
 		return dal.findOneCourse(ccode);
     }
+    public void insertStudentReading (String spnr, String ccode) throws SQLException {
+    	dal.insertStudentReading(spnr, ccode);
+    }
+    public void insertStudentRead(String spnr, String ccode, String grade) throws SQLException{
+    	dal.insertStudentRead(spnr, ccode, grade);
+    }
+    public void deleteStudentReading(String spnr, String ccode) throws SQLException{
+    	dal.deleteStudentReading(spnr, ccode);
+    }
+    public ResultSet resultAllStudentOnOneCourse (String ccode) throws SQLException{
+    	return dal.resultAllStudentOnOneCourse(ccode);
+    }
 }
 
 
