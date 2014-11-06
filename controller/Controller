@@ -1,15 +1,6 @@
 package controller;
 
 import java.sql.*;
-import java.util.ArrayList;
-
-import javax.swing.JTextField;
-
-import data_access_layer.DAL;
-package controller;
-
-import java.sql.*;
-import java.util.ArrayList;
 
 import javax.swing.JTextField;
 
@@ -23,7 +14,7 @@ public class Controller {
         dal = new DAL();
     }
 //-------------------------------------------------	/* Insert different methods and to get info from GUI to SQL and deverse */--------------------------------------------------------//
-	
+	//Show all Courses//
 	public ResultSet findAllCourse() throws SQLException {
         return dal.findAllCourse();
 	}
@@ -54,7 +45,8 @@ public class Controller {
     //Find a course//
     public ResultSet findOneCourse(String ccode) throws SQLException {
 		return dal.findOneCourse(ccode);
-    }//Connect student to course
+	}
+    //Connect student to course
     public void insertStudentReading (String spnr, String ccode) throws SQLException {
     	dal.insertStudentReading(spnr, ccode);
     }
@@ -66,97 +58,24 @@ public class Controller {
     public void deleteStudentReading(String spnr, String ccode) throws SQLException{
     	dal.deleteStudentReading(spnr, ccode);
     }
-    //Result All Student from specific course//
+    //Results All Students from specific course//
     public ResultSet resultAllStudentOnOneCourse (String ccode) throws SQLException{
     	return dal.resultAllStudentOnOneCourse(ccode);
     }
-    //Result reading//
+    //Find a student from specific course//
     public ResultSet FindOneStudentOnCourse (String spnr, String ccode) throws SQLException{
     	return dal.FindOneStudentOnCourse(spnr, ccode);
     }
-    //Result of specific student one specific course//
+    //Result of specific student on specific course//
     public ResultSet FindResultOfOneStudentOnSpecifiedCourse(String spnr, String ccode) throws SQLException{
     	return dal.FindResultOfOneStudentOnSpecifiedCourse(spnr, ccode);
     }
-    //All students from Reading who are connected to courses//
+    //All students from Reading who are reading courses courses//
     public ResultSet FindAllStudentsConnectedToCourses() throws SQLException{
     	return dal.FindAllStudentsConnectedToCourses();
     }
+    //Check if a student already have read a course and got a grade in it//
     public ResultSet checkStudentRead(String spnr,String ccode) throws SQLException{
     	return dal.checkStudentRead(spnr, ccode);
     }
 }
-
-
-
-public class Controller {
-	
-    
-	DAL dal;
-	
-	/* Insert different methods and to get info from GUI to SQL and deverse */
-	public ResultSet findAllCourse() throws SQLException {
-        return dal.findAllCourse();
-	}
-	
-    public void deleteStudent(String spnr) throws SQLException {
-		dal.deleteStudent(spnr);
-	}
-    
-    public void deleteCourse(String ccode) throws SQLException{
-    	dal.deleteCourse(ccode);
-    }
-    
-	public ResultSet findAllStudent() throws SQLException {
-    	return dal.findAllStudent();
-    }
-	
-    public void insertOneStudent(String spnr, String sname, String saddress, String sphnr) throws SQLException{
-    	dal.insertOneStudent(spnr,sname,saddress,sphnr);
-    }
-    
-    public Controller() {
-        dal = new DAL();
-    }
-    
-    public void insertOneCourse(String ccode, String cname, String cinfo, String credit) throws SQLException{
-		dal.insertOneCourse(ccode,cname,cinfo,credit);
-	}
- 
-    public ResultSet findOneStudent(String spnr) throws SQLException {
-    	return dal.findOneStudent(spnr); 
-    }
-    
-    public ResultSet findOneCourse(String ccode) throws SQLException {
-		return dal.findOneCourse(ccode);
-    }
-    public void insertStudentReading (String spnr, String ccode) throws SQLException {
-    	dal.insertStudentReading(spnr, ccode);
-    }
-   
-    public void insertStudentRead(String spnr, String ccode, String grade) throws SQLException{
-    	dal.insertStudentRead(spnr, ccode, grade);
-    }
-    
-    public void deleteStudentReading(String spnr, String ccode) throws SQLException{
-    	dal.deleteStudentReading(spnr, ccode);
-    }
-    
-    public ResultSet resultAllStudentOnOneCourse (String ccode) throws SQLException{
-    	return dal.resultAllStudentOnOneCourse(ccode);
-    }
-    //Result reading//
-    public ResultSet FindOneStudentOnCourse (String spnr, String ccode) throws SQLException{
-    	return dal.FindOneStudentOnCourse(spnr, ccode);
-    }
-    //Result StudentRead//
-    public ResultSet FindResultOfOneStudentOnSpecifiedCourse(String spnr, String ccode) throws SQLException{
-    	return dal.FindResultOfOneStudentOnSpecifiedCourse(spnr, ccode);
-    }
-    //All from Reading//
-    public ResultSet FindAllStudentsConnectedToCourses() throws SQLException{
-    	return dal.FindAllStudentsConnectedToCourses();
-    }
-}
-
-
