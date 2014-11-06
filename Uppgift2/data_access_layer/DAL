@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+// Imports the necessary methods to make the code to actually work.
 
 public class DAL {
 
@@ -13,7 +14,9 @@ public class DAL {
 
 	public DAL() {
 		try {
-
+			
+			// Makes a connection with the database.
+			
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			String connectionUrl = "jdbc:sqlserver://JONAS\\MSSQLSERVER;"
 					+ "database=Demo Database NAV (5-0);" + "user=User2;"
@@ -28,9 +31,10 @@ public class DAL {
 		}
 	}
 
-	/*--------------------------------Course functions for data-------------------------------------*/
+	/*-------------------------------- SQL and ResultSets for data-------------------------------------*/
 
-	// Find employees i data form
+	// Each of these SQL and ResultSets brings the information from the database to the java GUI. 
+	
 	public ResultSet findEmployeeData() throws SQLException {
 		stmt = con.createStatement();
 		String sqlStr = "select [No_], [First Name], [Last Name], [Initials], [Job Title] from [CRONUS Sverige AB$Employee];";
@@ -66,7 +70,7 @@ public class DAL {
 		return rset;
 	}
 
-	/*--------------------------------Course functions for Metadata-------------------------------------*/
+	/*-------------------------------- SQL and Resultsets for Metadata-------------------------------------*/
 
 	public ResultSet findEmployeeMetadata() throws SQLException {
 		stmt = con.createStatement();
