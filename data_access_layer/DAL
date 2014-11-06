@@ -42,37 +42,30 @@ public class DAL {
 			String sqlStr = "insert into Course (ccode,cname,cinfo,credit) values ( '"+ccode+ "','"+ cname+ "','"+cinfo+ "','"+credit+ "');";       
 			stmt.executeUpdate(sqlStr);
 			
-		
 			}
-		
-		
-		//Find one course
+		//Find one course//
 		public ResultSet findOneCourse(String ccode) throws SQLException {
 			stmt = con.createStatement(); 
 	        String sqlStr = "select * from Course where ccode= '"+ccode+"';";
 	        ResultSet rset = stmt.executeQuery(sqlStr);
-	       
 	        return rset;
 		
-		
 			}
-		
-		// Find all courses 
+		// Find all courses //
 		public ResultSet findAllCourse() throws SQLException {
 			stmt = con.createStatement();
 	        String sqlStr = "select * from Course"; 
 	        ResultSet rset = stmt.executeQuery(sqlStr);
-	       
 	        return rset;
 	        
 			} 
+		//Delete one specific course//
 		public void deleteCourse (String ccode) throws SQLException {
     		stmt = con.createStatement();
     		String sqlStr = "delete from course where ccode = '" +ccode+ "';";
     		stmt.executeUpdate(sqlStr);
     		
-    	}
-		
+    		}
 		
 /*------------------------------------------ Student functions -----------------------------------------*/		
 		//Register Student
@@ -82,25 +75,19 @@ public class DAL {
 			stmt.executeUpdate(sqlStr);
 				
 			}
-		
 		// Find one student
 	    public ResultSet findOneStudent(String spnr) throws SQLException {
 	        stmt = con.createStatement(); 
 	    	String sqlStr = "select * from Student where spnr=  '"+spnr+"';"; 
-	        ResultSet rset = stmt.executeQuery(sqlStr);
-	        	        
+	        ResultSet rset = stmt.executeQuery(sqlStr); 	        
 	        return rset;	        
 	        
 	    	}
-	    
-	    
 	     //Find all students
-		
 	    public ResultSet findAllStudent() throws SQLException {
 	    	stmt = con.createStatement(); 
 	        String sqlStr = "select * from Student"; 
 	        ResultSet rset = stmt.executeQuery(sqlStr);
-	       
 	        return rset;
 	        
 	        }
@@ -115,78 +102,77 @@ public class DAL {
 		
 /*------------------------------------------------StudentRead--------------------------------------- */
 	    
-	    // Registera student som har läst kurs
-	    
+	    	//Insert Student to have read(StudentRead)
 	    public void insertStudentRead(String spnr, String ccode, String grade) throws SQLException{
 	    	deleteStudentReading(spnr,ccode);
 			stmt = con.createStatement(); 
 			String sqlStr = "insert into StudentRead (spnr, ccode, grade) values ( '"+spnr+ "','"+ ccode+ "','"+grade+ "');";       
 			stmt.executeUpdate(sqlStr);
 		
-
 	    	}
-	    //Delete Student who is reading a course//
-	    public void deleteStudentReading(String spnr, String ccode) throws SQLException{
-	    	stmt = con.createStatement();
-	    	String sqlStr = "delete from Reading where spnr = '"+spnr+"' and ccode = '"+ccode+"';";
-	    	stmt.executeUpdate(sqlStr);
-	    }
-	    
 	    // resultat för alla studenter på en specifik kurs
 	    public ResultSet resultAllStudentOnOneCourse (String ccode) throws SQLException {
 	        stmt = con.createStatement(); 
 	    	String sqlStr = "select * from StudentRead where ccode= '"+ccode+"';"; 
 	        ResultSet rset = stmt.executeQuery(sqlStr);
-	        	       
 	        return rset;	        
 	        
 	        }
-	    
-	    
 	    //Result one student on specified course//
 	    public ResultSet FindResultOfOneStudentOnSpecifiedCourse(String spnr, String ccode) throws SQLException{
 	    	String sqlStr ="select * from StudentRead where spnr = '"+spnr+"' and ccode = '"+ccode+"';"; 
 	    	ResultSet rset = stmt.executeQuery(sqlStr);
 	    	return rset;
-	    }
-	    
-	        //Find all students
-			
-		    public ResultSet findAllResult() throws SQLException {
-		    	stmt = con.createStatement(); 
-		        String sqlStr = "select * from StudentRead"; 
-		        ResultSet rset = stmt.executeQuery(sqlStr);
-		       
-		        return rset;
-		    }
-		         
+	    	
+	    	}
+	    //Find all students
+		public ResultSet findAllResult() throws SQLException {
+		    stmt = con.createStatement(); 
+		    String sqlStr = "select * from StudentRead"; 
+		    ResultSet rset = stmt.executeQuery(sqlStr);
+		    return rset;
+		    
+			}   
 	    
 	   /* ------------------------ Student reading------------------------------------------*/
-	    
+		  //Delete Student who is reading a course//
+		 public void deleteStudentReading(String spnr, String ccode) throws SQLException{
+		    stmt = con.createStatement();
+		    String sqlStr = "delete from Reading where spnr = '"+spnr+"' and ccode = '"+ccode+"';";
+		    stmt.executeUpdate(sqlStr);
+		    
+		    }
+	    //Add student to course(Reading)//
 	    public void insertStudentReading (String spnr, String ccode) throws SQLException {
 	    	
 	    	stmt = con.createStatement();
 	    	String sqlStr = "insert into Reading (spnr, ccode) values ('"+spnr+"','"+ccode+"');";
 	    	stmt.executeUpdate(sqlStr);
+	    	
 	    	}
-	   
-	 //Find One specified Student on a specified course
-
+	    //Find One specified Student on a specified course
 	    public ResultSet FindOneStudentOnCourse (String spnr, String ccode) throws SQLException{
-	    		stmt = con.createStatement (); 
-	    		String sqlStr = "select * from Reading where spnr = '"+spnr+"' and ccode = '"+ccode+"';";       
-	    		ResultSet rset = stmt.executeQuery(sqlStr);
-
-	    		return rset;
+	    	stmt = con.createStatement (); 
+	    	String sqlStr = "select * from Reading where spnr = '"+spnr+"' and ccode = '"+ccode+"';";       
+	    	ResultSet rset = stmt.executeQuery(sqlStr);
+	    	return rset;
+	    	
 	    	}
 	    //Find all Students connected to courses//
 	    public ResultSet FindAllStudentsConnectedToCourses() throws SQLException{
-	    stmt = con.createStatement();
-	    String sqlStr = "select * from Reading";
-	    ResultSet rset = stmt.executeQuery(sqlStr);
-	    
-	    return rset;
-	    }
+	    	stmt = con.createStatement();
+	    	String sqlStr = "select * from Reading";
+	    	ResultSet rset = stmt.executeQuery(sqlStr);
+	    	return rset;
+	    	
+	    	}
+	    public ResultSet checkStudentRead(String spnr,String ccode) throws SQLException{
+	    	stmt = con.createStatement();
+	    	String sqlStr = "select count(*) from StudentRead where spnr = '"+spnr+"' and ccode = '"+ccode+"';";
+	    	ResultSet rset = stmt.executeQuery(sqlStr);
+	    	return rset;
+	    	
+	    	}
 	  
 	    
 	    
