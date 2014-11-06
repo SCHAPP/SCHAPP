@@ -3,6 +3,7 @@ package controller;
 import java.sql.*;
 import data_access_layer.DAL;
 import java.sql.SQLException;
+//Imports the necessary methods to make the code to actually work.
 
 public class Controller {
 
@@ -14,6 +15,8 @@ public class Controller {
 
 	/*------------------ Gets resultset querys from data to GUI---------------------------*/
 
+	// Each of these different rows of code makes the information go from the DAL to GUI.
+	
 	public ResultSet findEmployeeData() throws SQLException {
 		return dal.findEmployeeData();
 	}
@@ -34,7 +37,7 @@ public class Controller {
 		return dal.findEmployeeRelative();
 	}
 
-	/*------------------ Gets resultset querys from metadata to GUI---------------------------*/
+	/*------------------ Gets the ResultSet Querys from metadata to GUI---------------------------*/
 
 	public ResultSet findEmployeeMetadata() throws SQLException {
 		return dal.findEmployeeMetadata();
