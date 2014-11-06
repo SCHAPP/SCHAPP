@@ -101,6 +101,9 @@ public class Gui extends JFrame {
 		tabbedPane.addTab("Registrate student into course ", null, Registrate, null);
 		Registrate.setLayout(null);
 		
+		JPanel Results = new JPanel();
+		tabbedPane.addTab("Results", null, Results, null);
+		
 		JLabel lblStudentPnr_1 = new JLabel("Student pnr:");
 		lblStudentPnr_1.setBounds(46, 74, 69, 14);
 		Registrate.add(lblStudentPnr_1);
@@ -191,8 +194,7 @@ public class Gui extends JFrame {
 		lblTitleAddStudentToFinishedCourse.setBounds(515, 46, 177, 14);
 		Registrate.add(lblTitleAddStudentToFinishedCourse);
 		
-		JPanel Results = new JPanel();
-		tabbedPane.addTab("Results", null, Results, null);
+		
 	
 	/*------------------------------Creates the Jlabels--------------------------------*/	
 		
@@ -478,7 +480,7 @@ public class Gui extends JFrame {
 		btnShowGradeResult.setBounds(515, 102, 141, 20);
 		btnShowGradeResult.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(!txtSearchGradeByCourseCode.getText().equals("")){  // glöm ej else sats
+				if(!txtSearchGradeByCourseCode.getText().equals("")){ 
 				gradeResults();
 				}else{
 					JOptionPane.showMessageDialog(null,"Insert course code");
@@ -515,9 +517,9 @@ public class Gui extends JFrame {
 			e.printStackTrace();
 		}
 		buildTable (rs, tblShowStudentCourse);	
-	}
+	
 	//Search result from specific student on specific course when pushing the""Search result"- button in the result tab//
-	private void specificGradeResult(){
+	}private void specificGradeResult(){
 		ResultSet rs = null;
 		try {
 			rs = con.FindResultOfOneStudentOnSpecifiedCourse(txtResultStudentSearch.getText(), txtResultCourseCodeSearch.getText());
@@ -526,9 +528,9 @@ public class Gui extends JFrame {
 			e.printStackTrace();
 		}
 		buildTable(rs, tblShowGrades);
-	}
+	
 	//Show results of specific course when pushing the button Show Results//
-	private void gradeResults(){
+	}private void gradeResults(){
 		ResultSet rs = null;
 		try {
 			rs = con.resultAllStudentOnOneCourse(txtSearchGradeByCourseCode.getText());
@@ -537,10 +539,9 @@ public class Gui extends JFrame {
 			e.printStackTrace();
 		}
 		buildTable(rs, tblShowGrades);
-	}
- 
+	
 	//Show All Students when pushing the show all button in the student tab//
-	private void showAll(){
+	}private void showAll(){
 		ResultSet rs = null;
 		try {
 			rs = con.findAllStudent();
@@ -619,8 +620,7 @@ public class Gui extends JFrame {
 		else{
 			JOptionPane.showMessageDialog(null,"Insert pnr");
 		}
-			
-		
+					
 		//Clear textfields after adding a new student//
 	}public void ClearTxtFieldsStudent(){
 		txtAddStudentPnr.setText("");
@@ -663,7 +663,7 @@ public class Gui extends JFrame {
 		try {
 			ResultSet rs = con.checkStudentRead(spnr, ccode);
 			rs.next();
-			int i = rs.getInt(1);
+			int i = rs.getInt(1);//Check if a student already have read a course and got a grade in it//
 			if(i == 0){
 			con.insertStudentReading(spnr, ccode);
 			JOptionPane.showMessageDialog(null, "Student added on Course");
