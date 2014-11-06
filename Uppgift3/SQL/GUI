@@ -14,10 +14,9 @@ import javax.swing.JLabel;
 public class GUI extends JFrame {
 
 	private JPanel contentPane;
+	private JButton btnOpenExcelEmp;
 
-	/**
-	 * Launch the application.
-	 */
+	/*------------------------------------------------------------ Launch the application.------------------------------------------------------------ */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -34,7 +33,7 @@ public class GUI extends JFrame {
 	/*--------------------------------------------------------- Create the frame.------------------------------------------------------------------	 */
 	public GUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 409, 430);
+		setBounds(100, 100, 803, 455);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -42,53 +41,134 @@ public class GUI extends JFrame {
 		
 	/*---------------------------------------------------------- Create buttons---------------------------------------------------------------------- */
 		
-		JButton btnOpendExcel = new JButton("Open");
-		btnOpendExcel.addActionListener(new ActionListener() {
+		JButton btnOpendExcelCu = new JButton("Open");
+		
+		btnOpendExcelCu.setBounds(99, 98, 200, 25);
+		contentPane.add(btnOpendExcelCu);
+		
+		JButton btnOpendSQLCu = new JButton("Open");
+		
+		btnOpendSQLCu.setBounds(99, 156, 200, 25);
+		contentPane.add(btnOpendSQLCu);
+		
+		JButton btnOpendAcessCu = new JButton("Open");
+		
+		btnOpendAcessCu.setBounds(99, 212, 200, 25);
+		contentPane.add(btnOpendAcessCu);
+		
+		
+		JButton btnQuerySQLOpend = new JButton("Open");
+		
+		btnQuerySQLOpend.setBounds(99, 307, 200, 25);
+		contentPane.add(btnQuerySQLOpend);
+		
+		JButton btnOpenQuerySQL = new JButton("Open");
+		
+		btnOpenQuerySQL.setBounds(492, 307, 200, 25);
+		contentPane.add(btnOpenQuerySQL);
+		
+		
+		btnOpenExcelEmp = new JButton("Open");
+		
+		btnOpenExcelEmp.setBounds(492, 98, 200, 25);
+		contentPane.add(btnOpenExcelEmp);
+		
+		JButton btnOpenAcessEmp = new JButton("Open");
+		btnOpenAcessEmp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnOpenAcessEmp.setBounds(492, 212, 200, 25);
+		contentPane.add(btnOpenAcessEmp);
+		
+		JButton btnOpenSQLEmp = new JButton("Open");
+				btnOpenSQLEmp.setBounds(492, 156, 200, 25);
+		contentPane.add(btnOpenSQLEmp);
+		
+		
+	/* ------------------------------------------------------------ Action Listener-------------------------------------------------------------- */
+		
+		
+		btnOpendExcelCu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnOpendExcel.setBounds(99, 98, 200, 25);
-		contentPane.add(btnOpendExcel);
 		
-		JButton btnOpendSQL = new JButton("Open");
-		btnOpendSQL.addActionListener(new ActionListener() {
+		btnOpendSQLCu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnOpendSQL.setBounds(99, 156, 200, 25);
-		contentPane.add(btnOpendSQL);
 		
-		JButton btnOpendAcess = new JButton("Open");
-		btnOpendAcess.addActionListener(new ActionListener() {
+		btnOpendAcessCu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnOpendAcess.setBounds(99, 212, 200, 25);
-		contentPane.add(btnOpendAcess);
 		
-		JButton btnReports = new JButton("Reports");
-		btnReports.addActionListener(new ActionListener() {
+		btnQuerySQLOpend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnReports.setBounds(99, 268, 200, 25);
-		contentPane.add(btnReports);
+		
+		btnOpenQuerySQL.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnOpenExcelEmp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		btnOpenSQLEmp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+
 		
 		
-	/*------------------------------------------------------- Create Label --------------------------------------------------------------------------*/
 		
-		JLabel lblSQL = new JLabel("SQL");
-		lblSQL.setBounds(50, 161, 46, 14);
-		contentPane.add(lblSQL);
+	/*----------------------------------------------------------------- Create Label ---------------------------------------------------------------------*/
 		
-		JLabel labelExcel = new JLabel("Excel");
-		labelExcel.setBounds(50, 103, 46, 14);
-		contentPane.add(labelExcel);
+		JLabel lblSQLCu = new JLabel("SQL:");
+		lblSQLCu.setBounds(50, 161, 46, 14);
+		contentPane.add(lblSQLCu);
 		
-		JLabel lblAcess = new JLabel("Acess");
-		lblAcess.setBounds(50, 217, 46, 14);
-		contentPane.add(lblAcess);
+		JLabel lblExcelCu = new JLabel("Excel:");
+		lblExcelCu.setBounds(50, 103, 46, 14);
+		contentPane.add(lblExcelCu);
 		
+		JLabel lblAcessCu = new JLabel("Acess:");
+		lblAcessCu.setBounds(50, 217, 46, 14);
+		contentPane.add(lblAcessCu);
+
+		JLabel lblQuerySQL = new JLabel("Query SQL:");
+		lblQuerySQL.setBounds(50, 282, 87, 14);
+		contentPane.add(lblQuerySQL);
+		
+		JLabel lblQueryExcel = new JLabel("Query Excel:");
+		lblQueryExcel.setBounds(437, 282, 87, 14);
+		contentPane.add(lblQueryExcel);
+		
+		JLabel lblCustomerReports = new JLabel("Customer reports:");
+		lblCustomerReports.setBounds(50, 58, 108, 14);
+		contentPane.add(lblCustomerReports);
+		
+		JLabel lblExcelEmp = new JLabel("Excel:");
+		lblExcelEmp.setBounds(436, 103, 46, 14);
+		contentPane.add(lblExcelEmp);
+		
+		JLabel lblSQLEmp = new JLabel("SQL:");
+		lblSQLEmp.setBounds(436, 161, 46, 14);
+		contentPane.add(lblSQLEmp);
+		
+		JLabel lblAcessEmp = new JLabel("Acess:");
+		lblAcessEmp.setBounds(436, 217, 46, 14);
+		contentPane.add(lblAcessEmp);
+		
+		JLabel label = new JLabel("Employee reports:");
+		label.setBounds(439, 58, 108, 14);
+		contentPane.add(label);
+			
 		
 	}
 }
+
