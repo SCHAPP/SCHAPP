@@ -7,14 +7,15 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -22,8 +23,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Controller;
-
-import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 
 public class Gui extends JFrame {
@@ -56,6 +56,7 @@ public class Gui extends JFrame {
 	private JTable tblShowGrades;
 	private JTextField txtSearchGradeByCourseCode;
 	private JTable tblShowStudentCourse;
+	private JComboBox comboBoxGrades;
 
 	/*-------------------------------Launch the application.-----------------------------*/
 	
@@ -87,6 +88,8 @@ public class Gui extends JFrame {
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		
 	/*------------------------------Creates the different panels-----------------------*/	
+		String[] gradeArray = new String[]{"-----Select grade-----","A","B","C","D","E","F"};
+		
 		
 		JPanel Student = new JPanel();
 		tabbedPane.addTab("Student", null, Student, null);
@@ -98,11 +101,11 @@ public class Gui extends JFrame {
 		
 		JPanel Registrate = new JPanel();
 		Registrate.setToolTipText("");
-		tabbedPane.addTab("Registrate student into course ", null, Registrate, null);
-		Registrate.setLayout(null);
+		tabbedPane.addTab("Registration", null, Registrate, null);
 		
 		JPanel Results = new JPanel();
 		tabbedPane.addTab("Results", null, Results, null);
+		Registrate.setLayout(null);
 		
 		JLabel lblStudentPnr_1 = new JLabel("Student pnr:");
 		lblStudentPnr_1.setBounds(46, 74, 69, 14);
@@ -230,7 +233,7 @@ public class Gui extends JFrame {
 		lblCourseName.setBounds(426, 105, 80, 14);
 		Course.add(lblCourseName);
 		
-		JLabel lblCourseInfo = new JLabel("Course info:");
+		JLabel lblCourseInfo = new JLabel("Adress:");
 		lblCourseInfo.setBounds(426, 136, 80, 14);
 		Course.add(lblCourseInfo);
 		Results.setLayout(null);
@@ -328,6 +331,7 @@ public class Gui extends JFrame {
 		btnAddStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				addStudent();
+				ClearTxtFieldsStudent();
 				showAll();
 			}
 			
@@ -402,6 +406,7 @@ public class Gui extends JFrame {
 		btnAddNewCourse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				addCourse();
+				ClearTxtFieldsCourse();
 				showAllCourses();
 			}
 		});
@@ -459,25 +464,25 @@ public class Gui extends JFrame {
 		scrollPane_1.setViewportView(tblShowCourse);
 		
 		JButton btnResultSearch = new JButton("Search result");
+		btnResultSearch.setBounds(141, 129, 141, 23);
 		btnResultSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				specificGradeResult();
 			}
 		});
-		btnResultSearch.setBounds(141, 129, 141, 23);
 		Results.add(btnResultSearch);
 		
 		JLabel lblCourseCodeGrade = new JLabel("Course code:");
-		lblCourseCodeGrade.setBounds(426, 74, 80, 14);
+		lblCourseCodeGrade.setBounds(340, 74, 80, 14);
 		Results.add(lblCourseCodeGrade);
 		
 		txtSearchGradeByCourseCode = new JTextField();
-		txtSearchGradeByCourseCode.setBounds(515, 71, 141, 20);
+		txtSearchGradeByCourseCode.setBounds(430, 71, 141, 20);
 		Results.add(txtSearchGradeByCourseCode);
 		txtSearchGradeByCourseCode.setColumns(10);
 		
-		JButton btnShowGradeResult = new JButton("Show results");
-		btnShowGradeResult.setBounds(515, 102, 141, 20);
+		JButton btnShowGradeResult = new JButton("Show all grades");
+		btnShowGradeResult.setBounds(590, 71, 169, 23);
 		btnShowGradeResult.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!txtSearchGradeByCourseCode.getText().equals("")){ 
@@ -496,17 +501,51 @@ public class Gui extends JFrame {
 		tblShowGrades = new JTable();
 		scrollPane_2.setViewportView(tblShowGrades);
 		
-		JLabel lblSearchResultsByCcode = new JLabel("Search results from specific course");
-		lblSearchResultsByCcode.setBounds(515, 46, 216, 14);
+		JLabel lblSearchResultsByCcode = new JLabel("Search grades from course");
+		lblSearchResultsByCcode.setBounds(430, 46, 216, 14);
 		Results.add(lblSearchResultsByCcode);
 		
 		JLabel lblSearchSpecificGrade = new JLabel("Search grade from specific student");
 		lblSearchSpecificGrade.setBounds(141, 46, 216, 14);
 		Results.add(lblSearchSpecificGrade);
+		
+		comboBoxGrades = new JComboBox(gradeArray);
+		JButton btnSearchCertainGrade = new JButton("Show by specific grade");
+		btnSearchCertainGrade.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Grades();
+				
+			}
+		});
+		btnSearchCertainGrade.setBounds(590, 101, 169, 23);
+		Results.add(btnSearchCertainGrade);
+		
+		
+		
+		
+		comboBoxGrades.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		comboBoxGrades.setBounds(430, 102, 141, 20);
+		Results.add(comboBoxGrades);
 			
 	}
-//--------------------------------------------------Methods---------------------------------------------------------// 	
 	
+//--------------------------------------------------Methods---------------------------------------------------------// 	
+	private void Grades(){
+	ResultSet rs = null;
+	try {
+		String grade = comboBoxGrades.getSelectedItem().toString();
+		String course = txtSearchGradeByCourseCode.getText();
+		rs = con.showAllFailedStudentsFromSpecificCourse(course, grade);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	
+	}buildTable(rs, tblShowGrades);
+	}
 	//Show all students who are reading courses when pusching the "Show all students connected to courses"-button//
 	private void showAllstudentsConnectToCourses(){
 		ResultSet rs = null;
