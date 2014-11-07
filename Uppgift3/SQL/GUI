@@ -1,20 +1,37 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.JLabel;
 
 public class GUI extends JFrame {
-
+	
+	private Desktop desktop;
 	private JPanel contentPane;
 	private JButton btnOpenExcelEmp;
+	
+	private String excelCu = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/Uppgift3CustomerReport.xlsx";
+	private String excelEmp = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/Uppgift3EmployeeReport.xlsx";
+	private String wordCu = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/CRONUS Sverige CustomerWord.rtf";
+	private String wordEmp = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/CRONUS Sverige EmployeeWord.rtf";
+	private String accessCu = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/CRONUSCustomerReport.accdb";
+	private String accessEmp = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/CRONUSEmployeeReport.accdb";
+	private String querySQL = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/SQLQueryUppgift3.sql";
+	private String queryExcel = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/Uppgift3DB.xlsx";
+	private String queryAccess = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/Uppgift3DBA.accdb";
 
 	/*------------------------------------------------------------ Launch the application.------------------------------------------------------------ */
 	public static void main(String[] args) {
@@ -33,95 +50,191 @@ public class GUI extends JFrame {
 	/*--------------------------------------------------------- Create the frame.------------------------------------------------------------------	 */
 	public GUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 803, 455);
+		setBounds(100, 100, 1220, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		desktop = Desktop.getDesktop();
+		
+		
 		
 	/*---------------------------------------------------------- Create buttons---------------------------------------------------------------------- */
 		
-		JButton btnOpendExcelCu = new JButton("Open");
+		final JButton btnOpendExcelCu = new JButton("Open");
 		
-		btnOpendExcelCu.setBounds(99, 98, 200, 25);
+		btnOpendExcelCu.setBounds(123, 98, 200, 25);
 		contentPane.add(btnOpendExcelCu);
 		
-		JButton btnOpendSQLCu = new JButton("Open");
+		final JButton btnOpendWordCu = new JButton("Open");
 		
-		btnOpendSQLCu.setBounds(99, 156, 200, 25);
-		contentPane.add(btnOpendSQLCu);
+		btnOpendWordCu.setBounds(123, 156, 200, 25);
+		contentPane.add(btnOpendWordCu);
 		
-		JButton btnOpendAcessCu = new JButton("Open");
+		final JButton btnOpendAccessCu = new JButton("Open");
 		
-		btnOpendAcessCu.setBounds(99, 212, 200, 25);
-		contentPane.add(btnOpendAcessCu);
+		btnOpendAccessCu.setBounds(123, 212, 200, 25);
+		contentPane.add(btnOpendAccessCu);
 		
 		
-		JButton btnQuerySQLOpend = new JButton("Open");
+		final JButton btnOpenQuerySQL = new JButton("Open");
 		
-		btnQuerySQLOpend.setBounds(99, 307, 200, 25);
-		contentPane.add(btnQuerySQLOpend);
-		
-		JButton btnOpenQuerySQL = new JButton("Open");
-		
-		btnOpenQuerySQL.setBounds(492, 307, 200, 25);
+		btnOpenQuerySQL.setBounds(897, 98, 200, 25);
 		contentPane.add(btnOpenQuerySQL);
+		
+		final JButton btnOpenQueryExcel = new JButton("Open");
+		
+		btnOpenQueryExcel.setBounds(897, 156, 200, 25);
+		contentPane.add(btnOpenQueryExcel);
 		
 		
 		btnOpenExcelEmp = new JButton("Open");
 		
-		btnOpenExcelEmp.setBounds(492, 98, 200, 25);
+		btnOpenExcelEmp.setBounds(506, 98, 200, 25);
 		contentPane.add(btnOpenExcelEmp);
 		
-		JButton btnOpenAcessEmp = new JButton("Open");
-		btnOpenAcessEmp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnOpenAcessEmp.setBounds(492, 212, 200, 25);
-		contentPane.add(btnOpenAcessEmp);
+		final JButton btnOpenAccessEmp = new JButton("Open");
 		
-		JButton btnOpenSQLEmp = new JButton("Open");
-				btnOpenSQLEmp.setBounds(492, 156, 200, 25);
-		contentPane.add(btnOpenSQLEmp);
+		
+		btnOpenAccessEmp.setBounds(506, 212,200,25);
+		contentPane.add(btnOpenAccessEmp);
+		
+		final JButton btnOpenWordEmp = new JButton("Open");
+				btnOpenWordEmp.setBounds(506, 156, 200, 25);
+		contentPane.add(btnOpenWordEmp);
+		
+		final JButton btnOpenQueryAccess = new JButton("Open");
+		
+		btnOpenQueryAccess.setBounds(897, 210, 200, 25);
+		contentPane.add(btnOpenQueryAccess);
 		
 		
 	/* ------------------------------------------------------------ Action Listener-------------------------------------------------------------- */
 		
 		
 		btnOpendExcelCu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
+				Object source = e.getSource();
+				if (source == btnOpendExcelCu){
+					try {
+						desktop.open(new File(excelCu));
+					} catch (IOException exCu){
+						System.out.println(exCu.getMessage());
+					}
+				}
 			}
 		});
 		
-		btnOpendSQLCu.addActionListener(new ActionListener() {
+		btnOpendWordCu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Object source = e.getSource (); 
+				if (source == btnOpendWordCu) {
+					try {
+						desktop.open (new File (wordCu));
+					} catch (IOException woCu) {
+						System.out.println (woCu.getMessage());
+					}
+				}
 			}
 		});
 		
-		btnOpendAcessCu.addActionListener(new ActionListener() {
+		btnOpendAccessCu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		btnQuerySQLOpend.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+				Object source = e.getSource();
+				if (source == btnOpendAccessCu) {
+					try {
+						desktop.open (new File(accessCu)); 
+					} catch (IOException acCu) {
+						System.out.println (acCu.getMessage());
+					}
+				}
+					
+					
+				
 			}
 		});
 		
 		btnOpenQuerySQL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Object source = e.getSource();
+				if (source == btnOpenQuerySQL) {
+					try {
+						desktop.open(new File(querySQL));
+					}catch (IOException sqlQuery) {
+						System.out.println (sqlQuery.getMessage ());
+					}
+					
+				}
+			}
+		});
+		
+		btnOpenQueryExcel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Object source = e.getSource();
+				if (source == btnOpenQueryExcel){
+					try{
+						desktop.open(new File(queryExcel));
+					}catch (IOException excelQuery){
+						System.out.println(excelQuery);
+					}
+				}
 			}
 		});
 		btnOpenExcelEmp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Object source = e.getSource();
+				if (source == btnOpenExcelEmp) {
+					try { 
+						desktop.open( new File(excelEmp));
+					} catch (IOException exCu) {
+						System.out.println (exCu.getMessage());
+					}
+				}
+				
+				
 			}
 		});
 		
-		btnOpenSQLEmp.addActionListener(new ActionListener() {
+		btnOpenWordEmp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Object source = e.getSource ();
+				if (source == btnOpenWordEmp ) {
+					try { 
+						desktop.open(new File(wordEmp));
+					} catch (IOException woEmp) {
+						System.out.println (woEmp.getMessage());
+					}
+				}
 			}
 		});
+		btnOpenAccessEmp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Object source = e.getSource();
+				if (source == btnOpenAccessEmp) {
+					try {
+						desktop.open(new File (accessEmp)); 
+					} catch (IOException acEmp) {
+						System.out.println (acEmp.getMessage());
+					}
+				}
+				
+			}
+		});
+		
+		btnOpenQueryAccess.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Object source = e.getSource();
+				if (source == btnOpenQueryAccess ) {
+					try {
+			
+						desktop.open(new File(queryAccess));
+					} catch (IOException acQuery) {
+						System.out.println (acQuery.getMessage());
+					}
+			}
+			}
+		});
+		
 
 		
 		
@@ -129,27 +242,27 @@ public class GUI extends JFrame {
 	/*----------------------------------------------------------------- Create Label ---------------------------------------------------------------------*/
 		
 		JLabel lblWordCu = new JLabel("Word:");
-		lblSQLCu.setBounds(50, 161, 46, 14);
-		contentPane.add(lblSQLCu);
+		lblWordCu.setBounds(50, 161, 46, 14);
+		contentPane.add(lblWordCu);
 		
 		JLabel lblExcelCu = new JLabel("Excel:");
 		lblExcelCu.setBounds(50, 103, 46, 14);
 		contentPane.add(lblExcelCu);
 		
-		JLabel lblAcessCu = new JLabel("Acess:");
-		lblAcessCu.setBounds(50, 217, 46, 14);
-		contentPane.add(lblAcessCu);
+		JLabel lblAccessCu = new JLabel("Access:");
+		lblAccessCu.setBounds(50, 217, 69, 14);
+		contentPane.add(lblAccessCu);
 
-		JLabel lblQuerySQL = new JLabel("Query SQL:");
-		lblQuerySQL.setBounds(50, 282, 87, 14);
+		JLabel lblQuerySQL = new JLabel("SQL:");
+		lblQuerySQL.setBounds(830, 103, 87, 14);
 		contentPane.add(lblQuerySQL);
 		
-		JLabel lblQueryExcel = new JLabel("Query Excel:");
-		lblQueryExcel.setBounds(437, 282, 87, 14);
+		JLabel lblQueryExcel = new JLabel("Excel:");
+		lblQueryExcel.setBounds(830, 161, 87, 14);
 		contentPane.add(lblQueryExcel);
 		
 		JLabel lblCustomerReports = new JLabel("Customer reports:");
-		lblCustomerReports.setBounds(50, 58, 108, 14);
+		lblCustomerReports.setBounds(50, 58, 155, 24);
 		contentPane.add(lblCustomerReports);
 		
 		JLabel lblExcelEmp = new JLabel("Excel:");
@@ -157,18 +270,27 @@ public class GUI extends JFrame {
 		contentPane.add(lblExcelEmp);
 		
 		JLabel lblWordEmp = new JLabel("Word:");
-		lblSQLEmp.setBounds(436, 161, 46, 14);
-		contentPane.add(lblSQLEmp);
+		lblWordEmp.setBounds(436, 161, 46, 14);
+		contentPane.add(lblWordEmp);
 		
-		JLabel lblAcessEmp = new JLabel("Acess:");
-		lblAcessEmp.setBounds(436, 217, 46, 14);
-		contentPane.add(lblAcessEmp);
+		JLabel lblAccessEmp = new JLabel("Access:");
+		lblAccessEmp.setBounds(436, 217, 78, 14);
+		contentPane.add(lblAccessEmp);
 		
-		JLabel label = new JLabel("Employee reports:");
-		label.setBounds(439, 58, 108, 14);
-		contentPane.add(label);
+		JLabel lblEmpReports = new JLabel("Employee reports:");
+		lblEmpReports.setBounds(439, 58, 176, 24);
+		contentPane.add(lblEmpReports);
+		
+		JLabel lblQuery = new JLabel("Query Reports:");
+		lblQuery.setBounds(830, 60, 116, 20);
+		contentPane.add(lblQuery);
+		
+		JLabel lblAccessQuery = new JLabel("Access:");
+		lblAccessQuery.setBounds(830, 214, 69, 20);
+		contentPane.add(lblAccessQuery);
+		
+		
 			
 		
 	}
 }
-
