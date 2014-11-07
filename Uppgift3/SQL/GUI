@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JLabel;
+import java.awt.Font;
 
 public class GUI extends JFrame {
 	
@@ -50,7 +51,7 @@ public class GUI extends JFrame {
 	/*--------------------------------------------------------- Create the frame.------------------------------------------------------------------	 */
 	public GUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1220, 400);
+		setBounds(100, 100, 1214, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -63,49 +64,49 @@ public class GUI extends JFrame {
 		
 		final JButton btnOpendExcelCu = new JButton("Open");
 		
-		btnOpendExcelCu.setBounds(123, 98, 200, 25);
+		btnOpendExcelCu.setBounds(123, 156, 200, 25);
 		contentPane.add(btnOpendExcelCu);
 		
 		final JButton btnOpendWordCu = new JButton("Open");
 		
-		btnOpendWordCu.setBounds(123, 156, 200, 25);
+		btnOpendWordCu.setBounds(123, 212, 200, 25);
 		contentPane.add(btnOpendWordCu);
 		
 		final JButton btnOpendAccessCu = new JButton("Open");
 		
-		btnOpendAccessCu.setBounds(123, 212, 200, 25);
+		btnOpendAccessCu.setBounds(123, 267, 200, 25);
 		contentPane.add(btnOpendAccessCu);
 		
 		
 		final JButton btnOpenQuerySQL = new JButton("Open");
 		
-		btnOpenQuerySQL.setBounds(897, 98, 200, 25);
+		btnOpenQuerySQL.setBounds(897, 156, 200, 25);
 		contentPane.add(btnOpenQuerySQL);
 		
 		final JButton btnOpenQueryExcel = new JButton("Open");
 		
-		btnOpenQueryExcel.setBounds(897, 156, 200, 25);
+		btnOpenQueryExcel.setBounds(897, 212, 200, 25);
 		contentPane.add(btnOpenQueryExcel);
 		
 		
 		btnOpenExcelEmp = new JButton("Open");
 		
-		btnOpenExcelEmp.setBounds(506, 98, 200, 25);
+		btnOpenExcelEmp.setBounds(506, 156, 200, 25);
 		contentPane.add(btnOpenExcelEmp);
 		
 		final JButton btnOpenAccessEmp = new JButton("Open");
 		
 		
-		btnOpenAccessEmp.setBounds(506, 212,200,25);
+		btnOpenAccessEmp.setBounds(506, 267,200,25);
 		contentPane.add(btnOpenAccessEmp);
 		
 		final JButton btnOpenWordEmp = new JButton("Open");
-				btnOpenWordEmp.setBounds(506, 156, 200, 25);
+				btnOpenWordEmp.setBounds(506, 212, 200, 25);
 		contentPane.add(btnOpenWordEmp);
 		
 		final JButton btnOpenQueryAccess = new JButton("Open");
 		
-		btnOpenQueryAccess.setBounds(897, 210, 200, 25);
+		btnOpenQueryAccess.setBounds(897, 267, 200, 25);
 		contentPane.add(btnOpenQueryAccess);
 		
 		
@@ -242,52 +243,57 @@ public class GUI extends JFrame {
 	/*----------------------------------------------------------------- Create Label ---------------------------------------------------------------------*/
 		
 		JLabel lblWordCu = new JLabel("Word:");
-		lblWordCu.setBounds(50, 161, 46, 14);
+		lblWordCu.setBounds(50, 217, 46, 14);
 		contentPane.add(lblWordCu);
 		
 		JLabel lblExcelCu = new JLabel("Excel:");
-		lblExcelCu.setBounds(50, 103, 46, 14);
+		lblExcelCu.setBounds(50, 161, 46, 14);
 		contentPane.add(lblExcelCu);
 		
 		JLabel lblAccessCu = new JLabel("Access:");
-		lblAccessCu.setBounds(50, 217, 69, 14);
+		lblAccessCu.setBounds(50, 272, 69, 14);
 		contentPane.add(lblAccessCu);
 
 		JLabel lblQuerySQL = new JLabel("SQL:");
-		lblQuerySQL.setBounds(830, 103, 87, 14);
+		lblQuerySQL.setBounds(830, 161, 87, 14);
 		contentPane.add(lblQuerySQL);
 		
 		JLabel lblQueryExcel = new JLabel("Excel:");
-		lblQueryExcel.setBounds(830, 161, 87, 14);
+		lblQueryExcel.setBounds(830, 217, 87, 14);
 		contentPane.add(lblQueryExcel);
 		
 		JLabel lblCustomerReports = new JLabel("Customer reports:");
-		lblCustomerReports.setBounds(50, 58, 155, 24);
+		lblCustomerReports.setBounds(50, 98, 155, 24);
 		contentPane.add(lblCustomerReports);
 		
 		JLabel lblExcelEmp = new JLabel("Excel:");
-		lblExcelEmp.setBounds(436, 103, 46, 14);
+		lblExcelEmp.setBounds(436, 161, 46, 14);
 		contentPane.add(lblExcelEmp);
 		
 		JLabel lblWordEmp = new JLabel("Word:");
-		lblWordEmp.setBounds(436, 161, 46, 14);
+		lblWordEmp.setBounds(436, 217, 46, 14);
 		contentPane.add(lblWordEmp);
 		
 		JLabel lblAccessEmp = new JLabel("Access:");
-		lblAccessEmp.setBounds(436, 217, 78, 14);
+		lblAccessEmp.setBounds(436, 272, 78, 14);
 		contentPane.add(lblAccessEmp);
 		
 		JLabel lblEmpReports = new JLabel("Employee reports:");
-		lblEmpReports.setBounds(439, 58, 176, 24);
+		lblEmpReports.setBounds(436, 98, 176, 24);
 		contentPane.add(lblEmpReports);
 		
 		JLabel lblQuery = new JLabel("Query Reports:");
-		lblQuery.setBounds(830, 60, 116, 20);
+		lblQuery.setBounds(830, 100, 116, 20);
 		contentPane.add(lblQuery);
 		
 		JLabel lblAccessQuery = new JLabel("Access:");
-		lblAccessQuery.setBounds(830, 214, 69, 20);
+		lblAccessQuery.setBounds(830, 269, 69, 20);
 		contentPane.add(lblAccessQuery);
+		
+		JLabel lblChooseWhichData = new JLabel("Choose which data to show");
+		lblChooseWhichData.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblChooseWhichData.setBounds(476, 35, 262, 26);
+		contentPane.add(lblChooseWhichData);
 		
 		
 			
