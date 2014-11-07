@@ -128,7 +128,7 @@ public class GUI extends JFrame {
 		
 	/*----------------------------------------------------------------- Create Label ---------------------------------------------------------------------*/
 		
-		JLabel lblSQLCu = new JLabel("SQL:");
+		JLabel lblWordCu = new JLabel("Word:");
 		lblSQLCu.setBounds(50, 161, 46, 14);
 		contentPane.add(lblSQLCu);
 		
@@ -156,7 +156,7 @@ public class GUI extends JFrame {
 		lblExcelEmp.setBounds(436, 103, 46, 14);
 		contentPane.add(lblExcelEmp);
 		
-		JLabel lblSQLEmp = new JLabel("SQL:");
+		JLabel lblWordEmp = new JLabel("Word:");
 		lblSQLEmp.setBounds(436, 161, 46, 14);
 		contentPane.add(lblSQLEmp);
 		
