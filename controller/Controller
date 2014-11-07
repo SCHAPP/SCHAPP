@@ -78,4 +78,8 @@ public class Controller {
     public ResultSet checkStudentRead(String spnr,String ccode) throws SQLException{
     	return dal.checkStudentRead(spnr, ccode);
     }
+    //Show all students grades for specific courses: specified for failed students//
+    public ResultSet showAllFailedStudentsFromSpecificCourse(String ccode, String grade) throws SQLException{
+    	return dal.showAllFailedStudentsFromSpecificCourse(ccode,grade);
+    }
 }
