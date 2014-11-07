@@ -68,6 +68,7 @@ public class DAL {
     		}
 		
 /*------------------------------------------ Student functions -----------------------------------------*/		
+		
 		//Add new Student(Student)//
 		public void insertOneStudent(String spnr, String sname, String saddress, String sphnr) throws SQLException{
 			stmt = con.createStatement(); 
@@ -86,7 +87,7 @@ public class DAL {
 	    //Find all students(Student)//
 	    public ResultSet findAllStudent() throws SQLException {
 	    	stmt = con.createStatement(); 
-	        String sqlStr = "select * from Student"; 
+	        String sqlStr = "select * from Student order"; 
 	        ResultSet rset = stmt.executeQuery(sqlStr);
 	        return rset;
 	        
@@ -132,7 +133,7 @@ public class DAL {
 		    return rset;
 		    
 			}
-		 //Check if a student already have read a course and got a grade in it(StudentRead)//
+		//Check if a student already have read a course and got a grade in it(StudentRead)//
 	    public ResultSet checkStudentRead(String spnr,String ccode) throws SQLException{
 	    	stmt = con.createStatement();
 	    	String sqlStr = "select count(*) from StudentRead where spnr = '"+spnr+"' and ccode = '"+ccode+"';";
@@ -140,9 +141,17 @@ public class DAL {
 	    	return rset;
 	    	
 	    	}
+	    //Show all students grades for specific courses: specified for failed students//
+	    public ResultSet showAllFailedStudentsFromSpecificCourse(String ccode, String grade) throws SQLException{
+	    	stmt = con.createStatement();
+	    	String sqlStr = "select * from StudentRead where ccode= '"+ccode+"' and grade = '"+grade+"';";
+	    	ResultSet rset = stmt.executeQuery(sqlStr);
+	    	return rset;
+	    }
 	    
 	   /* ------------------------ Student reading-----------------------------------------------------*/
-		 //Delete Student who is reading a course(Reading)//
+		
+	    //Delete Student who is reading a course(Reading)//
 		 public void deleteStudentReading(String spnr, String ccode) throws SQLException{
 		    stmt = con.createStatement();
 		    String sqlStr = "delete from Reading where spnr = '"+spnr+"' and ccode = '"+ccode+"';";
@@ -173,6 +182,7 @@ public class DAL {
 	    	return rset;
 	    	
 	    	}
+	   
 	    
 }
 
