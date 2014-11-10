@@ -46,7 +46,7 @@ public class Controller {
     public ResultSet findOneCourse(String ccode) throws SQLException {
 		return dal.findOneCourse(ccode);
 	}
-    //Connect student to course
+    //Connect student to course//
     public void insertStudentReading (String spnr, String ccode) throws SQLException {
     	dal.insertStudentReading(spnr, ccode);
     }
