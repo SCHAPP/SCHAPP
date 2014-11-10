@@ -102,7 +102,7 @@ public class DAL {
 		
 /*------------------------------------------------StudentRead------------------------------------------- */
 	    
-	    //Insert Student to have read and give a grade(StudentRead)//
+	    //Insert Student to have read and give a grade and delete from Reading(StudentRead)//
 	    public void insertStudentRead(String spnr, String ccode, String grade) throws SQLException{
 	    	deleteStudentReading(spnr,ccode);
 			stmt = con.createStatement(); 
