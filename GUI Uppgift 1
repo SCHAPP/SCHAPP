@@ -338,9 +338,8 @@ public class Gui extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				addStudent();
 				ClearTxtFieldsStudent();
-				showAll();
-			}
-			
+				showAll();	
+			}		
 		});
 		btnAddStudent.setBounds(515, 196, 141, 20);
 		Student.add(btnAddStudent);
@@ -348,7 +347,6 @@ public class Gui extends JFrame {
 		JButton btnDeleteStudent = new JButton("Delete Student");
 		btnDeleteStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				try {
 					con.deleteStudent(txtStudentSearchByPnr.getText());
 					showAll();
@@ -367,7 +365,7 @@ public class Gui extends JFrame {
 		btnSearchAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				showAll();
-			}
+			}		
 		});
 		btnSearchAll.setBounds(31, 389, 371, 20);
 		Student.add(btnSearchAll);
@@ -390,7 +388,6 @@ public class Gui extends JFrame {
 		JButton btbSearchByCourseCode = new JButton("Search");
 		btbSearchByCourseCode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 				try {
 					ResultSet rs = con.findOneCourse(txtSearchCourseCode.getText());
 					rs.next();
@@ -402,7 +399,7 @@ public class Gui extends JFrame {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}	
+				}
 			}
 		});
 		btbSearchByCourseCode.setBounds(141, 100, 141, 20);
@@ -448,7 +445,11 @@ public class Gui extends JFrame {
 		JButton btnSearchAllCourses = new JButton("Show all courses");
 		btnSearchAllCourses.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				long startTime = System.currentTimeMillis();
 				showAllCourses();
+				long stopTime = System.currentTimeMillis();
+			      long elapsedTime = stopTime - startTime;
+			      System.out.println(elapsedTime);
 			}
 		});
 		btnSearchAllCourses.setBounds(31, 389, 371, 23);
@@ -674,7 +675,7 @@ public class Gui extends JFrame {
 				JOptionPane.showMessageDialog(null, "Student added");
 			} catch (SQLException e) {
 				JOptionPane.showMessageDialog(null, "Student already exists!");
-			//	e.printStackTrace();
+				e.printStackTrace();
 			}
 		}
 		else{
