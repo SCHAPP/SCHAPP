@@ -87,7 +87,7 @@ public class DAL {
 	    //Find all students(Student)//
 	    public ResultSet findAllStudent() throws SQLException {
 	    	stmt = con.createStatement(); 
-	        String sqlStr = "select * from Student order"; 
+	        String sqlStr = "select * from Student"; 
 	        ResultSet rset = stmt.executeQuery(sqlStr);
 	        return rset;
 	        
