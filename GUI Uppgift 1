@@ -52,11 +52,12 @@ public class Gui extends JFrame {
 	private JTextField txtAddstudentToCourseCcode;
 	private JTextField txtFinishedStudentPnr;
 	private JTextField txtFinishedCourseCode;
-	private JTextField txtFinishedCourseGrade;
 	private JTable tblShowGrades;
 	private JTextField txtSearchGradeByCourseCode;
 	private JTable tblShowStudentCourse;
 	private JComboBox comboBoxGrades;
+	String[] gradeFinishedGradeArray = new String[]{"A","B","C","D","E","F"};
+	private JComboBox comboBoxFinishedGrades = new JComboBox(gradeFinishedGradeArray);
 
 	/*-------------------------------Launch the application.-----------------------------*/
 	
@@ -87,9 +88,10 @@ public class Gui extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		
-	/*------------------------------Creates the different panels-----------------------*/	
+		
 		String[] gradeArray = new String[]{"-----Select grade-----","A","B","C","D","E","F"};
 		
+		/*------------------------------Creates the different panels-----------------------*/
 		
 		JPanel Student = new JPanel();
 		tabbedPane.addTab("Student", null, Student, null);
@@ -140,12 +142,14 @@ public class Gui extends JFrame {
 		lblAddStudentTo.setBounds(141, 46, 141, 14);
 		Registrate.add(lblAddStudentTo);
 		
+		
 		JButton btnAddFinishedCourse = new JButton("Add finished Course");
 		btnAddFinishedCourse.setBounds(504, 164, 163, 23);
 		btnAddFinishedCourse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AddStudentRead();
+				finishedGrades();
 				ClearTxtFieldStudentRead();
+				showAllstudentsConnectToCourses();
 			}
 		});
 		Registrate.add(btnAddFinishedCourse);
@@ -172,11 +176,6 @@ public class Gui extends JFrame {
 		lblFinishedCourseGrade.setBounds(426, 136, 46, 14);
 		Registrate.add(lblFinishedCourseGrade);
 		
-		txtFinishedCourseGrade = new JTextField();
-		txtFinishedCourseGrade.setBounds(515, 133, 141, 20);
-		Registrate.add(txtFinishedCourseGrade);
-		txtFinishedCourseGrade.setColumns(10);
-		
 		JButton btnShowStudentsConnectedToCourses = new JButton("Show all students connected to courses");
 		btnShowStudentsConnectedToCourses.setBounds(31, 389, 371, 23);
 		btnShowStudentsConnectedToCourses.addActionListener(new ActionListener() {
@@ -196,6 +195,13 @@ public class Gui extends JFrame {
 		JLabel lblTitleAddStudentToFinishedCourse = new JLabel("Add student to finished course");
 		lblTitleAddStudentToFinishedCourse.setBounds(515, 46, 177, 14);
 		Registrate.add(lblTitleAddStudentToFinishedCourse);
+		
+		comboBoxFinishedGrades.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		comboBoxFinishedGrades.setBounds(515, 133, 141, 20);
+		Registrate.add(comboBoxFinishedGrades);
 		
 		
 	
@@ -534,20 +540,35 @@ public class Gui extends JFrame {
 	}
 	
 //--------------------------------------------------Methods---------------------------------------------------------// 	
-	private void Grades(){
-	ResultSet rs = null;
-	try {
-		String grade = comboBoxGrades.getSelectedItem().toString();
-		String course = txtSearchGradeByCourseCode.getText();
-		rs = con.showAllFailedStudentsFromSpecificCourse(course, grade);
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	// End student Reading and give a grade//--//ComboBox for available grades//
+	private void finishedGrades(){
+		try {
+			String grade = comboBoxFinishedGrades.getSelectedItem().toString();
+			String spnr = txtFinishedStudentPnr.getText();
+			String ccode = txtFinishedCourseCode.getText();
+			con.insertStudentRead(spnr, ccode, grade);
+			JOptionPane.showMessageDialog(null, "Student finished course");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	//Search Students grade/s for a specific course//--//ComboBox for available grades//
+	}private void Grades(){
+		ResultSet rs = null;
+		try {
+			String grade = comboBoxGrades.getSelectedItem().toString();
+			String course = txtSearchGradeByCourseCode.getText();
+			rs = con.showAllFailedStudentsFromSpecificCourse(course, grade);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 	
-	}buildTable(rs, tblShowGrades);
-	}
+		}
+		buildTable(rs, tblShowGrades);
+	
+	
 	//Show all students who are reading courses when pusching the "Show all students connected to courses"-button//
-	private void showAllstudentsConnectToCourses(){
+	}private void showAllstudentsConnectToCourses(){
 		ResultSet rs = null;
 		try {
 			rs = con.FindAllStudentsConnectedToCourses();
@@ -720,25 +741,11 @@ public class Gui extends JFrame {
 		txtAddstudentToCourseCcode.setText("");
 		txtAddStudentToCoursePnr.setText("");
 		
-	
-	
-		//Add student to Read//
-	}public void AddStudentRead(){
-		String spnr = txtFinishedStudentPnr.getText();
-		String ccode = txtFinishedCourseCode.getText();
-		String grade = txtFinishedCourseGrade.getText();
-		
-		try {
-			con.insertStudentRead(spnr, ccode, grade);
-			JOptionPane.showMessageDialog(null, "Student finished course");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			
+	}
 		//Clear textfields after adding student to read//
-	}public void ClearTxtFieldStudentRead(){
+	public void ClearTxtFieldStudentRead(){
 		txtFinishedStudentPnr.setText("");
 		txtFinishedCourseCode.setText("");
-		txtFinishedCourseGrade.setText("");
 	}
 }
