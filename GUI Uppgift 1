@@ -60,6 +60,7 @@ public class Gui extends JFrame {
 	private JComboBox comboBoxGrades;
 	String[] gradeFinishedGradeArray = new String[]{"A","B","C","D","E","F"};
 	private JComboBox comboBoxFinishedGrades = new JComboBox(gradeFinishedGradeArray);
+	private JTextField txtSearchProcent;
 
 	/*-------------------------------Launch the application.-----------------------------*/
 	
@@ -533,10 +534,48 @@ public class Gui extends JFrame {
 		});
 		comboBoxGrades.setBounds(430, 102, 141, 20);
 		Results.add(comboBoxGrades);
+		
+		JButton btnSearchProcent = new JButton("Search procent");
+		btnSearchProcent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(!txtSearchProcent.getText().equals("")){
+					FindProcentForGradeA();
+				}else{
+					JOptionPane.showMessageDialog(null,"Insert course code");
+				}
+				
+			}
+		});
+		btnSearchProcent.setBounds(590, 362, 169, 23);
+		Results.add(btnSearchProcent);
+		
+		txtSearchProcent = new JTextField();
+		txtSearchProcent.setBounds(590, 335, 169, 20);
+		Results.add(txtSearchProcent);
+		txtSearchProcent.setColumns(10);
+		
+		JLabel lblShowGradeBy = new JLabel("Show grade from course by %:");
+		lblShowGradeBy.setBounds(590, 310, 196, 14);
+		Results.add(lblShowGradeBy);
+		
+		JLabel lblCourseCodeProcentage = new JLabel("Course code:");
+		lblCourseCodeProcentage.setBounds(500, 338, 80, 14);
+		Results.add(lblCourseCodeProcentage);
 			
 	}
 	
 //--------------------------------------------------Methods---------------------------------------------------------// 	
+	private void FindProcentForGradeA(){
+		ResultSet rs = null;
+		try {
+			rs = con.FindProcent(txtSearchProcent.getText());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		buildTable(rs, tblShowGrades);
+	}
+	
 		// End student Reading and give a grade//--//ComboBox for available grades//
 	private void finishedGrades(){
 		try {
