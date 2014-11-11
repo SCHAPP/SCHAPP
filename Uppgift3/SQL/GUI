@@ -22,18 +22,29 @@ public class GUI extends JFrame {
 	
 	private Desktop desktop;
 	private JPanel contentPane;
-	private JButton btnOpenExcelEmp;
+	
+	// Creates the different paths to be able to open the documents through the application.
 	
 	private String excelCu = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/Uppgift3CustomerReport.xlsx";
 	private String excelEmp = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/Uppgift3EmployeeReport.xlsx";
-	private String wordCu = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/CRONUS Sverige CustomerWord.rtf";
-	private String wordEmp = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/CRONUS Sverige EmployeeWord.rtf";
+	private String wordCu = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/CRONUS SVERIGE AB CUSTOMER.docx";
+	private String wordEmp = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/CRONUS SVERIGE AB EMPLOYEE.docx";
 	private String accessCu = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/CRONUSCustomerReport.accdb";
 	private String accessEmp = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/CRONUSEmployeeReport.accdb";
 	private String querySQL = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/SQLQueryUppgift3.sql";
 	private String queryExcel = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/Uppgift3DB.xlsx";
 	private String queryAccess = "C:/Users/Jonas/Documents/Skolarbeten/SYSB13/Databaser IS/Uppgift3DBA.accdb";
-
+	
+	private JButton btnOpendExcelCu;
+	private JButton btnOpendWordCu;
+	private JButton btnOpendAccessCu;
+	private JButton btnOpenQuerySQL;
+	private JButton btnOpenQueryExcel;
+	private JButton btnOpenExcelEmp;
+	private JButton btnOpenAccessEmp;
+	private JButton btnOpenWordEmp;
+	private JButton btnOpenQueryAccess;
+	
 	/*------------------------------------------------------------ Launch the application.------------------------------------------------------------ */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -49,7 +60,11 @@ public class GUI extends JFrame {
 	}
 
 	/*--------------------------------------------------------- Create the frame.------------------------------------------------------------------	 */
+	
+	// Creates the frame and the necessary functions for it.
+	
 	public GUI() {
+		setTitle ("Project 3");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1214, 400);
 		contentPane = new JPanel();
@@ -62,56 +77,49 @@ public class GUI extends JFrame {
 		
 	/*---------------------------------------------------------- Create buttons---------------------------------------------------------------------- */
 		
-		final JButton btnOpendExcelCu = new JButton("Open");
+		// Creates and sets the different bounds on the JButtons.
 		
+		btnOpendExcelCu = new JButton("Open");
 		btnOpendExcelCu.setBounds(123, 156, 200, 25);
 		contentPane.add(btnOpendExcelCu);
 		
-		final JButton btnOpendWordCu = new JButton("Open");
-		
+		btnOpendWordCu = new JButton("Open");
 		btnOpendWordCu.setBounds(123, 212, 200, 25);
 		contentPane.add(btnOpendWordCu);
 		
-		final JButton btnOpendAccessCu = new JButton("Open");
-		
+		btnOpendAccessCu = new JButton("Open");
 		btnOpendAccessCu.setBounds(123, 267, 200, 25);
 		contentPane.add(btnOpendAccessCu);
 		
-		
-		final JButton btnOpenQuerySQL = new JButton("Open");
-		
+		btnOpenQuerySQL = new JButton("Open");
 		btnOpenQuerySQL.setBounds(897, 156, 200, 25);
 		contentPane.add(btnOpenQuerySQL);
 		
-		final JButton btnOpenQueryExcel = new JButton("Open");
-		
+		btnOpenQueryExcel = new JButton("Open");
 		btnOpenQueryExcel.setBounds(897, 212, 200, 25);
 		contentPane.add(btnOpenQueryExcel);
 		
-		
 		btnOpenExcelEmp = new JButton("Open");
-		
 		btnOpenExcelEmp.setBounds(506, 156, 200, 25);
 		contentPane.add(btnOpenExcelEmp);
 		
-		final JButton btnOpenAccessEmp = new JButton("Open");
-		
-		
+		btnOpenAccessEmp = new JButton("Open");
 		btnOpenAccessEmp.setBounds(506, 267,200,25);
 		contentPane.add(btnOpenAccessEmp);
 		
-		final JButton btnOpenWordEmp = new JButton("Open");
-				btnOpenWordEmp.setBounds(506, 212, 200, 25);
+		btnOpenWordEmp = new JButton("Open");
+		btnOpenWordEmp.setBounds(506, 212, 200, 25);
 		contentPane.add(btnOpenWordEmp);
 		
-		final JButton btnOpenQueryAccess = new JButton("Open");
-		
+		btnOpenQueryAccess = new JButton("Open");
 		btnOpenQueryAccess.setBounds(897, 267, 200, 25);
 		contentPane.add(btnOpenQueryAccess);
 		
 		
 	/* ------------------------------------------------------------ Action Listener-------------------------------------------------------------- */
 		
+		
+		// Creates the different ActionListeners and methods for the different JButtons.
 		
 		btnOpendExcelCu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -123,8 +131,10 @@ public class GUI extends JFrame {
 						System.out.println(exCu.getMessage());
 					}
 				}
-			}
-		});
+			
+				}	
+			});
+			
 		
 		btnOpendWordCu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -149,9 +159,6 @@ public class GUI extends JFrame {
 						System.out.println (acCu.getMessage());
 					}
 				}
-					
-					
-				
 			}
 		});
 		
@@ -164,7 +171,6 @@ public class GUI extends JFrame {
 					}catch (IOException sqlQuery) {
 						System.out.println (sqlQuery.getMessage ());
 					}
-					
 				}
 			}
 		});
@@ -191,8 +197,6 @@ public class GUI extends JFrame {
 						System.out.println (exCu.getMessage());
 					}
 				}
-				
-				
 			}
 		});
 		
@@ -218,7 +222,6 @@ public class GUI extends JFrame {
 						System.out.println (acEmp.getMessage());
 					}
 				}
-				
 			}
 		});
 		
@@ -241,6 +244,8 @@ public class GUI extends JFrame {
 		
 		
 	/*----------------------------------------------------------------- Create Label ---------------------------------------------------------------------*/
+		
+		// Creates the different JLabels which gives the user information what the different JButtons execute.
 		
 		JLabel lblWordCu = new JLabel("Word:");
 		lblWordCu.setBounds(50, 217, 46, 14);
@@ -294,9 +299,8 @@ public class GUI extends JFrame {
 		lblChooseWhichData.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblChooseWhichData.setBounds(476, 35, 262, 26);
 		contentPane.add(lblChooseWhichData);
-		
-		
-			
-		
 	}
+	
+
+
 }
