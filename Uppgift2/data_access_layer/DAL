@@ -31,7 +31,7 @@ public class DAL {
 		}
 	}
 
-	/*-------------------------------- SQL and ResultSets for data-------------------------------------*/
+	/*-------------------------------- SQL and ResultSets for data (project1)-------------------------------------*/
 
 	// Each of these SQL and ResultSets brings the information from the database to the java GUI. 
 	
@@ -70,7 +70,7 @@ public class DAL {
 		return rset;
 	}
 
-	/*-------------------------------- SQL and Resultsets for Metadata-------------------------------------*/
+	/*-------------------------------- SQL and ResultSets for Metadata (project2)-------------------------------------*/
 
 	public ResultSet findEmployeeMetadata() throws SQLException {
 		stmt = con.createStatement();
@@ -106,4 +106,44 @@ public class DAL {
 		ResultSet rset = stmt.executeQuery(sqlStr);
 		return rset;
 	}
+	
+	/*-------------------------------- SQL and Resultsets for project2-------------------------------------*/
+	
+	public ResultSet findKeys() throws SQLException{
+		stmt = con.createStatement();
+		String sqlStr = "select name, type from sys.objects where type = 'PK' or type = 'FK'";
+		ResultSet rset = stmt.executeQuery(sqlStr);
+		return rset;
+	}
+	public ResultSet findIndexes() throws SQLException{
+		stmt = con.createStatement();
+		String sqlStr = "select * from sys.indexes where name like 'CRONUS%'";
+		ResultSet rset = stmt.executeQuery(sqlStr);
+		return rset;
+	}
+	public ResultSet findConstraints() throws SQLException{
+		stmt = con.createStatement();
+		String sqlStr = "select * from INFORMATION_SCHEMA.TABLE_CONSTRAINTS";
+		ResultSet rset = stmt.executeQuery(sqlStr);
+		return rset;
+	}
+	public ResultSet findTables() throws SQLException{
+		stmt = con.createStatement();
+		String sqlStr = "select TABLE_NAME from INFORMATION_SCHEMA.TABLES";
+		ResultSet rset = stmt.executeQuery(sqlStr);
+		return rset;
+	}
+	public ResultSet findColumnsEmployee() throws SQLException{
+		stmt = con.createStatement();
+		String sqlStr = "select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'CRONUS Sverige AB$Employee'";
+		ResultSet rset = stmt.executeQuery(sqlStr);
+		return rset;
+	}
+	public ResultSet findTableMostRows() throws SQLException{
+		stmt = con.createStatement();
+		String sqlStr = "SELECT TOP 1 OBJECT_NAME(OBJECT_ID) TableName, row_count FROM sys.dm_db_partition_stats ORDER BY row_count DESC";
+		ResultSet rset = stmt.executeQuery(sqlStr);
+		return rset;
+	}
+
 }
