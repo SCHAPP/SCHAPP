@@ -22,10 +22,7 @@ public class DAL {
                                  "user=user1;" + 
                                  "password=SYSB13OLLE_"; 
          
-         con = DriverManager.getConnection(connectionUrl); 
-         
-         
-         
+         con = DriverManager.getConnection(connectionUrl);          
     }    
     catch(Exception e)  
     { 
@@ -100,7 +97,7 @@ public class DAL {
 	    		
 	    	}
 		
-/*------------------------------------------------StudentRead------------------------------------------- */
+/*------------------------------------------------StudentRead functions------------------------------------------- */
 	    
 	    //Insert Student to have read and give a grade and delete from Reading(StudentRead)//
 	    public void insertStudentRead(String spnr, String ccode, String grade) throws SQLException{
@@ -149,7 +146,7 @@ public class DAL {
 	    	return rset;
 	    }
 	    
-	   /* ------------------------ Student reading-----------------------------------------------------*/
+	   /* ------------------------ Student reading functions-----------------------------------------------------*/
 		
 	    //Delete Student who is reading a course(Reading)//
 		 public void deleteStudentReading(String spnr, String ccode) throws SQLException{
@@ -183,6 +180,7 @@ public class DAL {
 	    	
 	    	}
 	   
+	    
 }
 
 
