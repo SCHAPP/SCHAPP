@@ -13,7 +13,7 @@ public class Controller {
 		dal = new DAL();
 	}
 
-	/*------------------ Gets resultset querys from data to GUI---------------------------*/
+	/*------------------ Gets resultSet Querys from data to GUI for project1---------------------------*/
 
 	// Each of these different rows of code makes the information go from the DAL to GUI.
 	
@@ -37,7 +37,7 @@ public class Controller {
 		return dal.findEmployeeRelative();
 	}
 
-	/*------------------ Gets the ResultSet Querys from metadata to GUI---------------------------*/
+	/*------------------ Gets the ResultSet Querys from metadata to GUI for project1---------------------------*/
 
 	public ResultSet findEmployeeMetadata() throws SQLException {
 		return dal.findEmployeeMetadata();
@@ -57,5 +57,26 @@ public class Controller {
 
 	public ResultSet findEmployeeRelativeMetadata() throws SQLException {
 		return dal.findEmployeeRelativeMetadata();
+	}
+	
+	/*------------------ Gets the ResultSet Querys from metadata to GUI for project2---------------------------*/
+	
+	public ResultSet findKeys() throws SQLException {
+		return dal.findKeys();
+	}
+	public ResultSet findIndexes() throws SQLException {
+		return dal.findIndexes();
+	}
+	public ResultSet findConstraints() throws SQLException {
+		return dal.findConstraints();
+	}
+	public ResultSet findTables() throws SQLException {
+		return dal.findTables();
+	}
+	public ResultSet findColumnsEmployee() throws SQLException {
+		return dal.findColumnsEmployee();
+	}
+	public ResultSet findTableMostRows() throws SQLException {
+		return dal.findTableMostRows();
 	}
 }
