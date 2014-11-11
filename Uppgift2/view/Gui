@@ -17,10 +17,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
+
 import data_access_layer.DAL;
 import controller.Controller;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTabbedPane;
+
 //Imports the necessary methods to make the code to actually work.
 
 public class Gui extends JFrame {
@@ -29,6 +32,8 @@ public class Gui extends JFrame {
 												
 	private JPanel contentPane;  // Creates variable of the JPanel and the JTable.
 	private JTable table;
+	private JTable tableProject2;
+	
 
 	/*----------------------------------------------------- Launches the application ---------------------------------------------------------*/
 	public static void main(String[] args) {
@@ -50,92 +55,147 @@ public class Gui extends JFrame {
 
 	public Gui() {
 
-		final DAL dal = new DAL();
-
+		
+		setTitle ("Project 2");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 800);
-		contentPane = new JPanel();
+		contentPane = new JPanel();	
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 
-		/*-----------------------------------------------------Creates the JTable and JScrollPane -----------------------------------------------------------*/
+		JPanel project1 = new JPanel();
+		project1.setLayout(null);
+		JPanel project2 = new JPanel();
+		
+		
+	
+		/*-----------------------------------------------Creates the JTable, JScrollPane and JTabbedPane ------------------------------------------*/
 
-		// Creates the JTable and JScrollPane to be able to watch and scroll through different information in the database.
+		// Creates the JTable and JScrollPane to be able to watch and scroll through different information in the database for boths projects.
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(64, 242, 852, 486);
-		contentPane.add(scrollPane);
+		scrollPane.setBounds(42, 251, 884, 443);
+		project1.add(scrollPane);
 		table = new JTable();
 		scrollPane.setViewportView(table);
-
+		
+		JScrollPane scrollPaneProject2 = new JScrollPane();
+		scrollPaneProject2.setBounds(42, 251, 884, 443);
+		project2.add(scrollPaneProject2);
+		tableProject2 = new JTable();
+		scrollPaneProject2.setViewportView(tableProject2);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(0, 0, 978, 744);
+		contentPane.add(tabbedPane);
+		
+		tabbedPane.addTab("Project 1", null, project1, null);
+		tabbedPane.addTab("Project 2", null, project2, null);
+		project2.setLayout(null);
+		
 		/* ---------------------------------------------------Creates the JLabel -----------------------------------------------------------------*/
+		
 
 		// Creates the JLabel with information in the frame.
 		
 		JLabel lblChooseTabel = new JLabel("Choose which data to show below");
-		lblChooseTabel.setBounds(363, 90, 212, 60);
-		contentPane.add(lblChooseTabel);
+		lblChooseTabel.setBounds(346, 120, 241, 20);
+		project1.add(lblChooseTabel);
+		
+		JLabel lblChooseTabel2 = new JLabel("Choose which data to show below");
+		lblChooseTabel2.setBounds(386, 113, 241, 20);
+		project2.add(lblChooseTabel2);
 
 		/* ---------------------------------------------------Creates the JButtons -----------------------------------------------------------------*/
-
+		
 		// Creates the JButtons for the data buttons.
-
-		JButton btnShowAllEmployeeData = new JButton("Show employee data");
-		btnShowAllEmployeeData.setBounds(64, 16, 241, 29);
-		contentPane.add(btnShowAllEmployeeData);
-
+		
 		JButton btnShowEmployeeAbsenceMetadataData = new JButton("Show employee absence data ");
-		btnShowEmployeeAbsenceMetadataData.setBounds(64, 61, 241, 29);
-		contentPane.add(btnShowEmployeeAbsenceMetadataData);
+		btnShowEmployeeAbsenceMetadataData.setBounds(42, 161, 245, 29);
+		project1.add(btnShowEmployeeAbsenceMetadataData);
+		
+		JButton btnShowAllEmployeeData = new JButton("Show employee data");
+		btnShowAllEmployeeData.setBounds(42, 28, 245, 29);
+		project1.add(btnShowAllEmployeeData);
 
 		JButton btnShowEmployeePortalSetup = new JButton("Show portal setup");
-		btnShowEmployeePortalSetup.setBounds(64, 106, 241, 29);
-		contentPane.add(btnShowEmployeePortalSetup);
+		btnShowEmployeePortalSetup.setBounds(42, 206, 245, 29);
+		project1.add(btnShowEmployeePortalSetup);
 
 		JButton btnShowEmployeeQualification = new JButton("Show employee qualification");
-		btnShowEmployeeQualification.setBounds(64, 154, 241, 29);
-		contentPane.add(btnShowEmployeeQualification);
+		btnShowEmployeeQualification.setBounds(42, 116, 245, 29);
+		project1.add(btnShowEmployeeQualification);
 
 		JButton btnShowEmployeeRelative = new JButton("Show employee relative");
-		btnShowEmployeeRelative.setBounds(64, 199, 241, 29);
-		contentPane.add(btnShowEmployeeRelative);
+		btnShowEmployeeRelative.setBounds(42, 73, 245, 29);
+		project1.add(btnShowEmployeeRelative);
 
 		// Creates the JButtons for the metadata buttons.
 
 		JButton btnShowEmployeeMetadata = new JButton("Show employee metadata");
-		btnShowEmployeeMetadata.setBounds(625, 16, 241, 29);
-		contentPane.add(btnShowEmployeeMetadata);
+		btnShowEmployeeMetadata.setBounds(621, 28, 305, 29);
+		project1.add(btnShowEmployeeMetadata);
 
 		JButton btnShowEmployeeAbsenceMetadata = new JButton("Show employee absence metadata");
-		btnShowEmployeeAbsenceMetadata.setBounds(625, 61, 241, 29);
-		contentPane.add(btnShowEmployeeAbsenceMetadata);
+		btnShowEmployeeAbsenceMetadata.setBounds(621, 161, 305, 29);
+		project1.add(btnShowEmployeeAbsenceMetadata);
 
 		JButton btnShowEmployeePortalSetupMetadata = new JButton("Show portal setup metadata");
-		btnShowEmployeePortalSetupMetadata.setBounds(625, 106, 241, 29);
-		contentPane.add(btnShowEmployeePortalSetupMetadata);
+		btnShowEmployeePortalSetupMetadata.setBounds(621, 206, 305, 29);
+		project1.add(btnShowEmployeePortalSetupMetadata);
 
 		JButton btnShowEmployeeQualificationMetadata = new JButton("Show employee qualification metadata");
-		btnShowEmployeeQualificationMetadata.setBounds(625, 154, 241, 29);
-		contentPane.add(btnShowEmployeeQualificationMetadata);
-
+		btnShowEmployeeQualificationMetadata.setBounds(621, 116, 305, 29);
+		project1.add(btnShowEmployeeQualificationMetadata);
+		
 		JButton btnShowEmployeeRelativeMetadata = new JButton("Show employee relative metadata");
-		btnShowEmployeeRelativeMetadata.setBounds(625, 199, 241, 29);
-		contentPane.add(btnShowEmployeeRelativeMetadata);
+		btnShowEmployeeRelativeMetadata.setBounds(621, 73, 305, 29);
+		project1.add(btnShowEmployeeRelativeMetadata);
+		
+		// Creates the JButtons for the project 2 frame.
+		
+		JButton btnShowKeys = new JButton("Show all keys");
+		btnShowKeys.setBounds(42, 64, 267, 29);
+		project2.add(btnShowKeys);
+		
+		JButton btnShowIndexes = new JButton("Show all indexes");
+		btnShowIndexes.setBounds(42, 109, 267, 29);
+		project2.add(btnShowIndexes);
+		
+		JButton btnShowConstraints = new JButton("Show all constraints");
+		btnShowConstraints.setBounds(42, 154, 267, 29);
+		project2.add(btnShowConstraints);
+		
+		JButton btnShowTables = new JButton("Show all tables");
+		btnShowTables.setBounds(659, 64, 267, 29);
+		project2.add(btnShowTables);
+		
+		JButton btnShowColumnsEmployee = new JButton("Show all Columns for employee");
+		btnShowColumnsEmployee.setBounds(659, 109, 267, 29);
+		project2.add(btnShowColumnsEmployee);
+		
+		JButton btnShowTableMostRows = new JButton("Show table with the most rows");
+		btnShowTableMostRows.setBounds(659, 154, 267, 29);
+		project2.add(btnShowTableMostRows);
+		
+		
 	
 	/*------------------------------------------------------ Creates the ActionListeners ----------------------------------------------------------------*/
 	
 		// Creates the ActionListeners for the data.
 		
+		btnShowEmployeeAbsenceMetadataData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showEmployeeAbsenceData();				
+			}
+			
+		});
 		btnShowAllEmployeeData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				showEmployeeData();
 			}
-		});
-		btnShowEmployeeAbsenceMetadataData.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			showEmployeeAbsenceData();
-		}
 		});
 		btnShowEmployeePortalSetup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -158,12 +218,12 @@ public class Gui extends JFrame {
 		
 		btnShowEmployeeMetadata.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				showEmployeeMetadata();
+				showEmployeeMetadata();	
 			}
 		});
 		btnShowEmployeeAbsenceMetadata.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				showEmployeeAbsenceMetadata();
+				showEmployeeAbsenceMetadata();	
 			}
 		});
 		btnShowEmployeePortalSetupMetadata.addActionListener(new ActionListener() {
@@ -179,6 +239,41 @@ public class Gui extends JFrame {
 		btnShowEmployeeRelativeMetadata.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				showEmployeeRelativeMetadata();
+			}
+		});
+		
+		// Creates the ActionListeners for project 2
+		
+		btnShowKeys.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showKeys();
+			}
+		});
+		btnShowIndexes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				showIndexes();
+				
+			}
+		});
+		btnShowConstraints.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showConstraints();
+			}
+		});
+		btnShowTables.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showTables();
+			}
+		});
+		btnShowColumnsEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showColumnsEmployee();
+			}
+		});
+		btnShowTableMostRows.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				showTableMostRows();
 			}
 		});
 	}
@@ -228,8 +323,8 @@ public class Gui extends JFrame {
 
 	}
 
-	// Creates the methods for all the ActionListeners to be able to get the data/metadata in the JTable.
-
+	// Creates the methods for all the ActionListeners to be able to get the data/metadata and for project 2 in the JTable.
+	// Data
 	private void showEmployeeData() {
 		ResultSet rs = null;
 		try {
@@ -285,6 +380,8 @@ public class Gui extends JFrame {
 		buildTable(rs, table);
 	}
 
+	//Metadata
+	
 	private void showEmployeeMetadata() {
 		ResultSet rs = null;
 		try {
@@ -338,5 +435,68 @@ public class Gui extends JFrame {
 			e1.printStackTrace();
 		}
 		buildTable(rs, table);
+	}
+	
+	// Project 2
+	
+	private void showKeys(){
+		ResultSet rs = null;
+		try{
+			rs = con.findKeys();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, tableProject2);
+	}
+	private void showIndexes(){
+		ResultSet rs = null;
+		try{
+			rs = con.findIndexes();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, tableProject2);
+	}
+	private void showConstraints(){
+		ResultSet rs = null;
+		try{
+			rs = con.findConstraints();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, tableProject2);
+	}
+	private void showTables(){
+		ResultSet rs = null;
+		try{
+			rs = con.findTables();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, tableProject2);
+	}
+	private void showColumnsEmployee(){
+		ResultSet rs = null;
+		try{
+			rs = con.findColumnsEmployee();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, tableProject2);
+	}
+	private void showTableMostRows(){
+		ResultSet rs = null;
+		try{
+			rs = con.findTableMostRows();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		buildTable(rs, tableProject2);
 	}
 }
