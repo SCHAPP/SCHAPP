@@ -14,72 +14,73 @@ public class Controller {
         dal = new DAL();
     }
 //-------------------------------------------------	/* Insert different methods and to get info from GUI to SQL and deverse */--------------------------------------------------------//
-	//Show all Courses//
-	public ResultSet findAllCourse() throws SQLException {
-        return dal.findAllCourse();
-	}
-	//Delete a student//
-    public void deleteStudent(String spnr) throws SQLException {
+		//Show all Courses//
+		public ResultSet findAllCourse() throws SQLException {
+			return dal.findAllCourse();
+		}
+	 	//Show all students//
+		public ResultSet findAllStudent() throws SQLException {
+	    	return dal.findAllStudent();
+		}
+		//Find a student//
+	    public ResultSet findOneStudent(String spnr) throws SQLException {
+	    	return dal.findOneStudent(spnr); 
+	    }
+	    //Find a course//
+	    public ResultSet findOneCourse(String ccode) throws SQLException {
+			return dal.findOneCourse(ccode);
+		}
+	    //Results All Students from specific course//
+	    public ResultSet resultAllStudentOnOneCourse (String ccode) throws SQLException{
+	    	return dal.resultAllStudentOnOneCourse(ccode);
+	    }
+	    //Find a student from specific course//
+	    public ResultSet FindOneStudentOnCourse (String spnr, String ccode) throws SQLException{
+	    	return dal.FindOneStudentOnCourse(spnr, ccode);
+	    }
+	    //Result of specific student on specific course//
+	    public ResultSet FindResultOfOneStudentOnSpecifiedCourse(String spnr, String ccode) throws SQLException{
+	    	return dal.FindResultOfOneStudentOnSpecifiedCourse(spnr, ccode);
+	    }
+	    //All students from Reading who are reading courses courses//
+	    public ResultSet FindAllStudentsConnectedToCourses() throws SQLException{
+	    	return dal.FindAllStudentsConnectedToCourses();
+	    }
+	    //Check if a student already have read a course and got a grade in it//
+	    public ResultSet checkStudentRead(String spnr,String ccode) throws SQLException{
+	    	return dal.checkStudentRead(spnr, ccode);
+	    }
+	    //Show all students grades for specific courses: specified for failed students//
+	    public ResultSet showAllFailedStudentsFromSpecificCourse(String ccode, String grade) throws SQLException{
+	    	return dal.showAllFailedStudentsFromSpecificCourse(ccode,grade);
+	    }
+	    //Delete a student//
+	    public void deleteStudent(String spnr) throws SQLException {
 		dal.deleteStudent(spnr);
-	}
-    //Delete a course//
-    public void deleteCourse(String ccode) throws SQLException{
+	    }
+	    //Delete a course//
+	    public void deleteCourse(String ccode) throws SQLException{
     	dal.deleteCourse(ccode);
-    }
-    //Show all students//
-	public ResultSet findAllStudent() throws SQLException {
-    	return dal.findAllStudent();
-    }
-	//Add a student//
-    public void insertOneStudent(String spnr, String sname, String saddress, String sphnr) throws SQLException{
+	    }
+	    //Add a student//
+	    public void insertOneStudent(String spnr, String sname, String saddress, String sphnr) throws SQLException{
     	dal.insertOneStudent(spnr,sname,saddress,sphnr);
-    } 
-    //Add one course//
-    public void insertOneCourse(String ccode, String cname, String cinfo, String credit) throws SQLException{
+	    } 
+	    //Add one course//
+	    public void insertOneCourse(String ccode, String cname, String cinfo, String credit) throws SQLException{
 		dal.insertOneCourse(ccode,cname,cinfo,credit);
-	}
-    //Find a student//
-    public ResultSet findOneStudent(String spnr) throws SQLException {
-    	return dal.findOneStudent(spnr); 
-    }
-    //Find a course//
-    public ResultSet findOneCourse(String ccode) throws SQLException {
-		return dal.findOneCourse(ccode);
-	}
-    //Connect student to course//
-    public void insertStudentReading (String spnr, String ccode) throws SQLException {
+	    }
+	    //Connect student to course//
+	    public void insertStudentReading (String spnr, String ccode) throws SQLException {
     	dal.insertStudentReading(spnr, ccode);
-    }
-    //Add student to StudentRead and insert a grade//
-    public void insertStudentRead(String spnr, String ccode, String grade) throws SQLException{
+	    }
+	    //Add student to StudentRead and insert a grade//
+	    public void insertStudentRead(String spnr, String ccode, String grade) throws SQLException{
     	dal.insertStudentRead(spnr, ccode, grade);
-    }
-    //Delete student from Reading//
-    public void deleteStudentReading(String spnr, String ccode) throws SQLException{
+	    }
+	    //Delete student from Reading//
+	    public void deleteStudentReading(String spnr, String ccode) throws SQLException{
     	dal.deleteStudentReading(spnr, ccode);
-    }
-    //Results All Students from specific course//
-    public ResultSet resultAllStudentOnOneCourse (String ccode) throws SQLException{
-    	return dal.resultAllStudentOnOneCourse(ccode);
-    }
-    //Find a student from specific course//
-    public ResultSet FindOneStudentOnCourse (String spnr, String ccode) throws SQLException{
-    	return dal.FindOneStudentOnCourse(spnr, ccode);
-    }
-    //Result of specific student on specific course//
-    public ResultSet FindResultOfOneStudentOnSpecifiedCourse(String spnr, String ccode) throws SQLException{
-    	return dal.FindResultOfOneStudentOnSpecifiedCourse(spnr, ccode);
-    }
-    //All students from Reading who are reading courses courses//
-    public ResultSet FindAllStudentsConnectedToCourses() throws SQLException{
-    	return dal.FindAllStudentsConnectedToCourses();
-    }
-    //Check if a student already have read a course and got a grade in it//
-    public ResultSet checkStudentRead(String spnr,String ccode) throws SQLException{
-    	return dal.checkStudentRead(spnr, ccode);
-    }
-    //Show all students grades for specific courses: specified for failed students//
-    public ResultSet showAllFailedStudentsFromSpecificCourse(String ccode, String grade) throws SQLException{
-    	return dal.showAllFailedStudentsFromSpecificCourse(ccode,grade);
-    }
+	    }  
+   
 }
