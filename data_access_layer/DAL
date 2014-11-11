@@ -144,6 +144,13 @@ public class DAL {
 	    	String sqlStr = "select * from StudentRead where ccode= '"+ccode+"' and grade = '"+grade+"';";
 	    	ResultSet rset = stmt.executeQuery(sqlStr);
 	    	return rset;
+	    	}
+	    //Show grade from course by %//
+	    public ResultSet FindProcent(String ccode) throws SQLException{
+	    	stmt = con.createStatement();
+	    	String sqlStr = "select grade as [Grade], count(*) * 100 / sum(count(*)) OVER()as [%] from studentRead where ccode = '" +ccode+"' group by grade ";
+	    	ResultSet rset = stmt.executeQuery(sqlStr);
+	    	return rset;
 	    }
 	    
 	   /* ------------------------ Student reading functions-----------------------------------------------------*/
@@ -179,6 +186,7 @@ public class DAL {
 	    	return rset;
 	    	
 	    	}
+	    
 	   
 	    
 }
