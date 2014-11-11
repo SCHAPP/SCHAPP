@@ -81,6 +81,9 @@ public class Controller {
 	    //Delete student from Reading//
 	    public void deleteStudentReading(String spnr, String ccode) throws SQLException{
     	dal.deleteStudentReading(spnr, ccode);
-	    }  
+	    } 
+	    public ResultSet FindProcent(String ccode) throws SQLException{
+	    	return dal.FindProcent(ccode);
+	    }
    
 }
